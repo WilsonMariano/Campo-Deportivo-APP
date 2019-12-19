@@ -28,9 +28,14 @@
                         <input type="text" placeholder="Escanear código..." class="form-control"> <a href=""><i
                                 class="fa fa-search"></i></a> </form>
                 </li>
-                <li>
-                    <a class="profile-pic" href="#"> <img src="assets/images/users/varun.jpg" alt="user-img"
+                <li class="dropdown">
+                    <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> <img src="assets/images/user.png" alt="user-img"
                             width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a>Preferencias</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a (click)="logOut()">Salir</a></li>
+                              </ul>
                 </li>
             </ul>
         </div>

@@ -3,24 +3,34 @@
 
         <h1>Ingresar</h1>
         <hr>
-        <form>
+        <form [formGroup]="forma" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="usuario">Usuario</label>
-                <input class="form-control" type="text" id="usuario" placeholder="Ingrese usuario">
+                <input class="form-control" type="text" id="usuario" placeholder="Ingrese usuario"
+                    formControlName="usuario">
+                <span class="form-invalid"
+                    *ngIf="forma.controls['usuario'].errors?.required && forma.get('usuario').touched">*El campo es
+                    requerido</span>
             </div>
             <div class="form-group">
                 <label for="contraseña">Contraseña</label>
-                <input class="form-control" type="password" id="contraseña" placeholder="Ingrese contraseña">
+                <input class="form-control" type="password" id="contraseña" placeholder="Ingrese contraseña"
+                    formControlName="password">
+                <span class="form-invalid"
+                    *ngIf="forma.controls['password'].errors?.required && forma.get('password').touched">*El campo es
+                    requerido</span>
             </div>
             <div class="form-group form-check text-right">
 
-                <input type="checkbox" class="form-check-input" id="recordarme">
+                <input type="checkbox" class="form-check-input" id="recordarme" formControlName="recordarme">
                 <label class="form-check-label" for="recordarme">&nbsp;Recordarme</label>
 
             </div>
             <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
-            
+
         </form>
 
     </div>
 </div>
+
+<app-spinner></app-spinner>

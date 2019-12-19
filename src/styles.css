@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+    cursor: pointer;
+}
+
+.form-invalid {
+    color: red;
+    font-size: small;
+}

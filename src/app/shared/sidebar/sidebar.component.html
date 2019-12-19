@@ -2,18 +2,23 @@
     <div class="sidebar-nav slimscrollsidebar">
         <div class="sidebar-head">
             <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span
-                    class="hide-menu">Navigation</span></h3>
+                    class="hide-menu">MENÚ</span></h3>
         </div>
-        <ul class="nav" id="side-menu">
-            <li style="padding: 70px 0 0;">
-                <a href="dashboard.html" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                        aria-hidden="true"></i>Dashboard</a>
-                <ul aria-expanded="false" class="collapse">
-                    <a href="#">Hola</a>
-                </ul>
-            </li>
+        <ul class="nav" id="side-menu" style="padding: 70px 0 0;">
+                <!-- <li style="padding: 70px 0 0;">
+                    <a href="dashboard.html" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+                            aria-hidden="true"></i>Dashboard</a>
+                    <ul aria-expanded="false" class="collapse">
+                        <a href="#">Hola</a>
+                    </ul>
+                </li> -->
+                <li *ngFor="let m of _sidebar.menu">
+                    <a [routerLink]="m.url" routerLinkActive="active" class="waves-effect"><i class="a {{m.icono}}"
+                            aria-hidden="true"></i>&nbsp; {{m.titulo}}</a>
+                </li>
+
             <!-- <span class="px-5">SOCIOS</span> -->
-            <li>
+            <!-- <li>
                 <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw"
                         aria-hidden="true"></i>Profile</a>
             </li>
@@ -36,7 +41,7 @@
             <li>
                 <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Error
                     404</a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>
