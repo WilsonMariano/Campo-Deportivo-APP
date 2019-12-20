@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="white-box">
+            <h2>Nuevo socio</h2>
+            <hr>
+            <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label>Tipo afiliado</label>
+                        <select class="form-control">
+                            <option>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Número</label>
+                        <input type="text" class="form-control" placeholder="Ej.: 8116">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Apellido</label>
+                        <input type="text" class="form-control" placeholder="Ej.: Gomez">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" placeholder="Ej.: Pablo">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>DNI</label>
+                        <input type="number" class="form-control" placeholder="Ej.: 33256985">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Fecha Nacimiento</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Parentesco</label>
+                        <select class="form-control">
+                            <option>Seleccione...</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Estado</label>
+                        <select class="form-control">
+                            <option>Seleccione...</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaSociosComponent implements OnInit {
 
-  private arrControls = ['NroSocio', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio'];
+  private arrControls = ['NroSocio', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio', 'Ficha'];
 
 
   private arrAttr = [
@@ -28,7 +28,14 @@ export class GrillaSociosComponent implements OnInit {
     'entity': 'vwSocios',
     'arrAttr': this.arrAttr,
     'arrControls': this.arrControls,
-    'filterParams': this.filterParams
+    'filterParams': this.filterParams,
+    'buttons': [
+      { 
+        'url': 'home/ficha', 
+        'icon': 'fa fa-address-card', 
+        'idField': 'idSocioTitular'
+      }
+    ]
   }
 
   constructor() { }

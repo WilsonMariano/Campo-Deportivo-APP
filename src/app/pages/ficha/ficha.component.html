@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h1>Titular</h1>
+            <hr>
+            <table class="table mb-5">
+                <tbody>
+                    <ng-container *ngFor="let s of arrSocios">
+                        <tr *ngIf="s.parentesco == 'Titular'" class="info">
+                            <th>{{s.id}}</th>
+                            <td>{{s.apellido}}</td>
+                            <td>{{s.nombre}}</td>
+                            <td>{{s.dni}}</td>
+                            <td>{{s.fechaNacimiento}}</td>
+                            <td>{{s.parentesco}}</td>
+                            <td>{{s.tipoAfiliado}}</td>
+                            <td>{{s.nroAfiliado}}</td>
+                            <td>{{s.activo}}</td>
+                            <td><i class="fa fa-pencil"></i></td>
+                        </tr>
+
+                    </ng-container>
+                </tbody>
+            </table>
+
+
+            <h2>Familiares</h2>
+           <button class="btn btn-primary btn-sm mb-2">Nuevo</button>
+            <table class="table">
+                <tbody>
+                    <ng-container *ngFor="let s of arrSocios">
+                        <tr *ngIf="s.parentesco != 'Titular'">
+                            <th>{{s.id}}</th>
+                            <td>{{s.apellido}}</td>
+                            <td>{{s.nombre}}</td>
+                            <td>{{s.dni}}</td>
+                            <td>{{s.fechaNacimiento}}</td>
+                            <td>{{s.parentesco}}</td>
+                            <td>{{s.activo}}</td>
+                            <td><i class="fa fa-pencil"></i></td>
+                        </tr>
+
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

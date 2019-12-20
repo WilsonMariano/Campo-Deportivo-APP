@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonService, FxGlobalsService } from '../../services/services.index';
+import { Router } from '@angular/router';
 declare var $ : any;
 
 @Component({
@@ -44,7 +45,7 @@ export class GrillaComponent implements OnInit {
 
 
 
-  constructor(private _common: CommonService, private _fxGlobales: FxGlobalsService) { }
+  constructor(private _common: CommonService, private _fxGlobales: FxGlobalsService, private router: Router) { }
 
 
 
@@ -204,4 +205,18 @@ export class GrillaComponent implements OnInit {
   //   );
       
   // }
+
+
+  // Método para navegar de página, recibe un objeto y un boton
+  // Se evalua si en el arreglo de botones se envia nombre del campoId para pasar por parámetro a la url sino se envia el campo id
+  public navigateTo(obj: Object, button: any) {
+
+    let field = button['idField'];
+
+    let id = field == null ? obj['id'] : obj[field];
+
+    this.router.navigate([button['url'], id]);
+
+
+  }
 }
