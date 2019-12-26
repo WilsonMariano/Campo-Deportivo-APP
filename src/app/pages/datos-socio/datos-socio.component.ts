@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { DiccionarioService } from 'src/app/services/services.index';
 
 @Component({
   selector: 'app-datos-socio',
@@ -9,8 +10,11 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 export class DatosSocioComponent implements OnInit {
 
   public forma: FormGroup;
+  public arrParentesco: any[];
+  public arrTipoAfiliado: any[];
 
-  constructor() { }
+
+  constructor(private _diccionario: DiccionarioService) { }
 
   ngOnInit() {
 
@@ -24,6 +28,28 @@ export class DatosSocioComponent implements OnInit {
       'parentesco':       new FormControl('', Validators.required),
       'estado':           new FormControl('', Validators.required)
     })
+
+    this.getDiccionario();
   }
+
+  public getDiccionario(): void {
+
+    this._diccionario.getWithKeys('cod_parentesco').subscribe(
+      data => this.arrParentesco = data.data
+    );
+
+    this._diccionario.getWithKeys('cod_tipo_socio').subscribe(
+      data => this.arrTipoAfiliado = data.data
+    );
+  }
+
+  public onSubmit(): void {
+
+
+
+
+  }
+
+
 
 }

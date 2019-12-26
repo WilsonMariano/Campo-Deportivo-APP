@@ -5,4 +5,5 @@ export { AuthService } from './auth/auth.service';
 export { AuthGuardService } from './auth/auth-guard.service';
 export { CommonService } from './http/common.service';
 export { SocioService } from './http/socio.service';
+export { DiccionarioService } from './http/diccionario.service';
 

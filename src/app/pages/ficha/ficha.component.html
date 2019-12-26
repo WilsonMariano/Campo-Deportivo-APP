@@ -4,6 +4,19 @@
             <h1>Titular</h1>
             <hr>
             <table class="table mb-5">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>F. Nacimiento</th>
+                        <th>Parentesco</th>
+                        <!-- <th>Tipo afil.</th>
+                        <th>Num. afil.</th> -->
+                        <th>Estado</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <ng-container *ngFor="let s of arrSocios">
                         <tr *ngIf="s.parentesco == 'Titular'" class="info">
@@ -13,8 +26,8 @@
                             <td>{{s.dni}}</td>
                             <td>{{s.fechaNacimiento}}</td>
                             <td>{{s.parentesco}}</td>
-                            <td>{{s.tipoAfiliado}}</td>
-                            <td>{{s.nroAfiliado}}</td>
+                            <!-- <td>{{s.tipoAfiliado}}</td>
+                            <td>{{s.nroAfiliado}}</td> -->
                             <td>{{s.activo}}</td>
                             <td><i class="fa fa-pencil"></i></td>
                         </tr>
