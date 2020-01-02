@@ -43,4 +43,9 @@ export class GrillaSociosComponent implements OnInit {
   ngOnInit() {
   }
 
+  public nuevoSocio() {
+
+    localStorage.setItem('parentesco', 'titular');
+  }
+
 }

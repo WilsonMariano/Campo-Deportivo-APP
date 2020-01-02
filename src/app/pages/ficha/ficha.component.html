@@ -29,7 +29,7 @@
                             <!-- <td>{{s.tipoAfiliado}}</td>
                             <td>{{s.nroAfiliado}}</td> -->
                             <td>{{s.activo}}</td>
-                            <td><i class="fa fa-pencil"></i></td>
+                            <td><a [routerLink]="'../../../home/datos-socio/' + s.id"><i class="fa fa-pencil"></i></a></td>
                         </tr>
 
                     </ng-container>
@@ -38,7 +38,7 @@
 
 
             <h2>Familiares</h2>
-           <button class="btn btn-primary btn-sm mb-2">Nuevo</button>
+           <a routerLink="../../../home/datos-socio/nuevo" class="btn btn-primary btn-sm mb-2" (click)="establecerFamiliar()">Nuevo</a>
             <table class="table">
                 <tbody>
                     <ng-container *ngFor="let s of arrSocios">
@@ -50,7 +50,7 @@
                             <td>{{s.fechaNacimiento}}</td>
                             <td>{{s.parentesco}}</td>
                             <td>{{s.activo}}</td>
-                            <td><i class="fa fa-pencil"></i></td>
+                            <td><a [routerLink]="'../../../home/datos-socio/' + s.id" (click)="establecerFamiliar()"><i class="fa fa-pencil"></i></a></td>
                         </tr>
 
                     </ng-container>

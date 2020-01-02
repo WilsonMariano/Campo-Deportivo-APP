@@ -27,7 +27,7 @@ export class Socio {
     public setNombre(nombre: String): void { this.nombre = nombre }
     public setApellido(apellido: String): void { this.apellido = apellido }
     public setDni(dni: Number): void { this.dni = dni }
-    public setFechaNacimiento(fecha: Date): void { this.fechaNacimiento = this.fechaNacimiento }
+    public setFechaNacimiento(fecha: Date): void { this.fechaNacimiento = fecha }
     public setCodParentesco(codParentesco: String): void { this.codParentesco = codParentesco }
     public setEstado(estado: Number): void { this.estado = estado }
     public setCodTipoSocio(codSocio: String): void { this.codTipoSocio = codSocio }

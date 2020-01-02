@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SocioService } from '../../services/services.index';
+import { Socio } from '../../class/class.index';
 
 @Component({
   selector: 'app-ficha',
@@ -9,35 +10,41 @@ import { SocioService } from '../../services/services.index';
 })
 export class FichaComponent implements OnInit {
 
-  private newOperation: Boolean;
-  public arrSocios: any[];
+  private idSocioTitular: Number;
+  public arrSocios: Socio[];
 
-  constructor(private activateRoute: ActivatedRoute, private _socio: SocioService) { }
+
+  constructor(private activateRoute: ActivatedRoute, private router: Router, private _socio: SocioService) { }
 
   ngOnInit() {
 
     //Recibo ID
     this.activateRoute.params.subscribe(
       data => {
-        if(data['id'] !== 'nuevo') {
+       
           
-          this.getSocios( data['id'] );
-          this.newOperation = false;
+          this.idSocioTitular = data['id'];
+          this.getSocios();
 
-        }
+        
       });
   }
 
-  private getSocios(id: Number) {
+  private getSocios(): void {
 
-    this._socio.getGroupFamily(id).subscribe(
+    this._socio.getGroupFamily(this.idSocioTitular).subscribe(
       
       data => {
         this.arrSocios = data.data;
         console.log(data.data);
       }
-    )
-    
+    ) 
   }
+  
+  private establecerFamiliar(): void {
 
+    localStorage.setItem('parentesco', 'familiar');
+    localStorage.setItem('idSocioTitular', this.idSocioTitular.toString());
+
+  }
 }

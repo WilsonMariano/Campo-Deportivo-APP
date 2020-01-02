@@ -1,13 +1,14 @@
 <div class="row">
     <div class="col-md-6">
         <div class="white-box">
-            <h2>Nuevo socio</h2>
+            <h2 *ngIf="newOperation">Nuevo Socio</h2>
+            <h2 *ngIf="!newOperation">Editar Socio</h2>
             <hr>
             <form [formGroup]="forma" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="form-group col-md-8">
                         <label>Tipo afiliado</label>
-                        <select class="form-control">
+                        <select class="form-control" formControlName="tipoAfiliado">
                             <option value="">Seleccione...</option>
                             <option *ngFor="let t of arrTipoAfiliado" [value]="t.clave">{{t.valor}}</option>
                         </select>

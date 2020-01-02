@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { FxGlobalsService } from '../services.index';
+import { Socio } from 'src/app/class/class.index';
 
 @Injectable({
     providedIn: 'root'
@@ -28,5 +29,56 @@ export class SocioService {
             .pipe(
                 finalize(() => this._fxGlobals.hideSpinner())
             );
+    }
+
+    public getOne(idSocio: Number): Observable<any> {
+
+        this._fxGlobals.showSpinner();
+
+        return this._http.get(`${this.url}/getOne/${idSocio}`
+        )
+            .pipe(
+                finalize(() => this._fxGlobals.hideSpinner())
+            );
+    }
+
+    public insert(socio: Socio): Observable<any> {
+
+        this._fxGlobals.showSpinner();
+    
+        return this._http.post(
+            `${this.url}/insert`,
+            socio
+        )
+        .pipe(
+          finalize(() => this._fxGlobals.hideSpinner())
+        );
+      }
+
+      public insertFamilia(socio: Socio): Observable<any> {
+
+        this._fxGlobals.showSpinner();
+    
+        return this._http.post(
+            `${this.url}/insertFamilia`,
+            socio
+        )
+        .pipe(
+          finalize(() => this._fxGlobals.hideSpinner())
+        );
+      }
+
+
+    public update(socio: Socio): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    return this._http.post(
+        `${this.url}/update`,
+        socio
+    )
+    .pipe(
+        finalize(() => this._fxGlobals.hideSpinner())
+    );
     }
 }

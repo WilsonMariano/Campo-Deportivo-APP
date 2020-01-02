@@ -13,13 +13,17 @@ import { GrillaSociosComponent } from './grilla-socios/grilla-socios.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FichaComponent } from './ficha/ficha.component';
 import { DatosSocioComponent } from './datos-socio/datos-socio.component';
+import { BonosComponent } from './bonos/bonos.component';
+import { EmitirBonoComponent } from './emitir-bono/emitir-bono.component';
 
 @NgModule({
     declarations: [
         DashboardComponent,
         GrillaSociosComponent,
         FichaComponent,
-        DatosSocioComponent
+        DatosSocioComponent,
+        BonosComponent,
+        EmitirBonoComponent
     ],
     exports: [
     ],  

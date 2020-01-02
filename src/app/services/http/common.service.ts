@@ -56,5 +56,20 @@ export class CommonService {
     .pipe(
       finalize(() => this._fxGlobals.hideSpinner())
     );
-  }  
+  }
+  
+  public getOne( entity: String, id: String ): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+
+    let params = new HttpParams().set( 't', entity.toString() )  
+
+    return this._http.get( `${this.url}/one/${id}`, 
+      { params }
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
+    );
+  }
 }
