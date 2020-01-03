@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { CommonService, FxGlobalsService } from '../../services/services.index';
 import { Router } from '@angular/router';
 declare var $ : any;
@@ -57,6 +57,12 @@ export class GrillaComponent implements OnInit {
     
     // Cargo la tabla con los objetos iniciales
     this.getObjects();
+  }
+
+  ngOnChanges() {
+    console.log("entre");
+    this.getObjects();
+
   }
 
 

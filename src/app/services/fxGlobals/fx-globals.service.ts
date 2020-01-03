@@ -24,4 +24,47 @@ export class FxGlobalsService {
 
     swal( title, text, status );
   }
+
+  public showQuestionAlert(title: string, text: string, icon) {
+
+    let alertOptions = {
+      title,
+      text,
+      icon,
+      buttons: true,
+      // buttons: {
+      //   cancel: {
+      //     text: "Cancelar",
+      //     value: null,
+      //     visible: false,
+      //     className: "",
+      //     closeModal: true,
+      //   },
+      //   confirm: {
+      //     text: "Aceptar",
+      //     value: true,
+      //     visible: true,
+      //     className: "",
+      //     closeModal: true
+      //   }
+      // },
+      dangerMode: true
+    };
+
+
+    // Retorno una promesa con el resultado según lo que haya presionado el usuario
+    return new Promise(( resolve, reject ) => {
+
+      swal( alertOptions ).then(( response ) => {
+
+        if(response)
+           resolve(true);
+
+        else
+          reject(false);
+
+      });
+    });    
+  }
 }
+

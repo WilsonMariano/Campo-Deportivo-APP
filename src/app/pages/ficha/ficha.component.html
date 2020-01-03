@@ -30,6 +30,7 @@
                             <td>{{s.nroAfiliado}}</td> -->
                             <td>{{s.activo}}</td>
                             <td><a [routerLink]="'../../../home/datos-socio/' + s.id"><i class="fa fa-pencil"></i></a></td>
+                            <td><a [routerLink]="'../../../home/emitir-bono/' + s.id"><i class="fa fa-ticket"></i></a></td>
                         </tr>
 
                     </ng-container>
@@ -51,6 +52,7 @@
                             <td>{{s.parentesco}}</td>
                             <td>{{s.activo}}</td>
                             <td><a [routerLink]="'../../../home/datos-socio/' + s.id" (click)="establecerFamiliar()"><i class="fa fa-pencil"></i></a></td>
+                            <td><a [routerLink]="'../../../home/emitir-bono/' + s.id"><i class="fa fa-ticket"></i></a></td>
                         </tr>
 
                     </ng-container>

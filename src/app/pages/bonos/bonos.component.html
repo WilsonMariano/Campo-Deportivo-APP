@@ -8,6 +8,8 @@
                         (click)="opcion = 'editar'">Anular</a></li>
                 <li role="presentation" [ngClass]="{'active' : opcion == 'listar'}"><a (click)="opcion = 'listar'"
                         (click)="opcion = 'listar'">Listar</a></li>
+                <li role="presentation" [ngClass]="{'active' : opcion == 'reimprimir'}"><a (click)="opcion = 'reimprimir'"
+                        (click)="opcion = 'reimprimir'">Reimprimir</a></li>
             </ul>
 
             <div [ngSwitch]="opcion" class="mt-5">

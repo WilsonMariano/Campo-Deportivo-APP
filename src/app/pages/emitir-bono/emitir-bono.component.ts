@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocioService, DiccionarioService, FxGlobalsService } from 'src/app/services/services.index';
+import { SocioService, DiccionarioService, FxGlobalsService, ValoresService } from 'src/app/services/services.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 declare var moment: any;
 
@@ -16,6 +16,7 @@ export class EmitirBonoComponent implements OnInit {
     private _socio: SocioService, 
     private _diccionario: DiccionarioService, 
     private _fxGlobals: FxGlobalsService,
+    private _valores: ValoresService,
     private router: Router) { }
 
   public forma: FormGroup;
@@ -158,14 +159,25 @@ export class EmitirBonoComponent implements OnInit {
 
     if(this.forma.get('codPrestacion').valid && this.forma.get('fechaAsignacion').valid) {
       
-      console.log("CAMBIO");
+      this._valores.getValor(
+        this.forma.get('codPrestacion').value, 
+        this.forma.get('codDia').value,
+        this.socio.codTipoSocio,
+        this.socio.edad)
+        .subscribe(
+          data => this.forma.get('monto').setValue(data.data.valor),
+          err => this._fxGlobals.showAlert("Error", "La tarifa no se encuentra cargada", "error" )
+        )
     }
 
   }
 
   public onSubmit() {
       
-    console.log(this.forma.get('fechaAsignacion').value);
+    this._fxGlobals.showQuestionAlert("Confirmación", "¿Los datos son correctos?", "warning")
+    .then(() => console.log("OK"))
+    // console.log(this.forma.get('fechaAsignacion').value);
+    // console.log(this.socio);
     
   }
 

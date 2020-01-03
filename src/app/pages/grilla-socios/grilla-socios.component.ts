@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaSociosComponent implements OnInit {
 
-  private arrControls = ['NroSocio', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio', 'Ficha'];
+  public tipoParentesco = "titular";
+
+  private arrControls = ['NroSocio', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio'];
 
 
   private arrAttr = [
@@ -20,7 +22,7 @@ export class GrillaSociosComponent implements OnInit {
 
   private filterParams = {
     'col': 'parentesco',
-    'txt': 'Titular'
+    'txt': 'titular'
   }
 
 
@@ -34,6 +36,11 @@ export class GrillaSociosComponent implements OnInit {
         'url': 'home/ficha', 
         'icon': 'fa fa-address-card', 
         'idField': 'idSocioTitular'
+      },
+      { 
+        'url': 'home/emitir-bono', 
+        'icon': 'fa fa-ticket', 
+        'idField': 'id'
       }
     ]
   }
@@ -46,6 +53,11 @@ export class GrillaSociosComponent implements OnInit {
   public nuevoSocio() {
 
     localStorage.setItem('parentesco', 'titular');
+  }
+
+  public changeShowParams() {
+
+    this.options.filterParams.txt = this.tipoParentesco;
   }
 
 }

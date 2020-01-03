@@ -7,7 +7,8 @@ import {
   UsuarioService, 
   FxGlobalsService, 
   AuthService,
-  CommonService
+  CommonService,
+  ValoresService
 } from './services.index';
 
 @NgModule({
@@ -21,7 +22,8 @@ import {
       UsuarioService,
       FxGlobalsService,
       AuthService,
-      CommonService
+      CommonService,
+      ValoresService
     ]
   })
   export class ServiceModule { }

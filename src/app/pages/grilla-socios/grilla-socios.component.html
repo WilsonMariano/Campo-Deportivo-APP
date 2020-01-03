@@ -2,6 +2,14 @@
     <div class="col-md-12">
         <div class="white-box">
             <button class="btn btn-primary" routerLink="/home/datos-socio/nuevo" (click)="nuevoSocio()">Nuevo</button>
+            <div class="row">
+                <div class="col-md-4">
+                    <select class="form-control" (change)="changeShowParams()" name="tipoParentesco" [(ngModel)]="tipoParentesco">
+                        <option value="titular">Titulares</option>
+                        <option value="familiar">Todos</option>
+                    </select>
+                </div>
+            </div>
             <app-grilla [options]="options"></app-grilla>
         </div>
     </div>
