@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocioService, DiccionarioService, FxGlobalsService } from 'src/app/services/services.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+declare var moment: any;
 
 @Component({
   selector: 'app-emitir-bono',
@@ -20,12 +21,14 @@ export class EmitirBonoComponent implements OnInit {
   public forma: FormGroup;
   public arrPrestaciones = [];
   public arrParentesco = [];
+  public arrDias = [];
   public socio = null;
 
   ngOnInit() {
 
     this.forma = new FormGroup({
 
+      'cbForm': new FormControl('default'),
       'idSocio': new FormControl({value: '', disabled: true}),
       'apellido': new FormControl({value: '', disabled: true}),
       'nombre': new FormControl({value: '', disabled: true}),
@@ -33,20 +36,33 @@ export class EmitirBonoComponent implements OnInit {
       'fechaAsignacion': new FormControl('', Validators.required),
       'codPrestacion': new FormControl('', Validators.required),
       'monto': new FormControl('', Validators.required),
+      'codDia': new FormControl(''),
       'descripcion': new FormControl('')
 
     });
 
+    this.getSocio();
     this.getDiccionario();
-
-    this.activatedRoute.params.subscribe(
-      data => { this.getSocio(data.id)}
-    )
+    this.onChangeCB();
+    this.initializeDate();
+    this.calculateTarifa();
   }
 
-  public getSocio(id): void {
 
-    this._socio.getOne(id).subscribe(
+/**
+ * Primer método que se ejecuta. Recupera un id como parámetro de la url y luego solicita el socio
+ * Una vez recuperado el socio asigna sus atributos a la forma. Si no se encuentra el socio se muestra
+ * un mensaje.
+ */
+  public getSocio(): void {
+
+    let idSocioBuscar;
+
+    this.activatedRoute.params.subscribe(
+      data => idSocioBuscar = data.id
+    );
+
+    this._socio.getOne(idSocioBuscar).subscribe(
       data => {
 
         this.socio = data.data;
@@ -63,10 +79,11 @@ export class EmitirBonoComponent implements OnInit {
       }
 
     )
-
-
   }
 
+  /**
+   * Mediante solicitudes a la api trae y llena los array de opciones de la forma.
+   */
   private getDiccionario(): void {
 
     this._diccionario.getWithKeys('cod_prestacion').subscribe(
@@ -76,6 +93,80 @@ export class EmitirBonoComponent implements OnInit {
     this._diccionario.getWithKeys('cod_parentesco').subscribe(
       data => this.arrParentesco = data.data
     );
+
+    this._diccionario.getWithKeys('cod_dia').subscribe(
+      data => this.arrDias = data.data
+    );
+  }
+
+  /**
+   * Se ejecuta cada vez que se selecciona un radio y cuando se carga por primera vez la página.
+   * Habilitando y deshabilitando los campos monto y codDia segun corresponda (carga manual y automatica).
+   */
+  public onChangeCB(): void {
+
+    if(this.forma.get('cbForm').value === 'default') {
+
+      this.forma.get('codDia').disable();
+      this.forma.get('monto').disable();
+    
+    } else {
+
+      this.forma.get('codDia').enable();
+      this.forma.get('monto').enable();
+    }
+  }
+
+  /**
+   * Incializa el campo fechaAsignacion del formulario con la fecha actual.
+   * Se ejecuta cuando carga la página.
+   */
+  private initializeDate(): void {
+
+    let fecha = moment().format('YYYY-MM-DD');
+    this.forma.get('fechaAsignacion').setValue(fecha);
+  }
+ 
+
+  /**
+   * Según el día de la semana, en base a la fechaAsignacion, calcula la tarifa a aplicar al precio del bono.
+   * Se ejecuta cada vez que se hace blur en el cambo de fechaAsignacion y al momento de carga de la vista.
+   */
+  public calculateTarifa(): void {
+
+    if(this.forma.get('fechaAsignacion').valid) {
+
+      let fecha = moment(this.forma.get('fechaAsignacion').value);
+      let dia = Number.parseInt(fecha.format('d'));
+      
+      if(dia === 6 || dia === 7)
+        this.forma.get('codDia').setValue('cod_dia_2');
+      else
+        this.forma.get('codDia').setValue('cod_dia_1');
+    }
+
+    this.getMonto();
+  }
+
+  /**
+   * Hace un petición al servidor para traer el monto a cobrar.
+   * A partir del tipo de prestación, tarifa y edad.
+   * Se ejecuta cada vez que cambian los siguientes campos: 
+   * codPrestacion, fechaAsignacion, tarifa.
+   */
+  public getMonto(): void {
+
+    if(this.forma.get('codPrestacion').valid && this.forma.get('fechaAsignacion').valid) {
+      
+      console.log("CAMBIO");
+    }
+
+  }
+
+  public onSubmit() {
+      
+    console.log(this.forma.get('fechaAsignacion').value);
+    
   }
 
 }

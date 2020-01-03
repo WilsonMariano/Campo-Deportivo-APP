@@ -1,3 +1,8 @@
 h4 {
     display: inline;
 }
+
+.form-check-label {
+
+    font-weight: normal;
+}

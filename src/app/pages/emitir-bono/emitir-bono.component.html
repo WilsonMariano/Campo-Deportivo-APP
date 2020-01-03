@@ -1,14 +1,23 @@
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-10">
         <div class="white-box">
 
             <h2>Bono de prestación</h2>
             <hr>
-            <form [formGroup]="forma" (ngSubmit)="generarBono()">
+            <form [formGroup]="forma" (ngSubmit)="onSubmit()">
 
                 <div class="row">
-                    <div class="col-md-12 text-right mb-4">
-                        <h4><span class="label label-info">{{socio.edad}} años</span></h4>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="cbForm" id="inlineRadio1" value="default" formControlName="cbForm" (change)="onChangeCB()">
+                            <label class="form-check-label" for="inlineRadio1">&nbsp;Default&nbsp;&nbsp;&nbsp;</label>
+                            <input class="form-check-input" type="radio" name="cbForm" id="inlineRadio2" value="manual" formControlName="cbForm" (change)="onChangeCB()">
+                            <label class="form-check-label" for="inlineRadio2">&nbsp;Manual</label>
+                          </div>
+                    </div>
+                    <!-- <div class="col-md-4"></div> -->
+                    <div class="col-md-4 text-right mb-4">
+                        <h4 *ngIf="socio != null"><span class="label label-info">{{socio.edad}} años</span></h4>
                     </div>
                     <div class="form-group col-md-2">
                         <label>Nro. Socio</label>
@@ -28,33 +37,47 @@
                             <option *ngFor="let p of arrParentesco" [value]="p.clave">{{p.valor}}</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label>Fecha asignación</label>
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="date" class="form-control" formControlName="fechaAsignacion">
-                        </div>
-                    </div>
-                    <div class="form-group col-md-5">
+
+                    <div class="form-group col-md-3">
                         <label>Prestación</label>
-                        <select class="form-control" formControlName="codPrestacion">
+                        <select class="form-control" formControlName="codPrestacion" (change)="getMonto()">
                             <option value="">Seleccione...</option>
                             <option *ngFor="let p of arrPrestaciones" [value]="p.clave">{{p.valor}}</option>
+                            <span class="form-invalid" *ngIf="forma.controls['codPrestacion'].errors?.required && forma.controls['codPrestacion'].touched">*El campo es requerido</span>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Fecha asignación</label>
+                        <!-- <div class="input-group"> -->
+                            <!-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span> -->
+                            <input type="date" class="form-control" formControlName="fechaAsignacion" (blur)="calculateTarifa()">
+                        <!-- </div> -->
+                        <span class="form-invalid" *ngIf="forma.controls['fechaAsignacion'].errors?.required && forma.controls['fechaAsignacion'].touched">*El campo es requerido</span>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label>Tarifa</label>
+                        <select class="form-control" formControlName="codDia" (change)="getMonto()">
+                            <option value="">Seleccione...</option>
+                            <option *ngFor="let d of arrDias" [value]="d.clave">{{d.valor}}</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
                         <label>Monto</label>
                         <div class="input-group">
                             <span class="input-group-addon">$</span>
-                            <input type="number" class="form-control" formControlName="monto">
+                            <input type="number" class="form-control" formControlName="monto" placeholder="0.00">
                         </div>
+                        <span class="form-invalid" *ngIf="forma.controls['monto'].errors?.required && forma.controls['monto'].touched">*El campo es requerido</span>
                     </div>
+
+                   
                     <div class="form-group col-md-12">
                         <label>Descripción</label>
-                        <input type="text" class="form-control" formControlName="descripcion">
+                        <input type="text" class="form-control" formControlName="descripcion" placeholder="Debe presentarse 10 minutos antes">
                     </div>
                     <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary" [disabled]="forma.invalid">Aceptar</button>
+                        <!-- <button type="submit" class="btn btn-primary" [disabled]="forma.invalid">Aceptar</button> -->
+                        <button type="submit" class="btn btn-primary" >Aceptar</button>
                     </div>
                 </div>
             </form>
