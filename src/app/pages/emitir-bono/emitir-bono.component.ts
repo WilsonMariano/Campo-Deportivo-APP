@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocioService, DiccionarioService, FxGlobalsService, ValoresService } from 'src/app/services/services.index';
+import { SocioService, DiccionarioService, FxGlobalsService, ValoresService, PdfGeneratorService } from 'src/app/services/services.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Bono } from 'src/app/class/class.index';
+import { BonoService } from 'src/app/services/http/bono.service';
 declare var moment: any;
 
 @Component({
@@ -16,6 +18,8 @@ export class EmitirBonoComponent implements OnInit {
     private _socio: SocioService, 
     private _diccionario: DiccionarioService, 
     private _fxGlobals: FxGlobalsService,
+    private _pdf: PdfGeneratorService,
+    private _bono: BonoService,
     private _valores: ValoresService,
     private router: Router) { }
 
@@ -175,10 +179,48 @@ export class EmitirBonoComponent implements OnInit {
   public onSubmit() {
       
     this._fxGlobals.showQuestionAlert("Confirmación", "¿Los datos son correctos?", "warning")
-    .then(() => console.log("OK"))
-    // console.log(this.forma.get('fechaAsignacion').value);
-    // console.log(this.socio);
-    
+    .then(() => {
+
+      // Genero el objeto
+      let bono = new Bono();
+      bono.setIdSocio(this.forma.get('idSocio').value);
+      bono.setMonto(this.forma.get('monto').value);
+      bono.setFechaAsignacion(this.forma.get('fechaAsignacion').value);
+      bono.setCodPrestacion(this.forma.get('codPrestacion').value);
+      bono.setDetalle(this.forma.get('descripcion').value);
+      bono.setHash("asd123");
+
+      console.log(bono);
+
+      let res = {
+        "id": "5",
+        "apellido": "Wilson",
+        "nombre": "Mariano",
+        "idSocio": "1",
+        "monto": "23.00",
+        "fechaEmision": "2020-01-06",
+        "fechaAsignacion": "2020-12-01",
+        "prestacion": "Canchas de futbol",
+        "detalle": "asdasdasdasd",
+        "estado": "Activo",
+        "fechaUso": null,
+        "parentesco": "Titular",
+        "tipoSocio": "Afiliado Sindicato"
+    }
+
+      this._pdf.generarPDF(res);
+
+      // Inserto el bono
+      // this._bono.insert(bono).subscribe(
+
+      //   // Genero el pdf
+      //   data => {
+      //     this._pdf.generarPDF(data.data);
+      //   }
+      // )
+      // this._pdf.generarPDF();
+
+    });
   }
 
 }
