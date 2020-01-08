@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Md5 } from 'ts-md5/dist/md5';
+declare var QRCode: any;
 
 declare var swal : any;
 
@@ -65,6 +67,33 @@ export class FxGlobalsService {
 
       });
     });    
+  }
+
+  public generateQR(element, data): any {
+
+    let qrcode = new QRCode(element, {
+      text: data,
+      width: 150,
+      height: 150,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    return qrcode;
+
+  }
+
+  public dateFormat(date: String, separator: String): String {
+
+    let d = date.split('-');
+
+    return d[2] + separator + d[1] + separator + d[0];
+  }
+
+  public generateHash(data: String): String {
+
+    return Md5.hashStr(<string>data).toString();
   }
 }
 

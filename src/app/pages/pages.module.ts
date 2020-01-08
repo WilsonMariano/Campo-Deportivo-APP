@@ -15,6 +15,7 @@ import { FichaComponent } from './ficha/ficha.component';
 import { DatosSocioComponent } from './datos-socio/datos-socio.component';
 import { BonosComponent } from './bonos/bonos.component';
 import { EmitirBonoComponent } from './emitir-bono/emitir-bono.component';
+import { VistaPreviaBonoComponent } from './vista-previa-bono/vista-previa-bono.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { EmitirBonoComponent } from './emitir-bono/emitir-bono.component';
         FichaComponent,
         DatosSocioComponent,
         BonosComponent,
-        EmitirBonoComponent
+        EmitirBonoComponent,
+        VistaPreviaBonoComponent
     ],
     exports: [
     ],  

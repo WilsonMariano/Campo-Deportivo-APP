@@ -1,0 +1,34 @@
+<h2>Vista previa</h2>
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-5 text-bold">Nro. Bono</div>
+            <div class="col-md-7">{{bonoPrevia.id}}</div>
+            <div class="col-md-5 text-bold">Apellido y nombre</div>
+            <div class="col-md-7">{{bonoPrevia.apellido + " " + bonoPrevia.nombre}}</div>
+            <div class="col-md-5 text-bold">Tipo socio</div>
+            <div class="col-md-7">{{bonoPrevia.tipoSocio}}</div>
+            <div class="col-md-5 text-bold">Parentesco</div>
+            <div class="col-md-7">{{bonoPrevia.parentesco}}</div>
+            <div class="col-md-5 text-bold">Prestación</div>
+            <div class="col-md-7">{{bonoPrevia.prestacion}}</div>
+            <div class="col-md-5 text-bold">Fecha asignada</div>
+            <div class="col-md-7">{{bonoPrevia.fechaAsignacion}}</div>
+            <div class="col-md-5 text-bold">Monto</div>
+            <div class="col-md-7">{{bonoPrevia.monto}}</div>
+            <div *ngIf="bonoPrevia.detalle != ''">
+                <div class="col-md-5 text-bold">Detalle</div>
+                <div class="col-md-7">{{bonoPrevia.detalle}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+       <div class="col-md-12">
+           <div id="qr"></div>
+       </div>
+    </div>
+    <div class="col-md-12">
+        <button class="btn btn-primary" (click)="makePDF()">Imprimir</button>
+    </div>
+</div>

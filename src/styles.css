@@ -60,3 +60,7 @@ td i.fa {
 .ml-5 {
     margin-left: 5rem;
 }
+
+.text-bold {
+    font-weight: bold;
+}

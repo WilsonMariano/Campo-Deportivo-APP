@@ -28,6 +28,7 @@ export class EmitirBonoComponent implements OnInit {
   public arrParentesco = [];
   public arrDias = [];
   public socio = null;
+  public bonoPrevia = null;
 
   ngOnInit() {
 
@@ -186,40 +187,20 @@ export class EmitirBonoComponent implements OnInit {
       bono.setIdSocio(this.forma.get('idSocio').value);
       bono.setMonto(this.forma.get('monto').value);
       bono.setFechaAsignacion(this.forma.get('fechaAsignacion').value);
+      bono.setFechaEmision(new Date("2020-01-07"));
       bono.setCodPrestacion(this.forma.get('codPrestacion').value);
       bono.setDetalle(this.forma.get('descripcion').value);
-      bono.setHash("asd123");
 
-      console.log(bono);
+      let hash = Date.now() + bono.getIdSocio().toString();
 
-      let res = {
-        "id": "5",
-        "apellido": "Wilson",
-        "nombre": "Mariano",
-        "idSocio": "1",
-        "monto": "23.00",
-        "fechaEmision": "2020-01-06",
-        "fechaAsignacion": "2020-12-01",
-        "prestacion": "Canchas de futbol",
-        "detalle": "asdasdasdasd",
-        "estado": "Activo",
-        "fechaUso": null,
-        "parentesco": "Titular",
-        "tipoSocio": "Afiliado Sindicato"
-    }
+      bono.setHash(this._fxGlobals.generateHash(hash));
 
-      this._pdf.generarPDF(res);
+        // Inserto el bono
+      this._bono.insert(bono).subscribe(
 
-      // Inserto el bono
-      // this._bono.insert(bono).subscribe(
-
-      //   // Genero el pdf
-      //   data => {
-      //     this._pdf.generarPDF(data.data);
-      //   }
-      // )
-      // this._pdf.generarPDF();
-
+        // Asigno el bono recuperado y muestro la pantalla de vista previa
+        data => this.bonoPrevia = data.data
+      );
     });
   }
 
