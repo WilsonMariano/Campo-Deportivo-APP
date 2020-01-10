@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bonos',
-  templateUrl: './bonos.component.html',
+  templateUrl: './bonos-menu.component.html',
   styles: []
 })
-export class BonosComponent implements OnInit {
+export class BonosMenuComponent implements OnInit {
 
   public opcion: String = "nuevo";
   public forma: FormGroup;

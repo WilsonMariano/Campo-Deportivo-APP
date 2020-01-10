@@ -40,6 +40,7 @@ export class EmitirBonoComponent implements OnInit {
       'nombre': new FormControl({value: '', disabled: true}),
       'codParentesco': new FormControl({value: '', disabled: true}),
       'fechaAsignacion': new FormControl('', Validators.required),
+      'horaAsignacion': new FormControl(''),
       'codPrestacion': new FormControl('', Validators.required),
       'monto': new FormControl('', Validators.required),
       'codDia': new FormControl(''),
@@ -187,19 +188,16 @@ export class EmitirBonoComponent implements OnInit {
       bono.setIdSocio(this.forma.get('idSocio').value);
       bono.setMonto(this.forma.get('monto').value);
       bono.setFechaAsignacion(this.forma.get('fechaAsignacion').value);
+      bono.setHoraAsignacion(this.forma.get('horaAsignacion').value);
       bono.setFechaEmision(new Date("2020-01-07"));
       bono.setCodPrestacion(this.forma.get('codPrestacion').value);
       bono.setDetalle(this.forma.get('descripcion').value);
-
-      let hash = Date.now() + bono.getIdSocio().toString();
-
-      bono.setHash(this._fxGlobals.generateHash(hash));
 
         // Inserto el bono
       this._bono.insert(bono).subscribe(
 
         // Asigno el bono recuperado y muestro la pantalla de vista previa
-        data => this.bonoPrevia = data.data
+        data => this.bonoPrevia = { 'hash': this.socio.hash, "bono": data.data  }
       );
     });
   }

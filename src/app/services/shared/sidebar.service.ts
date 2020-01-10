@@ -18,7 +18,7 @@ export class SidebarService {
     },
     {
       titulo: 'Bonos',
-      url:    '/home/bonos',
+      url:    '/home/bonos-menu',
       icono: 'fa fa-ticket'
     }
   ];

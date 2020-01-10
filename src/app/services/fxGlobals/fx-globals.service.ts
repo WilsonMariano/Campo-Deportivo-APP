@@ -84,11 +84,20 @@ export class FxGlobalsService {
 
   }
 
-  public dateFormat(date: String, separator: String): String {
+  public dateFormat(date: String): String {
 
+    let separator = '-';
     let d = date.split('-');
 
     return d[2] + separator + d[1] + separator + d[0];
+  }
+
+  public timeFormat(time: String): String {
+
+    let separator = ':';
+    let d = time.split(':');
+
+    return d[0] + separator + d[1];
   }
 
   public generateHash(data: String): String {

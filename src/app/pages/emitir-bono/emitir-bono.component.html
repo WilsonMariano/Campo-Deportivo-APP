@@ -67,6 +67,15 @@
                                 *ngIf="forma.controls['fechaAsignacion'].errors?.required && forma.controls['fechaAsignacion'].touched">*El
                                 campo es requerido</span>
                         </div>
+                        <div class="form-group col-md-3 col-sm-12">
+                            <label>Hora asignación</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" formControlName="horaAsignacion" placeholder="17:00">
+                            </div>
+                            <span class="form-invalid"
+                                *ngIf="forma.controls['monto'].errors?.required && forma.controls['monto'].touched">*El
+                                campo es requerido</span>
+                        </div>
                         <div class="form-group col-md-3">
                             <label>Tarifa</label>
                             <select class="form-control" formControlName="codDia" (change)="getMonto()">
@@ -86,7 +95,7 @@
                         </div>
 
 
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-9">
                             <label>Descripción</label>
                             <input type="text" class="form-control" formControlName="descripcion"
                                 placeholder="Debe presentarse 10 minutos antes">

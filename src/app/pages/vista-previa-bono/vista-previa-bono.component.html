@@ -4,22 +4,22 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-md-5 text-bold">Nro. Bono</div>
-            <div class="col-md-7">{{bonoPrevia.id}}</div>
+            <div class="col-md-7">{{bonoPrevia.bono.id}}</div>
             <div class="col-md-5 text-bold">Apellido y nombre</div>
-            <div class="col-md-7">{{bonoPrevia.apellido + " " + bonoPrevia.nombre}}</div>
+            <div class="col-md-7">{{bonoPrevia.bono.apellido + " " + bonoPrevia.bono.nombre}}</div>
             <div class="col-md-5 text-bold">Tipo socio</div>
-            <div class="col-md-7">{{bonoPrevia.tipoSocio}}</div>
+            <div class="col-md-7">{{bonoPrevia.bono.tipoSocio}}</div>
             <div class="col-md-5 text-bold">Parentesco</div>
-            <div class="col-md-7">{{bonoPrevia.parentesco}}</div>
+            <div class="col-md-7">{{bonoPrevia.bono.parentesco}}</div>
             <div class="col-md-5 text-bold">Prestación</div>
-            <div class="col-md-7">{{bonoPrevia.prestacion}}</div>
+            <div class="col-md-7">{{bonoPrevia.bono.prestacion}}</div>
             <div class="col-md-5 text-bold">Fecha asignada</div>
-            <div class="col-md-7">{{bonoPrevia.fechaAsignacion}}</div>
+            <div class="col-md-7">{{_fx.dateFormat(bonoPrevia.bono.fechaAsignacion) +" "+ _fx.timeFormat(bonoPrevia.bono.horaAsignacion) + "hs."}}</div>
             <div class="col-md-5 text-bold">Monto</div>
-            <div class="col-md-7">{{bonoPrevia.monto}}</div>
-            <div *ngIf="bonoPrevia.detalle != ''">
+            <div class="col-md-7">{{bonoPrevia.bono.monto}}</div>
+            <div *ngIf="bonoPrevia.bono.detalle != ''">
                 <div class="col-md-5 text-bold">Detalle</div>
-                <div class="col-md-7">{{bonoPrevia.detalle}}</div>
+                <div class="col-md-7">{{bonoPrevia.bono.detalle}}</div>
             </div>
         </div>
     </div>
