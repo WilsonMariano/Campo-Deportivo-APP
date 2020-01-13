@@ -20,6 +20,11 @@ export class SidebarService {
       titulo: 'Bonos',
       url:    '/home/bonos-menu',
       icono: 'fa fa-ticket'
+    },
+    {
+      titulo: 'Carnets',
+      url:    '/home/carnet-menu',
+      icono: 'fa fa-address-card'
     }
   ];
 

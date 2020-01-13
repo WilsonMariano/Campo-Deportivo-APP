@@ -3,13 +3,36 @@
         <div class="white-box">
             <h2>Datos del socio</h2>
             <hr>
-            <div class="row">
+            <div class="row" *ngIf="socio!= null">
 
                 <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-5 text-bold">Nro. Socio</div>
+                         <div class="col-md-7">{{socio.id}}</div>
+                         <div class="col-md-5 text-bold">Apellido y nombre</div>
+                         <div class="col-md-7">{{socio.apellido + " " + socio.nombre}}</div>
+                         <div class="col-md-5 text-bold">DNI</div>
+                         <div class="col-md-7">{{socio.dni}}</div>
+                         <div class="col-md-5 text-bold">Fecha nacimiento</div>
+                         <div class="col-md-7">{{_fx.dateFormat(socio.fechaNacimiento)}}</div>
+                         <div class="col-md-5 text-bold">Tipo socio</div>
+                         <div class="col-md-7">{{socio.tipoAfiliado}}</div>
+                         <div class="col-md-5 text-bold">Nro. afiliado</div>
+                         <div class="col-md-7">{{socio.nroAfiliado}}</div>
+                         <div class="col-md-5 text-bold">Parentesco</div>
+                         <div class="col-md-7">{{socio.parentesco}}</div>
+                         <div class="col-md-5 text-bold">Alta titular</div>
+                         <div class="col-md-7">{{_fx.dateFormat(socio.fechaIngreso)}}</div>
+                    </div>
                     
                 </div>
                 <div class="col-md-6">
-                    
+                    <div class="col-md-12">
+                        <div id="qr"></div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button class="btn btn-primary" (click)="makePDF()">Imprimir</button>
                 </div>
 
             </div>

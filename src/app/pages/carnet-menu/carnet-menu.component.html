@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h2>Buscar Socio</h2>
+            <hr>
+            <div class="row">
+                <form [formGroup]="forma" (ngSubmit)="emitirCarnet()">
+                    <div class="form-group col-md-8">
+                        <label>Nro Socio</label>
+                        <input type="text" type="number" class="form-control" placeholder="55" name="nroSocio" formControlName="valor">
+                        <span class="form-invalid" *ngIf="forma.controls['valor'].errors?.required && forma.controls['valor'].touched">*El campo es requerido</span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <button type="submit" class="btn btn-primary" [disabled]="forma.invalid">Aceptar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,7 @@ export class PdfGeneratorService {
 
   constructor(private _fx: FxGlobalsService) {}
 
-  public generarPDF(bono, img) {
+  public generarPDF(bono, qrCode) {
 
     const imgH = 15;
     const imgW = 15;
@@ -70,6 +70,7 @@ export class PdfGeneratorService {
     /**********************************
      *************** BONO *************
      **********************************/
+    
     // Encabezado
     doc.addImage(logo, 'JPG', 70, 5, imgH, imgW);
 
@@ -110,10 +111,84 @@ export class PdfGeneratorService {
     doc.text(87,  71, bono.detalle);
 
     // QRcode
-    doc.addImage(img, 'PNG', 165, 33);
+    doc.addImage(qrCode, 'PNG', 165, 33);
 
     doc.autoPrint({variant: 'non-conform'});
     doc.output('dataurlnewwindow');
+  }
+
+  public generarCarnet(socio,  qrCode) {
+
+    const imgH = 15;
+    const imgW = 15;
+
+    var doc = new jsPDF();
+
+    doc.setFont('helvetica');
+
+    let logo = new Image();
+    logo.src = 'assets/images/mecab.jpg';
+
+    /**********************************
+     ************* DIVISORES **********
+     **********************************/
+
+    // Superior
+    doc.line(0, 23,   115, 23);
+    // Base
+    doc.line(0, 73,   115, 73);
+    //Costado
+    doc.line(115, 0,  115, 73);
+
+    /**
+     * ENCABEZADO
+     */
+    doc.addImage(logo, 'JPG', 5, 5, imgH, imgW);
+
+    doc.setFontSize(10);
+    doc.text("CAMPO DEPORTIVO DE LA MUTUAL DE", 30, 10);
+    doc.text("EMPLEADOS DE COMERCIO DE ALTE. BROWN", 25, 17);
+
+    
+
+    /**
+     * CUERPO
+     */
+    doc.setFontType("bold");
+    doc.text(6,   30, 'Nro. socio:');
+    doc.text(6,   35, 'Nombre:');
+    doc.text(6,   40, 'DNI:');
+    doc.text(6,   45, 'Nacimiento:');
+    doc.text(6,   50, 'Tipo socio:');
+    doc.text(6,   55, 'Nro. afiliado:');
+    doc.text(6,   60, 'Parentesco:');
+    doc.text(6,   65, 'Socio desde:');
+
+    doc.setFontType("normal");
+    doc.text(31,  30, socio.id);
+    doc.text(31,  35, socio.apellido +" "+ socio.nombre);
+    doc.text(31,  40, socio.dni);
+    doc.text(31,   45, this._fx.dateFormat(socio.fechaNacimiento));
+    doc.text(31,   50, socio.tipoAfiliado);
+    doc.text(31,   55, socio.nroAfiliado);
+    doc.text(31,   60, socio.parentesco);
+    doc.text(31,   65, this._fx.dateFormat(socio.fechaIngreso));
+
+
+
+    // QR CODE
+    doc.addImage(qrCode, 'PNG', 70, 27);
+
+    /**********************************
+     ************* DIVISORES **********
+     **********************************/
+    // doc.line(0, 80, 220, 80);
+    // doc.line(65, 0, 65, 80);
+
+    // doc.autoPrint({variant: 'non-conform'});
+    doc.output('dataurlnewwindow');
+
+
   }
 
   
