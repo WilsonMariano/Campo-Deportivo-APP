@@ -7,18 +7,20 @@ import { FxGlobalsService } from './fx-globals.service';
 })
 export class PdfGeneratorService {
 
+  private logo;
+  private logoH = 15;
+  private logoW = 15;
 
-  constructor(private _fx: FxGlobalsService) {}
+
+  constructor(private _fx: FxGlobalsService) {
+
+    this.logo = new Image();
+    this.logo.src = 'assets/images/mecab.jpg';
+  }
 
   public generarPDF(bono, qrCode) {
 
-    const imgH = 15;
-    const imgW = 15;
-
     var doc = new jsPDF();
-
-    let logo = new Image();
-    logo.src = 'assets/images/mecab.jpg';
 
     // doc.addFont('ArialMS', 'Arial', 'normal');
     // doc.setFont('Arial');
@@ -34,7 +36,7 @@ export class PdfGeneratorService {
      ************** TALÓN *************
      **********************************/
     // Encabezado
-    doc.addImage(logo, 'JPG', 5, 5, imgH, imgW);
+    doc.addImage(this.logo, 'JPG', 5, 5, this.logoH, this.logoW);
     doc.setFontSize(10);
     doc.text(30, 10, 'Campo deportivo');
     doc.text(36, 15, 'MECAB');
@@ -72,7 +74,7 @@ export class PdfGeneratorService {
      **********************************/
     
     // Encabezado
-    doc.addImage(logo, 'JPG', 70, 5, imgH, imgW);
+    doc.addImage(this.logo, 'JPG', 70, 5, this.logoH, this.logoW);
 
     doc.setFontSize(14);
     doc.text("CAMPO DEPORTIVO", 115, 10);
@@ -119,15 +121,10 @@ export class PdfGeneratorService {
 
   public generarCarnet(socio,  qrCode) {
 
-    const imgH = 15;
-    const imgW = 15;
-
     var doc = new jsPDF();
 
     doc.setFont('helvetica');
 
-    let logo = new Image();
-    logo.src = 'assets/images/mecab.jpg';
 
     /**********************************
      ************* DIVISORES **********
@@ -143,7 +140,7 @@ export class PdfGeneratorService {
     /**
      * ENCABEZADO
      */
-    doc.addImage(logo, 'JPG', 5, 5, imgH, imgW);
+    doc.addImage(this.logo, 'JPG', 5, 5, this.logoH, this.logoW);
 
     doc.setFontSize(10);
     doc.text("CAMPO DEPORTIVO DE LA MUTUAL DE", 30, 10);
@@ -187,6 +184,9 @@ export class PdfGeneratorService {
 
     // doc.autoPrint({variant: 'non-conform'});
     doc.output('dataurlnewwindow');
+  }
+
+  public generarRecibo(cuota): void {
 
 
   }

@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h2>Cuotas</h2>
+            <hr>
+
+            <button class="btn btn-primary">Nuevo pago</button>
+       
+
+                <table class="table mt-3" *ngIf="arrCuotas.length != 0">
+                    <thead>
+                        <tr class="row">
+                            <th class="col-md-2">Fecha pago</th>
+                            <th class="col-md-3">Descripción</th>
+                            <th class="col-md-3">Monto</th>
+                            <th class="col-md-2">Vencimiento</th>
+                            <th class="col-md-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="row" *ngFor="let p of arrCuotas">
+                            <td class="col-md-2">{{_fx.dateFormat(p.fechaPago)}}</td>
+                            <td class="col-md-3">{{p.descripcion}}</td>
+                            <td class="col-md-3">{{p.monto}}</td>
+                            <td class="col-md-2">{{_fx.dateFormat(p.fechaVencimiento)}}</td>
+                            <td class="col-md-2"><i class="fas fa-print"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <!-- <div class="row">
+                    <div class="col-md-4">Fecha pago</div>
+                    <div class="col-md-4">Descripción</div>
+                    <div class="col-md-4">Monto</div>
+                </div>
+                <div class="row" *ngFor="let p of arrCuotas">
+                    <div class="col-md-4">{{p.fechaPago}}</div>
+                    <div class="col-md-4">{{p.descripcion}}</div>
+                    <div class="col-md-4">{{p.monto}}</div>
+                </div> -->
+   
+        </div>
+    </div>
+</div>

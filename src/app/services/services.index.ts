@@ -8,4 +8,5 @@ export { CommonService } from './http/common.service';
 export { SocioService } from './http/socio.service';
 export { DiccionarioService } from './http/diccionario.service';
 export { ValoresService } from './http/valores.service';
+export { CuotaService } from './http/cuota.service';
 
