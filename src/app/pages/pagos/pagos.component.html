@@ -23,7 +23,7 @@
                             <td class="col-md-3">{{p.descripcion}}</td>
                             <td class="col-md-3">{{p.monto}}</td>
                             <td class="col-md-2">{{_fx.dateFormat(p.fechaVencimiento)}}</td>
-                            <td class="col-md-2"><i class="fas fa-print"></i></td>
+                            <td class="col-md-2"><i class="fas fa-print" (click)="_pdf.generarRecibo(p)"></i></td>
                         </tr>
                     </tbody>
                 </table>

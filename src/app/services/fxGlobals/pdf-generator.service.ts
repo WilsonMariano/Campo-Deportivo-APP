@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import { FxGlobalsService } from './fx-globals.service';
+declare var numeroALetras: any;
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +20,9 @@ export class PdfGeneratorService {
     this.logo.src = 'assets/images/mecab.jpg';
   }
 
-  public generarPDF(bono, qrCode) {
+  public generarBono(bono, qrCode) {
 
     var doc = new jsPDF();
-
-    // doc.addFont('ArialMS', 'Arial', 'normal');
-    // doc.setFont('Arial');
     doc.setFont('helvetica');
 
     /**********************************
@@ -122,7 +121,6 @@ export class PdfGeneratorService {
   public generarCarnet(socio,  qrCode) {
 
     var doc = new jsPDF();
-
     doc.setFont('helvetica');
 
 
@@ -137,9 +135,9 @@ export class PdfGeneratorService {
     //Costado
     doc.line(115, 0,  115, 73);
 
-    /**
-     * ENCABEZADO
-     */
+    /***********************************
+     ************** ENCABEZADO *********
+     ***********************************/
     doc.addImage(this.logo, 'JPG', 5, 5, this.logoH, this.logoW);
 
     doc.setFontSize(10);
@@ -148,9 +146,9 @@ export class PdfGeneratorService {
 
     
 
-    /**
-     * CUERPO
-     */
+    /*************************************
+     ************** CUERPO ***************
+     *************************************/
     doc.setFontType("bold");
     doc.text(6,   30, 'Nro. socio:');
     doc.text(6,   35, 'Nombre:');
@@ -172,21 +170,75 @@ export class PdfGeneratorService {
     doc.text(31,   65, this._fx.dateFormat(socio.fechaIngreso));
 
 
-
     // QR CODE
     doc.addImage(qrCode, 'PNG', 70, 27);
+
+    // Configuro autoprint y apertura en pestaña nueva
+    doc.autoPrint({variant: 'non-conform'});
+    doc.output('dataurlnewwindow');
+  }
+
+
+  public generarRecibo(cuota): void {
+
+    var doc = new jsPDF();
+    doc.setFont('helvetica');
+
+    doc.setFontSize(16);
+    doc.text("CAMPO DEPORTIVO", 77, 17);
+    doc.setFontSize(13);
+    doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
+    doc.setFontSize(11);
+    doc.text("Pino Nº 1955, Burzaco", 83, 31);
 
     /**********************************
      ************* DIVISORES **********
      **********************************/
-    // doc.line(0, 80, 220, 80);
-    // doc.line(65, 0, 65, 80);
 
+    // Superior
+    // doc.line(0, 38,  220, 38);
+    // Medio
+    doc.line(0, 140,  220, 140);
+
+    /*******************************
+     ************* CUERPO **********
+     ****************************/
+    doc.setFontSize(13);
+    doc.setFontType('bold');
+    doc.text("Recibo Nº ", 8, 48);
+    doc.text("Fecha: ", 165, 48);
+
+    doc.setFontSize(12);
+    doc.text("Recibimos del sr/sra.: ", 8, 73);
+    doc.text("La cantidad de pesos: ", 8, 83);
+    doc.text("En concepto de: ", 8, 93);
+    doc.text("______________________", 145, 120);
+    doc.text("Firma", 165, 125);
+
+    doc.setFontType('normal');
+    doc.text(cuota.id, 30, 48);
+    doc.text(this._fx.dateFormat(cuota.fechaPago), 182, 48);
+    doc.text(`${cuota.nombre} ${cuota.apellido}, socio Nro.: ${cuota.idSocio}`, 55, 73);
+    doc.text(`${numeroALetras(cuota.monto)} ($${cuota.monto})`, 55, 83);
+    doc.text(cuota.descripcion, 50, 93);
+
+    
+    /*************************
+     ******* DUPLICADO ****** 
+     ************************/
+    doc.setFontSize(16);
+    doc.text("CAMPO DEPORTIVO", 77, 160);
+    doc.setFontSize(13);
+    doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 167);
+    doc.setFontSize(11);
+    doc.text("Pino Nº 1955, Burzaco", 83, 174);
+    
+
+    // Configuro autoprint y apertura en pestaña nueva
     // doc.autoPrint({variant: 'non-conform'});
     doc.output('dataurlnewwindow');
-  }
 
-  public generarRecibo(cuota): void {
+    
 
 
   }

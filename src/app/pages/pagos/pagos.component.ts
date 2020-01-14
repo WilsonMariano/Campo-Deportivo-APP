@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CuotaService, FxGlobalsService } from 'src/app/services/services.index';
+import { CuotaService, FxGlobalsService, PdfGeneratorService } from 'src/app/services/services.index';
 
 @Component({
   selector: 'app-pagos',
@@ -11,7 +11,7 @@ export class PagosComponent implements OnInit {
 
   public arrCuotas = [];
 
-  constructor(private router: Router, private _cuota: CuotaService, private activatedRoute: ActivatedRoute, public _fx: FxGlobalsService) { }
+  constructor(private router: Router, private _cuota: CuotaService, private activatedRoute: ActivatedRoute, public _fx: FxGlobalsService, public _pdf: PdfGeneratorService) { }
 
 
   ngOnInit() {

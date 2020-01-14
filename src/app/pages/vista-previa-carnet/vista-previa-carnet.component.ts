@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core'; 
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService, FxGlobalsService, PdfGeneratorService } from 'src/app/services/services.index';
 
@@ -17,7 +17,9 @@ export class VistaPreviaCarnetComponent implements OnInit {
     private _common: CommonService, 
     private _fx: FxGlobalsService, 
     private _pdf: PdfGeneratorService,
-    private router: Router) { }
+    private router: Router) { 
+
+    }
 
   ngOnInit() {
 
@@ -35,7 +37,7 @@ export class VistaPreviaCarnetComponent implements OnInit {
           data => { 
             this.socio = data; 
             console.log(data);
-            this.qrCode = this._fx.generateQR(document.getElementById("qr"), this.socio.hash);
+            this.qrCode = this._fx.generateQR(document.getElementById("qrcode"), this.socio.hash);
           },
           err => {
             this._fx.showAlert("Error", "El socio no existe", "error");

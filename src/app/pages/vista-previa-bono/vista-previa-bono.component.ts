@@ -29,7 +29,7 @@ export class VistaPreviaBonoComponent implements OnInit {
     console.log(this.qrCode);
 
     let img = this.qrCode._el.children[1].currentSrc;
-    this._pdf.generarPDF(this.bonoPrevia.bono, img)
+    this._pdf.generarBono(this.bonoPrevia.bono, img)
   }
 
 }
