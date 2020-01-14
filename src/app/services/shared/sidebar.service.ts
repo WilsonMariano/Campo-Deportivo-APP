@@ -17,14 +17,19 @@ export class SidebarService {
       icono: 'fa fa-users'
     },
     {
+      titulo: 'Carnets',
+      url:    '/home/carnet-menu',
+      icono: 'fa fa-address-card'
+    },
+    {
       titulo: 'Bonos',
       url:    '/home/bonos-menu',
       icono: 'fa fa-ticket'
     },
     {
-      titulo: 'Carnets',
-      url:    '/home/carnet-menu',
-      icono: 'fa fa-address-card'
+      titulo: 'Cuotas',
+      url:    '/home/pagos/nuevo',
+      icono: 'fa fa-money-bill-wave'
     }
   ];
 

@@ -12,6 +12,7 @@ import { EmitirBonoComponent } from './emitir-bono/emitir-bono.component';
 import { VistaPreviaCarnetComponent } from './vista-previa-carnet/vista-previa-carnet.component';
 import { CarnetMenuComponent } from './carnet-menu/carnet-menu.component';
 import { PagosComponent } from './pagos/pagos.component';
+import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 
 const pagesRoutes: Routes = [
     {
@@ -26,6 +27,7 @@ const pagesRoutes: Routes = [
             { path: 'emitir-carnet/:id',            component: VistaPreviaCarnetComponent,              data: { titulo: 'Emitir carnet' }        },
             { path: 'datos-socio/:id',              component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
             { path: 'pagos/:id',                    component: PagosComponent,                          data: { titulo: 'Listado pagos' }   },
+            { path: 'nuevo-pago/:id',               component: NuevoPagoComponent,                      data: { titulo: 'Nuevo pago' }   },
             { path: 'ficha/:id',                    component: FichaComponent,                          data: { titulo: 'Ficha' }         },
             { path: '',                             redirectTo: '/dashboard',                           pathMatch: 'full' }
         ],

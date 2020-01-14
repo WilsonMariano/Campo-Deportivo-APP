@@ -4,7 +4,7 @@
             <h2>Cuotas</h2>
             <hr>
 
-            <button class="btn btn-primary">Nuevo pago</button>
+            <button class="btn btn-primary" [routerLink]="'../../nuevo-pago/' + idSocioTitular">Nuevo pago</button>
        
 
                 <table class="table mt-3" *ngIf="arrCuotas.length != 0">

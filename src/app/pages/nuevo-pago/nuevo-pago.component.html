@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h2>Cobro de cuota</h2>
+            <hr>
+            <form (ngSubmit)="onSubmit()" [formGroup]="forma">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="cbForm" formControlName="cbForm" id="inlineRadio1" value="default"
+                                (change)="disableForm()">
+                            <label class="form-check-label" for="inlineRadio1">&nbsp;Default&nbsp;&nbsp;&nbsp;</label>
+                            <input class="form-check-input" type="radio" name="cbForm" formControlName="cbForm" id="inlineRadio2" value="manual" (change)="enableForm()">
+                            <label class="form-check-label" for="inlineRadio2">&nbsp;Manual</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <h3 *ngIf="socioTitular != null"><span class="label label-primary">Titular:</span>
+                            {{socioTitular.apellido + " " + socioTitular.nombre}}</h3>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4 form-group">
+                        <label>Fecha pago</label>
+                        <input type="date" class="form-control" formControlName="fechaPago">
+                        <span class="form-invalid" *ngIf="forma.controls['fechaPago'].errors?.required && forma.controls['fechaPago'].touched">*Requerido</span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Monto cobrar</label>
+                        <input type="number" class="form-control" formControlName="monto">
+                        <span class="form-invalid" *ngIf="forma.controls['monto'].errors?.required && forma.controls['monto'].touched">*Requerido</span>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Fecha vencimiento</label>
+                        <input type="date" class="form-control" formControlName="fechaVencimiento">
+                        <span class="form-invalid" *ngIf="forma.controls['fechaVencimiento'].errors?.required && forma.controls['fechaVencimiento'].touched">*Requerido</span>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <label>Descripción</label>
+                        <textarea class="form-control" formControlName="descripcion"></textarea>
+                        <span class="form-invalid" *ngIf="forma.controls['descripcion'].errors?.required && forma.controls['descripcion'].touched">*Requerido</span>
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary" [disabled]="forma.invalid">Aceptar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -19,6 +19,7 @@ import { VistaPreviaBonoComponent } from './vista-previa-bono/vista-previa-bono.
 import { VistaPreviaCarnetComponent } from './vista-previa-carnet/vista-previa-carnet.component';
 import { CarnetMenuComponent } from './carnet-menu/carnet-menu.component';
 import { PagosComponent } from './pagos/pagos.component';
+import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { PagosComponent } from './pagos/pagos.component';
         VistaPreviaBonoComponent,
         VistaPreviaCarnetComponent,
         CarnetMenuComponent,
-        PagosComponent
+        PagosComponent,
+        NuevoPagoComponent
     ],
     exports: [
     ],  

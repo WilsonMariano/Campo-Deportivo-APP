@@ -118,11 +118,11 @@ export class PdfGeneratorService {
     doc.output('dataurlnewwindow');
   }
 
+  
   public generarCarnet(socio,  qrCode) {
 
     var doc = new jsPDF();
     doc.setFont('helvetica');
-
 
     /**********************************
      ************* DIVISORES **********
@@ -184,6 +184,13 @@ export class PdfGeneratorService {
     var doc = new jsPDF();
     doc.setFont('helvetica');
 
+    // Divisor
+    doc.line(0, 150,  220, 150);
+
+    /******************************
+     ********** ORIGINAL **********
+     ******************************/
+    // Encabezado
     doc.setFontSize(16);
     doc.text("CAMPO DEPORTIVO", 77, 17);
     doc.setFontSize(13);
@@ -191,18 +198,8 @@ export class PdfGeneratorService {
     doc.setFontSize(11);
     doc.text("Pino Nº 1955, Burzaco", 83, 31);
 
-    /**********************************
-     ************* DIVISORES **********
-     **********************************/
-
-    // Superior
-    // doc.line(0, 38,  220, 38);
-    // Medio
-    doc.line(0, 140,  220, 140);
-
-    /*******************************
-     ************* CUERPO **********
-     ****************************/
+     
+    // Cuerpo
     doc.setFontSize(13);
     doc.setFontType('bold');
     doc.text("Recibo Nº ", 8, 48);
@@ -226,21 +223,38 @@ export class PdfGeneratorService {
     /*************************
      ******* DUPLICADO ****** 
      ************************/
+    // Encabezado
     doc.setFontSize(16);
-    doc.text("CAMPO DEPORTIVO", 77, 160);
+    doc.text("CAMPO DEPORTIVO", 77, 170);
     doc.setFontSize(13);
-    doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 167);
+    doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 177);
     doc.setFontSize(11);
-    doc.text("Pino Nº 1955, Burzaco", 83, 174);
+    doc.text("Pino Nº 1955, Burzaco", 83, 184);
+
+    // Cuerpo
+    doc.setFontSize(13);
+    doc.setFontType('bold');
+    doc.text("Recibo Nº ", 8, 201);
+    doc.text("Fecha: ", 165, 201);
+
+    doc.setFontSize(12);
+    doc.text("Recibimos del sr/sra.: ", 8, 226);
+    doc.text("La cantidad de pesos: ", 8, 236);
+    doc.text("En concepto de: ", 8, 246);
+    doc.text("______________________", 145, 273);
+    doc.text("Firma", 165, 278);
+
+    doc.setFontType('normal');
+    doc.text(cuota.id, 30, 201);
+    doc.text(this._fx.dateFormat(cuota.fechaPago), 182, 201);
+    doc.text(`${cuota.nombre} ${cuota.apellido}, socio Nro.: ${cuota.idSocio}`, 55, 226);
+    doc.text(`${numeroALetras(cuota.monto)} ($${cuota.monto})`, 55, 236);
+    doc.text(cuota.descripcion, 50, 246);
     
 
     // Configuro autoprint y apertura en pestaña nueva
-    // doc.autoPrint({variant: 'non-conform'});
+    doc.autoPrint({variant: 'non-conform'});
     doc.output('dataurlnewwindow');
-
-    
-
-
   }
 
   

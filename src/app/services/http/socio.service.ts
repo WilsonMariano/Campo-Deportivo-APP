@@ -42,6 +42,17 @@ export class SocioService {
             );
     }
 
+    public getTitular(idSocioTitular: Number): Observable<any> {
+
+        this._fxGlobals.showSpinner();
+
+        return this._http.get(`${this.url}/getTitular/${idSocioTitular}`
+        )
+            .pipe(
+                finalize(() => this._fxGlobals.hideSpinner())
+            );
+    }
+
     public insert(socio: Socio): Observable<any> {
 
         this._fxGlobals.showSpinner();
