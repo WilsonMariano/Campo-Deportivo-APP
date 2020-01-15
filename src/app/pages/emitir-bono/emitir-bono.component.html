@@ -2,10 +2,11 @@
     <div class="col-md-10">
         <div class="white-box">
 
+            <app-buscar-socio *ngIf="socio == null" (value)="getSocio($event)"></app-buscar-socio>
             <app-vista-previa-bono [bonoPrevia]="bonoPrevia" *ngIf="bonoPrevia != null"></app-vista-previa-bono>
 
 
-            <div *ngIf="bonoPrevia == null">
+            <div *ngIf="bonoPrevia == null && socio != null">
                 <h2>Bono de prestación</h2>
                 <hr>
                 <form [formGroup]="forma" (ngSubmit)="onSubmit()">

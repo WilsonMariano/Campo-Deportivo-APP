@@ -48,11 +48,25 @@ export class EmitirBonoComponent implements OnInit {
 
     });
 
-    this.getSocio();
+    this.getParams();
     this.getDiccionario();
     this.onChangeCB();
     this.initializeDate();
     this.calculateTarifa();
+  }
+
+  /**
+   * Recibo los parametros de la url
+   * Si se recibe un id de socio se invoca el metodo para recuperar el socio
+   */
+  private getParams(): void {
+
+    this.activatedRoute.params.subscribe(
+      params => {
+        if(params.id != 'nuevo')
+          this.getSocio(params.id);
+      }
+    );
   }
 
 
@@ -61,15 +75,9 @@ export class EmitirBonoComponent implements OnInit {
  * Una vez recuperado el socio asigna sus atributos a la forma. Si no se encuentra el socio se muestra
  * un mensaje.
  */
-  public getSocio(): void {
+  public getSocio(idSocio): void {
 
-    let idSocioBuscar;
-
-    this.activatedRoute.params.subscribe(
-      data => idSocioBuscar = data.id
-    );
-
-    this._socio.getOne(idSocioBuscar).subscribe(
+    this._socio.getOne(idSocio).subscribe(
       data => {
 
         this.socio = data.data;

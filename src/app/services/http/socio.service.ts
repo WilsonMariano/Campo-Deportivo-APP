@@ -42,11 +42,11 @@ export class SocioService {
             );
     }
 
-    public getTitular(idSocioTitular: Number): Observable<any> {
+    public getTitular(idSocio: Number): Observable<any> {
 
         this._fxGlobals.showSpinner();
 
-        return this._http.get(`${this.url}/getTitular/${idSocioTitular}`
+        return this._http.get(`${this.url}/getTitular/${idSocio}`
         )
             .pipe(
                 finalize(() => this._fxGlobals.hideSpinner())

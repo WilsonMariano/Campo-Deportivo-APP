@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SpinnerComponent } from './spinner/spinner.component';
 import { GrillaComponent } from './grilla/grilla.component';
+import { BuscarSocioComponent } from './buscar-socio/buscar-socio.component';
 
 
 
@@ -20,11 +21,13 @@ import { GrillaComponent } from './grilla/grilla.component';
     ],
     declarations: [
         SpinnerComponent,
-        GrillaComponent
+        GrillaComponent,
+        BuscarSocioComponent
     ],
     exports: [
         SpinnerComponent,
-        GrillaComponent
+        GrillaComponent,
+        BuscarSocioComponent
     ]
 })
 export class ComponentsModule { }

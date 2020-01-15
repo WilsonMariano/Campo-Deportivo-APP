@@ -39,20 +39,28 @@ export class NuevoPagoComponent implements OnInit {
     this.getDateNow();
     this.getValorCuota();
 
-    this.getTitular();
+    this.getParams();
   }
 
-  private getTitular(): void {
+  /**
+   * Recibo los parametros de la url
+   * Si se recibe un id de socio se invoca el metodo para recuperar el socio
+   */
+  private getParams(): void {
 
     this.activatedRoute.params.subscribe(
-      params => 
-        this._socio.getTitular(params.id).subscribe(
-          data => this.socioTitular = data.data,
-          err => {
-            this._fx.showAlert("Error", "El socio buscado no existe", "error");
-            this.router.navigate(['home/dashboard']);
-          }
-        )
+      params => {
+        if(params.id != 'nuevo')
+          this.getTitular(params.id);
+      }
+    );
+  }
+
+  private getTitular(idSocio): void {
+ 
+    this._socio.getTitular(idSocio).subscribe(
+      data => this.socioTitular = data.data,
+      err =>  this._fx.showAlert("Error", "El socio buscado no existe", "error")
     );
   }
 

@@ -18,7 +18,7 @@ export class SidebarService {
     },
     {
       titulo: 'Carnets',
-      url:    '/home/carnet-menu',
+      url:    '/home/vista-previa-carnet/nuevo',
       icono: 'fa fa-address-card'
     },
     {
@@ -27,8 +27,13 @@ export class SidebarService {
       icono: 'fa fa-ticket'
     },
     {
-      titulo: 'Cuotas',
+      titulo: 'Recibos',
       url:    '/home/pagos/nuevo',
+      icono: 'fa fa-file-invoice-dollar'
+    },
+    {
+      titulo: 'Nuevo Pago',
+      url:    '/home/nuevo-pago/nuevo',
       icono: 'fa fa-money-bill-wave'
     }
   ];

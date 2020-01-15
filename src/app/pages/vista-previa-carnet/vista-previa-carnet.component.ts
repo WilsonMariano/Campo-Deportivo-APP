@@ -23,32 +23,61 @@ export class VistaPreviaCarnetComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getSocio();
-
+    this.getParams();
   }
 
-  private getSocio(): void {
+  /**
+   * Recibo los parametros de la url
+   * Si se recibe un id de socio se invoca el metodo para recuperar el socio
+   */
+  private getParams(): void {
 
     this.activatedRoute.params.subscribe(
       params => {
-
-        this._common.getOne('vwSocios', params.id).subscribe(
-
-          data => { 
-            this.socio = data; 
-            console.log(data);
-            this.qrCode = this._fx.generateQR(document.getElementById("qrcode"), this.socio.hash);
-          },
-          err => {
-            this._fx.showAlert("Error", "El socio no existe", "error");
-            this.router.navigate(['home/carnet-menu']);
-            
-          }
-        )
+        if(params.id != 'nuevo')
+          this.getSocio(params.id);
       }
-    )
+    );
   }
 
+  /**
+   * Recibe el id de un socio y lo trae
+   * Una vez que recibe los datos renderiza el qr
+   * @param id id del socio a buscar
+   */
+  private getSocio(id): void {
+
+    this._common.getOne('vwSocios', id).subscribe(
+
+      data => { 
+        this.socio = data; 
+        this.renderQR();
+      },
+      err => {
+        this._fx.showAlert("Error", "El socio no existe", "error");
+        this.socio = null;
+      }
+    );
+  }
+
+  /**
+   * Usa un timeOut para que se renderice el DOM con el div del qr
+   * ya que este tiene un ngIf y recien se muestra una vez ejecutado el metodo getSocio
+   */
+  private renderQR(): void {
+    
+    setTimeout(() => {
+
+      let div = document.getElementById("qrcode");
+      div.innerHTML = "";
+      this.qrCode = this._fx.generateQR(div, this.socio.hash);
+
+    }, 500);
+  }
+
+  /**
+   * Recupera la imagen del qr y llama al metodo para generar el pdf
+   */
   public makePDF() {
 
     console.log(this.qrCode);

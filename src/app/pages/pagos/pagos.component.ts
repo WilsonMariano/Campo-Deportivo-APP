@@ -10,36 +10,51 @@ import { CuotaService, FxGlobalsService, PdfGeneratorService } from 'src/app/ser
 export class PagosComponent implements OnInit {
 
   public arrCuotas = [];
-  public idSocioTitular: Number;
+  public idSocio: Number;
 
   constructor(private router: Router, private _cuota: CuotaService, private activatedRoute: ActivatedRoute, public _fx: FxGlobalsService, public _pdf: PdfGeneratorService) { }
 
 
   ngOnInit() {
 
-    this.getCuotas();
+    this.getParams();
   }
 
-  private getCuotas(): void {
+   /**
+   * Recibo los parametros de la url
+   * Si se recibe un id de socio se invoca el metodo para recuperar las cuotas
+   */
+  private getParams(): void {
 
     this.activatedRoute.params.subscribe(
       params => {
+        if(params.id != 'nuevo')  {
         
-        this.idSocioTitular = params.id;
-        this._cuota.getCoutas(params.id).subscribe(
-          data => {
-            console.log(data);
-            this.arrCuotas = data.data;
-          },
-          err => {
-            this._fx.showAlert("Error", "El socio no existe", "error");
-            this.router.navigate(['home/menu-pagos']);
-          }
-        )
+          this.getCuotas(params.id);
+        }
       }
     );
-
-
   }
+
+  /**
+   * Obtiene todas las cuotas de pago vinculadas al socio
+   * @param idSocio id del socio para el cual traer las cuotas
+   */
+  private getCuotas(idSocio): void {
+
+    this.idSocio = idSocio;
+    
+    this._cuota.getCoutas(idSocio).subscribe(
+      data => {
+        console.log(data);
+        this.arrCuotas = data.data;
+      },
+      err => {
+        this._fx.showAlert("Error", "No existen recibos generados", "error");
+        // this.router.navigate(['home/menu-pagos']);
+      }
+    );
+  }
+
 
 }

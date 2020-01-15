@@ -15,9 +15,8 @@ import { FichaComponent } from './ficha/ficha.component';
 import { DatosSocioComponent } from './datos-socio/datos-socio.component';
 import { BonosMenuComponent } from './bonos-menu/bonos-menu.component';
 import { EmitirBonoComponent } from './emitir-bono/emitir-bono.component';
-import { VistaPreviaBonoComponent } from './vista-previa-bono/vista-previa-bono.component';
+import { VistaPreviaBonoComponent } from '../components/vista-previa-bono/vista-previa-bono.component';
 import { VistaPreviaCarnetComponent } from './vista-previa-carnet/vista-previa-carnet.component';
-import { CarnetMenuComponent } from './carnet-menu/carnet-menu.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 
@@ -31,7 +30,6 @@ import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
         EmitirBonoComponent,
         VistaPreviaBonoComponent,
         VistaPreviaCarnetComponent,
-        CarnetMenuComponent,
         PagosComponent,
         NuevoPagoComponent
     ],

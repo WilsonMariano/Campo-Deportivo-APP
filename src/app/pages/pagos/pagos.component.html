@@ -1,11 +1,14 @@
 <div class="row">
     <div class="col-md-12">
         <div class="white-box">
-            <h2>Cuotas</h2>
-            <hr>
 
-            <button class="btn btn-primary" [routerLink]="'../../nuevo-pago/' + idSocioTitular">Nuevo pago</button>
-       
+            <app-buscar-socio *ngIf="arrCuotas.length == 0" (value)="getCuotas($event)"></app-buscar-socio>
+           
+            <div *ngIf="arrCuotas.length != 0">
+                <h2>Cuotas</h2>
+                <hr>
+
+                <button class="btn btn-primary" [routerLink]="'../../nuevo-pago/' + idSocio">Nuevo pago</button>
 
                 <table class="table mt-3" *ngIf="arrCuotas.length != 0">
                     <thead>
@@ -28,18 +31,10 @@
                     </tbody>
                 </table>
 
+            </div>
 
-                <!-- <div class="row">
-                    <div class="col-md-4">Fecha pago</div>
-                    <div class="col-md-4">Descripción</div>
-                    <div class="col-md-4">Monto</div>
-                </div>
-                <div class="row" *ngFor="let p of arrCuotas">
-                    <div class="col-md-4">{{p.fechaPago}}</div>
-                    <div class="col-md-4">{{p.descripcion}}</div>
-                    <div class="col-md-4">{{p.monto}}</div>
-                </div> -->
-   
         </div>
     </div>
 </div>
+
+<app-spinner></app-spinner>

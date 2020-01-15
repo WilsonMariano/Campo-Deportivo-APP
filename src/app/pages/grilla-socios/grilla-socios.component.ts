@@ -34,7 +34,7 @@ export class GrillaSociosComponent implements OnInit {
     'buttons': [
       { 
         'url': 'home/ficha', 
-        'icon': 'fa fa-address-book', 
+        'icon': 'fa fa-id-card', 
         'idField': 'idSocioTitular'
       }
     ]

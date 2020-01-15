@@ -17,4 +17,9 @@ export class NavbarComponent implements OnInit {
     this._auth.logOut();
   }
 
+  public keyup(event): void{
+
+    console.log(event);
+  }
+
 }
