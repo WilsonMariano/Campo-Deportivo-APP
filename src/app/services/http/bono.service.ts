@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
@@ -32,4 +32,22 @@ export class BonoService {
       finalize(() => this._fxGlobals.hideSpinner())
     );
   }
+
+  public getBetweenDate(fechaDesde, fechaHasta): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    let params = new HttpParams()
+    .set('fechaDesde', fechaDesde)
+    .set('fechaHasta', fechaHasta);
+
+    return this._http.get(
+      this.url + '/getBetweenDate', 
+      { params }
+    )
+    .pipe(
+      finalize(()=> this._fxGlobals.hideSpinner())
+    );
+  }
+
 }

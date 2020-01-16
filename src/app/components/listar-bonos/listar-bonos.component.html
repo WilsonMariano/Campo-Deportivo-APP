@@ -1,0 +1,45 @@
+<h2>Listar bonos</h2>
+<hr>
+<div class="row">
+    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+        <div class="form-group col-md-4">
+            <label>Desde</label>
+            <input type="date" class="form-control" formControlName="fechaDesde">
+            <span class="form-invalid" *ngIf="forma.controls['fechaDesde'].errors?.required && forma.controls['fechaDesde'].touched">*El campo es requerido</span>
+        </div>
+        <div class="form-group col-md-4">
+            <label>Hasta</label>
+            <input type="date" class="form-control" formControlName="fechaHasta">
+            <span class="form-invalid" *ngIf="forma.controls['fechaHasta'].errors?.required && forma.controls['fechaHasta'].touched">*El campo es requerido</span>
+        </div>
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-primary" [disabled]="forma.invalid">Aceptar</button>
+        </div>
+    </form>
+</div>
+<div class="row" *ngIf="arrBonos.length != 0">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nro.</th>
+                    <th>Fecha</th>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>Socio N°</th>
+                    <th>Prestación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let b of arrBonos">
+                    <td>{{b.id}}</td>
+                    <td>{{b.fechaEmision}}</td>
+                    <td>{{b.apellido}}</td>
+                    <td>{{b.nombre}}</td>
+                    <td>{{b.idSocio}}</td>
+                    <td>{{b.prestacion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
