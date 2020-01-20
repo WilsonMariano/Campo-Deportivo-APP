@@ -20,6 +20,7 @@ export class GrillaComponent implements OnInit {
     'filterParams':   objeto con parametros para filtrar la tabla, por ejemplo id
       'col'           columna de la tabla por la que se filtrará
       'txt'           valor del campo por el que se realizará el filtrado
+  @change:            input que se usa para indicar cuando hay cambios en el select de filtrado de socios de la vista padre
   @arrObjects:        arreglo de objetos que se bindeara con la tabla
   @arrPaginate:       arreglo de enteros con los valores del paginado, lo genera el método 'getControlsPaginate'
   @filterParams:      objeto de filtros 
@@ -31,6 +32,7 @@ export class GrillaComponent implements OnInit {
    */
 
   @Input() options = [];
+  @Input() change;
 
   private filterParams = {
     'filterId': null,
@@ -60,7 +62,7 @@ export class GrillaComponent implements OnInit {
   }
 
   ngOnChanges() {
-    console.log("entre");
+    console.log(this.change);
     this.getObjects();
 
   }

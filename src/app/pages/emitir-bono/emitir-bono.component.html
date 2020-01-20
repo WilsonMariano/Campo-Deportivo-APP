@@ -3,7 +3,7 @@
         <div class="white-box">
 
             <app-buscar-socio *ngIf="socio == null" (value)="getSocio($event)"></app-buscar-socio>
-            <app-vista-previa-bono [bonoPrevia]="bonoPrevia" *ngIf="bonoPrevia != null"></app-vista-previa-bono>
+            <app-vista-previa-bono [bonoPrevia]="bonoPrevia" *ngIf="bonoPrevia != null" (hidden)="bonoPrevia = null"></app-vista-previa-bono>
 
 
             <div *ngIf="bonoPrevia == null && socio != null">

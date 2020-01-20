@@ -2,41 +2,10 @@
     <div class="col-md-12">
         <div class="white-box">
             <ul class="nav nav-pills">
-                <li role="presentation" [ngClass]="{'active' : opcion == 'nuevo'}"><a (click)="opcion = 'nuevo'">Nuevo
-                        bono</a></li>
-                <li role="presentation" [ngClass]="{'active' : opcion == 'editar'}"><a (click)="opcion = 'editar'"
-                        (click)="opcion = 'editar'">Anular</a></li>
-                <li role="presentation" [ngClass]="{'active' : opcion == 'listar'}"><a (click)="opcion = 'listar'"
-                        (click)="opcion = 'listar'">Listar</a></li>
-                <li role="presentation" [ngClass]="{'active' : opcion == 'reimprimir'}"><a (click)="opcion = 'reimprimir'"
-                        (click)="opcion = 'reimprimir'">Reimprimir</a></li>
+                <li role="presentation"><a routerLink="../../home/emitir-bono/nuevo">Nuevo bono</a></li>
+                <li role="presentation"><a routerLink="../../home/listar-bonos">Listar</a></li>
+                <li role="presentation"><a>Reimprimir</a></li>
             </ul>
-
-            <div [ngSwitch]="opcion" class="mt-5">
-
-
-                <div *ngSwitchCase="'nuevo'">
-
-                    <div class="row">
-                        <form [formGroup]="forma" (ngSubmit)="hacerBono()">
-                            <div class="form-group col-md-8">
-                                <label>Nro Socio</label>
-                                <input type="text" type="number" class="form-control" placeholder="55" name="nroSocio" formControlName="valor">
-                                <span class="form-invalid" *ngIf="forma.controls['valor'].errors?.required && forma.controls['valor'].touched">*El campo es requerido</span>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <button type="submit" class="btn btn-primary" [disabled]="forma.invalid">Aceptar</button>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-                <div *ngSwitchCase="'listar'">
-                    <app-listar-bonos></app-listar-bonos>
-
-                </div>
-
-            </div>
         </div>
     </div>
 </div>

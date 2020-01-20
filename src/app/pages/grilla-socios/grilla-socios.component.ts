@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DiccionarioService } from 'src/app/services/services.index';
 
 @Component({
   selector: 'app-grilla-socios',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrillaSociosComponent implements OnInit {
 
-  public tipoParentesco = "titular";
+  public tipoParentesco = "";
+  public arrParentesco = [];
 
   private arrControls = ['NroSocio', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio'];
 
@@ -21,8 +23,8 @@ export class GrillaSociosComponent implements OnInit {
   ];
 
   private filterParams = {
-    'col': 'parentesco',
-    'txt': 'titular'
+    'col': 'codParentesco',
+    'txt': ''
   }
 
 
@@ -40,9 +42,11 @@ export class GrillaSociosComponent implements OnInit {
     ]
   }
 
-  constructor() { }
+  constructor(private _diccionario: DiccionarioService) { }
 
   ngOnInit() {
+
+    this.getParentescos();
   }
 
   public nuevoSocio() {
@@ -50,9 +54,11 @@ export class GrillaSociosComponent implements OnInit {
     localStorage.setItem('parentesco', 'titular');
   }
 
-  public changeShowParams() {
+  private getParentescos(): void {
 
-    this.options.filterParams.txt = this.tipoParentesco;
+    this._diccionario.getWithKeys('cod_parentesco').subscribe(
+      data => this.arrParentesco = data.data
+    );
   }
 
 }

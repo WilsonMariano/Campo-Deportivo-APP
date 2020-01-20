@@ -205,7 +205,8 @@ export class EmitirBonoComponent implements OnInit {
       this._bono.insert(bono).subscribe(
 
         // Asigno el bono recuperado y muestro la pantalla de vista previa
-        data => this.bonoPrevia = { 'hash': this.socio.hash, "bono": data.data  }
+        // data => this.bonoPrevia = { 'hash': this.socio.hash, "bono": data.data  }
+        data => this.bonoPrevia = data.data
       );
     });
   }

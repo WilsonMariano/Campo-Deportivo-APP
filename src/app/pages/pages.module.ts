@@ -19,6 +19,7 @@ import { VistaPreviaBonoComponent } from '../components/vista-previa-bono/vista-
 import { VistaPreviaCarnetComponent } from './vista-previa-carnet/vista-previa-carnet.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
+import { ListarBonosComponent } from './listar-bonos/listar-bonos.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
         DatosSocioComponent,
         BonosMenuComponent,
         EmitirBonoComponent,
+        ListarBonosComponent,
         VistaPreviaBonoComponent,
         VistaPreviaCarnetComponent,
         PagosComponent,

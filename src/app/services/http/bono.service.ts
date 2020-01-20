@@ -33,6 +33,19 @@ export class BonoService {
     );
   }
 
+  public cancel( id: Number ): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    return this._http.put(
+        `${this.url}/cancelBono/${id}`,
+        this.headers
+    )
+    .pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
+    );
+  }
+
   public getBetweenDate(fechaDesde, fechaHasta): Observable<any> {
 
     this._fxGlobals.showSpinner();

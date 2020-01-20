@@ -20,11 +20,11 @@ export class SocioService {
         this.headers.append('Content-Type', 'application/json');
     }
 
-    public getGroupFamily(idSocioTitular: Number): Observable<any> {
+    public getGroupFamily(idSocioTitular: Number, codParentesco: String): Observable<any> {
 
         this._fxGlobals.showSpinner();
 
-        return this._http.get(`${this.url}/getGroupFamily/${idSocioTitular}`
+        return this._http.get(`${this.url}/getGroupFamily/${idSocioTitular}/${codParentesco}`
         )
             .pipe(
                 finalize(() => this._fxGlobals.hideSpinner())

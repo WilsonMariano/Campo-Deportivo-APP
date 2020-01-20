@@ -11,7 +11,9 @@ import { Socio } from '../../class/class.index';
 export class FichaComponent implements OnInit {
 
   private idSocioTitular: Number;
-  public arrSocios: Socio[];
+  public socioTitular: Socio = null;
+  public arrFamiliares: Socio[] = [];
+  public arrInvitados: Socio[] = [];
 
 
   constructor(private activateRoute: ActivatedRoute, private router: Router, private _socio: SocioService) { }
@@ -32,11 +34,24 @@ export class FichaComponent implements OnInit {
 
   private getSocios(): void {
 
-    this._socio.getGroupFamily(this.idSocioTitular).subscribe(
+    this._socio.getGroupFamily(this.idSocioTitular, 'cod_parentesco_1').subscribe(
       
       data => {
-        this.arrSocios = data.data;
-        console.log(data.data);
+        this.socioTitular = data.data[0];
+      }
+    ) 
+
+    this._socio.getGroupFamily(this.idSocioTitular, 'cod_parentesco_2').subscribe(
+      
+      data => {
+        this.arrFamiliares = data.data;
+      }
+    ) 
+
+    this._socio.getGroupFamily(this.idSocioTitular, 'cod_parentesco_3').subscribe(
+      
+      data => {
+        this.arrInvitados = data.data;
       }
     ) 
   }

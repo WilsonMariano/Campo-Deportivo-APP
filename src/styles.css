@@ -64,3 +64,9 @@ td i.fa {
 .text-bold {
     font-weight: bold;
 }
+
+.boton {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}

@@ -3,7 +3,39 @@
         <div class="white-box">
             <h1>Titular</h1>
             <hr>
-            <table class="table mb-5">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Nombre: </h3>
+                    <h4>DNI:</h4>
+                    <h4>F. Nacimiento</h4>
+                </div>
+                <div class="col-md-3">
+                    <h3>{{socioTitular.apellido +" "+ socioTitular.nombre}}</h3>
+                    <h4>{{socioTitular.dni}}</h4>
+                    <h4>{{socioTitular.fechaNacimiento}}</h4>
+                </div>
+                 <div class="col-md-3">
+                    <h3>Tipo afiliado: </h3>
+                    <h4>Estado:</h4>
+                    <h4>F. ingreso:</h4>
+                </div>
+                <div class="col-md-3">
+                    <h4><span class="label label-info">{{socioTitular.tipoAfiliado +" N° "+ socioTitular.nroAfiliado}}</span></h4>
+                    <h4 *ngIf="socioTitular.activo == 1"><span class="label label-success">Activo</span></h4>
+                    <h4 *ngIf="socioTitular.activo == 0"><span class="label label-danger">Inactivo</span></h4>
+                    <h4>{{socioTitular.fechaIngreso}}</h4>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <a><i class="fa fa-pencil"></i>&nbsp;Editar</a>
+                    <a><i class="fa fa-address-card ml-2"></i>&nbsp;Imprimir</a>
+                 </div>
+            </div>
+        </div>
+
+        <div class="white-box">
+            <h2>Familiares</h2>
+           <a routerLink="../../../home/datos-socio/nuevo" class="btn btn-primary btn-sm mb-2" (click)="establecerFamiliar()">Nuevo</a>
+            <table class="table" *ngIf="arrFamiliares.length != 0">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -12,49 +44,55 @@
                         <th>DNI</th>
                         <th>F. Nacimiento</th>
                         <th>Parentesco</th>
-                        <!-- <th>Tipo afil.</th>
-                        <th>Num. afil.</th> -->
                         <th>Estado</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <ng-container *ngFor="let s of arrSocios">
-                        <tr *ngIf="s.parentesco == 'Titular'" class="info">
+                    <ng-container *ngFor="let s of arrFamiliares">
+                        <tr>
                             <th>{{s.id}}</th>
                             <td>{{s.apellido}}</td>
                             <td>{{s.nombre}}</td>
-                            <td>{{s.dni}}</td>
-                            <td>{{s.fechaNacimiento}}</td>
-                            <td>{{s.parentesco}}</td>
-                            <!-- <td>{{s.tipoAfiliado}}</td>
-                            <td>{{s.nroAfiliado}}</td> -->
-                            <td>{{s.activo}}</td>
-                            <td><a [routerLink]="'../../../home/datos-socio/' + s.id"><i class="fa fa-pencil"></i></a></td>
-                            <td><a [routerLink]="'../../../home/emitir-carnet/' + s.id"><i class="fa fa-address-card"></i></a></td>
-                        </tr>
-
-                    </ng-container>
-                </tbody>
-            </table>
-
-
-            <h2>Familiares</h2>
-           <a routerLink="../../../home/datos-socio/nuevo" class="btn btn-primary btn-sm mb-2" (click)="establecerFamiliar()">Nuevo</a>
-            <table class="table">
-                <tbody>
-                    <ng-container *ngFor="let s of arrSocios">
-                        <tr *ngIf="s.parentesco != 'Titular'">
-                            <th>{{s.id}}</th>
-                            <td>{{s.apellido}}</td>
-                            <td>{{s.nombre}}</td>
-                            <td>{{s.dni}}</td>
+                            <td>{{s.dni}}</td>  
                             <td>{{s.fechaNacimiento}}</td>
                             <td>{{s.parentesco}}</td>
                             <td>{{s.activo}}</td>
                             <td><a [routerLink]="'../../../home/datos-socio/' + s.id" (click)="establecerFamiliar()"><i class="fa fa-pencil"></i></a></td>
                             <td><a [routerLink]="'../../../home/emitir-carnet/' + s.id"><i class="fa fa-address-card"></i></a></td>
                         </tr>
-
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="white-box">
+            <h2>Invitados</h2>
+           <a routerLink="../../../home/datos-socio/nuevo" class="btn btn-primary btn-sm mb-2" (click)="establecerFamiliar()">Nuevo</a>
+            <table class="table" *ngIf="arrInvitados.length != 0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>F. Nacimiento</th>
+                        <th>Parentesco</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let s of arrInvitados">
+                        <tr>
+                            <th>{{s.id}}</th>
+                            <td>{{s.apellido}}</td>
+                            <td>{{s.nombre}}</td>
+                            <td>{{s.dni}}</td>  
+                            <td>{{s.fechaNacimiento}}</td>
+                            <td>{{s.parentesco}}</td>
+                            <td>{{s.activo}}</td>
+                            <td><a [routerLink]="'../../../home/datos-socio/' + s.id" (click)="establecerFamiliar()"><i class="fa fa-pencil"></i></a></td>
+                            <td><a [routerLink]="'../../../home/emitir-carnet/' + s.id"><i class="fa fa-address-card"></i></a></td>
+                        </tr>
                     </ng-container>
                 </tbody>
             </table>
