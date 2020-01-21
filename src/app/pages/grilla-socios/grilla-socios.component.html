@@ -3,12 +3,10 @@
         <div class="white-box">
 
             <div class="row">
-                <div class="col-md-8">
-                    <button class="btn btn-primary btn-lg" routerLink="/home/datos-socio/nuevo"
-                        (click)="nuevoSocio()"><i class="fas fa-user-plus"></i>&nbsp;Nuevo</button>
+                <div class="col-md-7">
+                    <button class="btn btn-primary" routerLink="/home/datos-socio/nuevo/titular/alta"><i class="fas fa-user-plus"></i>&nbsp;Nuevo</button>
                 </div>
-                <div class="col-md-4">
-                    <label>Filtrado</label>
+                <div class="col-md-5">
                     <select class="form-control" (change)="options.filterParams.txt = tipoParentesco"
                         name="tipoParentesco" [(ngModel)]="tipoParentesco">
                         <option value="">Todos</option>
@@ -16,8 +14,6 @@
                     </select>
                 </div>
             </div>
-
-
             <app-grilla [options]="options" [change]="tipoParentesco"></app-grilla>
         </div>
     </div>

@@ -11,80 +11,84 @@ import { Socio } from 'src/app/class/class.index';
 })
 export class DatosSocioComponent implements OnInit {
 
-  public newOperation = true;
+  public params = {
+    'operacion': null,
+    'entidad': null
+  }
+
   public forma: FormGroup;
   public arrParentesco: any[];
   public arrTipoAfiliado: any[];
 
 
-  constructor(private _diccionario: DiccionarioService, private _socio: SocioService, private _common: CommonService, private activatedRoute: ActivatedRoute, private router: Router ) { }
+  constructor(private _diccionario: DiccionarioService, private _socio: SocioService, private _common: CommonService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
     this.forma = new FormGroup({
-      'id':     new FormControl(''),
-      'idSocioTitular':   new FormControl(''),
-      'tipoAfiliado':     new FormControl('', Validators.required),
-      'numeroAfiliado':   new FormControl('', Validators.required),
-      'apellido':         new FormControl('', Validators.required),
-      'nombre':           new FormControl('', Validators.required),
-      'dni':              new FormControl('', Validators.required),
-      'fechaNacimiento':  new FormControl('', Validators.required),
-      'parentesco':       new FormControl({ value: '', disabled: true }, Validators.required),
-      'estado':           new FormControl('', Validators.required)
+      'id': new FormControl(''),
+      'idSocioTitular': new FormControl(''),
+      'tipoAfiliado': new FormControl('', Validators.required),
+      'numeroAfiliado': new FormControl(''),
+      'apellido': new FormControl('', Validators.required),
+      'nombre': new FormControl('', Validators.required),
+      'dni': new FormControl('', Validators.required),
+      'fechaNacimiento': new FormControl('', Validators.required),
+      'parentesco': new FormControl({ value: '', disabled: true }, Validators.required),
+      'activo': new FormControl('1', Validators.required)
     });
 
+    this.getDiccionario();
+    this.getParams();
+  }
 
-    //Recibo ID
+  public getParams(): void {
+
+    //Recibo parámetros
     this.activatedRoute.params.subscribe(
-      data => {
 
-        let param = data['id'];
-        let parentesco = localStorage.getItem('parentesco');
+      params => {
 
-        let idSocioTitular = localStorage.getItem("idSocioTitular");
-        this.forma.get('idSocioTitular').setValue(idSocioTitular);
+        this.params.entidad = params.entidad;
+        this.params.operacion = params.operacion;
 
-        if(param != 'nuevo' && !Number.isInteger(Number.parseInt(param)))
-          this.router.navigate(['home/grilla-socios']);
+        // Si la entidad es de tipo familiar desactivo los campos y asigno el parentesco
+        if (params.entidad == 'familiar') {
 
-
-        if(parentesco == 'titular') 
-          this.forma.get('parentesco').setValue('cod_parentesco_1');
-        
-        else 
+          this.forma.get('tipoAfiliado').disable();
+          this.forma.get('numeroAfiliado').disable();
           this.forma.get('parentesco').setValue('cod_parentesco_2');
-          
+        
+        // Si es de tipo titular asigno el parentesco
+        } else {
 
-        if(param == 'nuevo') {
+          this.forma.get('parentesco').setValue('cod_parentesco_1');
+        }
 
-          this.forma.get('estado').setValue(1);
-          this.forma.get('estado').disable();
+        // Si es nuevo
+        if (params.operacion == 'nuevo') {
 
+          // Si es de tipo familiar busco los datos del socioTitular
+          if (params.entidad == 'familiar') {
 
-          if(parentesco == 'familiar') {
+            this.forma.get('idSocioTitular').setValue(params.id);
 
-            this.forma.get('tipoAfiliado').disable();
-            this.forma.get('numeroAfiliado').disable();
-          
+            this._common.getOne('SociosTitulares', params.id).subscribe(
 
-            this.getSocioTitular(idSocioTitular);
+              data => {
+
+                this.forma.get('numeroAfiliado').setValue(data.nroAfiliado);
+                this.forma.get('tipoAfiliado').setValue(data.codTipoSocio);
+              });
           }
 
-        }
-        else {
+        // Si es edición asigno el id del socio
+        } else {
 
-          this.newOperation = false;
-          this.forma.get('id').setValue(param);
-          this.getSocio(param);
+          this.getSocio(params.id);
         }
+
       });
-
-      
-
-     
-
-    this.getDiccionario();
   }
 
   public getDiccionario(): void {
@@ -98,13 +102,14 @@ export class DatosSocioComponent implements OnInit {
     );
   }
 
-  public getSocio(id : Number): void {
+  public getSocio(id: Number): void {
 
     this._socio.getOne(id).subscribe(
       data => {
 
         let socio = data.data;
 
+        this.forma.get('id').setValue(socio.id);
         this.forma.get('tipoAfiliado').setValue(socio.codTipoSocio);
         this.forma.get('numeroAfiliado').setValue(socio.nroAfiliado);
         this.forma.get('apellido').setValue(socio.apellido);
@@ -112,9 +117,10 @@ export class DatosSocioComponent implements OnInit {
         this.forma.get('dni').setValue(socio.dni);
         this.forma.get('fechaNacimiento').setValue(socio.fechaNacimiento);
         this.forma.get('parentesco').setValue(socio.codParentesco);
-        this.forma.get('estado').setValue(socio.activo);
+        this.forma.get('activo').setValue(socio.activo);
 
-        if(socio.codParentesco == 'cod_parentesco_2') {
+        // Si el socio es familiar desactivo los campos
+        if (socio.codParentesco == 'cod_parentesco_2') {
 
           this.forma.get('tipoAfiliado').disable();
           this.forma.get('numeroAfiliado').disable();
@@ -132,7 +138,7 @@ export class DatosSocioComponent implements OnInit {
         this.forma.get('tipoAfiliado').setValue(data.codTipoSocio);
         this.forma.get('numeroAfiliado').setValue(data.nroAfiliado);
         this.forma.get('idSocioTitular').setValue(data.id);
-        
+
         console.log(data)
       }
     )
@@ -143,7 +149,7 @@ export class DatosSocioComponent implements OnInit {
   public onSubmit(): void {
 
     let socio = new Socio();
-    
+
     socio.setCodTipoSocio(this.forma.get('tipoAfiliado').value);
     socio.setNroAfiliado(this.forma.get('numeroAfiliado').value);
     socio.setApellido(this.forma.get('apellido').value);
@@ -151,9 +157,13 @@ export class DatosSocioComponent implements OnInit {
     socio.setDni(this.forma.get('dni').value);
     socio.setFechaNacimiento(this.forma.get('fechaNacimiento').value);
     socio.setCodParentesco(this.forma.get('parentesco').value);
-    socio.setEstado(this.forma.get('estado').value);
+    socio.setActivo(this.forma.get('activo').value);
 
-    if(!this.newOperation) {
+
+    console.log(socio);
+
+
+    if (this.params.operacion == 'editar') {
 
       socio.setId(this.forma.get('id').value);
       socio.setIdSocioTitular(this.forma.get('idSocioTitular').value);
@@ -161,25 +171,25 @@ export class DatosSocioComponent implements OnInit {
       this._socio.update(socio).subscribe(
         data => console.log(data)
       );
-      
+
     } else {
 
-      if(this.forma.get('parentesco').value == 'cod_parentesco_1') {
+      // Si es titular
+      if (this.params.entidad == 'titular') {
 
         this._socio.insert(socio).subscribe(
           data => console.log(data)
         );
-      
+
+      // Si es familia
       } else {
 
         this._socio.insertFamilia(socio).subscribe(
           data => console.log(data)
         );
       }
-
     }
 
-    console.log(socio);
 
   }
 }

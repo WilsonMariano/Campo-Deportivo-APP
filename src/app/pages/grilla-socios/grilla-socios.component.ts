@@ -13,7 +13,6 @@ export class GrillaSociosComponent implements OnInit {
 
   private arrControls = ['NroSocio', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio'];
 
-
   private arrAttr = [
     { 'attr': 'id',             'type': 'Number'  },
     { 'attr': 'apellido',       'type': 'String'  },
@@ -26,7 +25,6 @@ export class GrillaSociosComponent implements OnInit {
     'col': 'codParentesco',
     'txt': ''
   }
-
 
   public options = {
     'entity': 'vwSocios',
@@ -49,10 +47,6 @@ export class GrillaSociosComponent implements OnInit {
     this.getParentescos();
   }
 
-  public nuevoSocio() {
-
-    localStorage.setItem('parentesco', 'titular');
-  }
 
   private getParentescos(): void {
 

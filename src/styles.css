@@ -65,8 +65,16 @@ td i.fa {
     font-weight: bold;
 }
 
-.boton {
+/* .boton {
     display: inline-block;
     vertical-align: bottom;
     float: none;
+} */
+
+.dropdown-menu-left {
+
+    right: 0;
+    left: auto;
+    padding-left: 1px;
+    padding-right: 1px;
 }
