@@ -4,26 +4,26 @@
             <h1>Titular</h1>
             <hr>
             <div class="row" *ngIf="socioTitular != null">
-                <div class="col-md-3">
-                    <h3>Nombre: </h3>
-                    <h4>DNI:</h4>
-                    <h4>F. Nacimiento</h4>
+                <div class="col-md-2">
+                    <h4 class="label-bold">Nombre: </h4>
+                    <h4 class="label-bold">DNI:</h4>
+                    <h4 class="label-bold">F. Nacimiento</h4>
                 </div>
-                <div class="col-md-3">
-                    <h3>{{socioTitular.apellido +" "+ socioTitular.nombre}}</h3>
+                <div class="col-md-4">
+                    <h4>{{socioTitular.apellido +" "+ socioTitular.nombre}}</h4>
                     <h4>{{socioTitular.dni}}</h4>
-                    <h4>{{socioTitular.fechaNacimiento}}</h4>
+                    <h4>{{_fx.dateFormat(socioTitular.fechaNacimiento)}}</h4>
                 </div>
-                 <div class="col-md-3">
-                    <h3>Tipo afiliado: </h3>
-                    <h4>Estado:</h4>
-                    <h4>F. ingreso:</h4>
+                 <div class="col-md-2">
+                    <h4 class="label-bold">Tipo afiliado:</h4 >
+                    <h4 class="label-bold">Estado:</h4>
+                    <h4 class="label-bold">F. ingreso:</h4>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <h4><span class="label label-info">{{socioTitular.tipoAfiliado +" N° "+ socioTitular.nroAfiliado}}</span></h4>
                     <h4 *ngIf="socioTitular.activo == 1"><span class="label label-success">Activo</span></h4>
                     <h4 *ngIf="socioTitular.activo == 0"><span class="label label-danger">Inactivo</span></h4>
-                    <h4>{{socioTitular.fechaIngreso}}</h4>
+                    <h4>{{_fx.dateFormat(socioTitular.fechaIngreso)}}</h4>
                 </div>
                 <div class="col-md-12 mt-3">
                     <a [routerLink]="'../../../home/datos-socio/editar/titular/' + socioTitular.id"><i class="fa fa-pencil"></i>&nbsp;Editar</a>

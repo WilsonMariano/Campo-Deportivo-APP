@@ -92,4 +92,11 @@ export class SocioService {
         finalize(() => this._fxGlobals.hideSpinner())
     );
     }
+
+    public register(hash: String): void {
+
+        this._fxGlobals.showSpinner();
+
+        
+    }
 }

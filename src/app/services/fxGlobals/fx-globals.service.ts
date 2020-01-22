@@ -104,5 +104,11 @@ export class FxGlobalsService {
 
     return Md5.hashStr(<string>data).toString();
   }
+
+  public capitalize(text: String) { 
+
+    let arr = text.split(' ').map(e=> e[0].toUpperCase() + e.substring(1, e.length));
+    return arr.join(' ');
+  }
 }
 

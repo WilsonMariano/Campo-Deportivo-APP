@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/services.index';
 })
 export class NavbarComponent implements OnInit {
 
+  public hash;
+
   constructor(private _auth: AuthService) { }
 
   ngOnInit() {}
@@ -19,7 +21,12 @@ export class NavbarComponent implements OnInit {
 
   public keyup(event): void{
 
-    console.log(event);
+    // Enter
+    if(event.keyCode == 13) {
+
+      console.log(this.hash);
+    }
+    this.hash = "";
   }
 
 }

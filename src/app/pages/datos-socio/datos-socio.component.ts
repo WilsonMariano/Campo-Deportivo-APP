@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DiccionarioService, SocioService, CommonService, FxGlobalsService } from 'src/app/services/services.index';
@@ -13,8 +14,9 @@ export class DatosSocioComponent implements OnInit {
 
   // Objeti donde se guardan los parámetros recibidos
   public params = {
-    'operacion': null,
-    'entidad': null
+    'operacion':  null,
+    'entidad':    null,
+    'id':         null
   }
 
   public forma: FormGroup;
@@ -27,8 +29,9 @@ export class DatosSocioComponent implements OnInit {
     private _socio: SocioService, 
     private _common: CommonService, 
     private activatedRoute: ActivatedRoute, 
+    private _fx: FxGlobalsService,
     private router: Router,
-    private _fx: FxGlobalsService ) { }
+    private location: Location) { }
 
   ngOnInit() {
 
@@ -59,44 +62,44 @@ export class DatosSocioComponent implements OnInit {
         // Guardo los parámetros
         this.params.entidad = params.entidad;
         this.params.operacion = params.operacion;
+        this.params.id = params.id;
 
-        // Si la entidad es de tipo familiar desactivo los campos y asigno el parentesco
+        // Si es edición voy a buscar el socio del id recibido
+        if(params.operacion == 'editar') 
+          this.getSocio(params.id);
+        
+        // Si es alta deshabilito el campo estado
+        else
+          this.forma.get('activo').disable();
+        
+
         if (params.entidad == 'familiar') {
 
+          // Si la entidad es de tipo familiar desactivo los campos y asigno el parentesco
           this.forma.get('tipoAfiliado').disable();
           this.forma.get('numeroAfiliado').disable();
           this.forma.get('parentesco').setValue('cod_parentesco_2');
+
+          // Entidad = familiar && operacion = nuevo
+          if (params.operacion == 'nuevo') {
+
+            // Traigo los datos del socio titular mediante el id recibido
+            this._common.getOne('SociosTitulares', params.id).subscribe(
+
+              data => {
+                // Asigno los datos del socioTitular en el formulario
+                this.forma.get('idSocioTitular').setValue(data.id);
+                this.forma.get('numeroAfiliado').setValue(data.nroAfiliado);
+                this.forma.get('tipoAfiliado').setValue(data.codTipoSocio);
+              }
+            );
+          }
         
         // Si es de tipo titular asigno el parentesco
         } else {
 
           this.forma.get('parentesco').setValue('cod_parentesco_1');
         }
-
-        // Si es nuevo
-        if (params.operacion == 'nuevo') {
-
-          // Si es de tipo familiar busco los datos del socioTitular
-          if (params.entidad == 'familiar') {
-
-            // this.forma.get('idSocioTitular').setValue(params.id);
-
-            this._common.getOne('SociosTitulares', params.id).subscribe(
-
-              data => {
-
-                this.forma.get('idSocioTitular').setValue(data.id);
-                this.forma.get('numeroAfiliado').setValue(data.nroAfiliado);
-                this.forma.get('tipoAfiliado').setValue(data.codTipoSocio);
-              });
-          }
-
-        // Si es edición asigno el id del socio
-        } else {
-
-          this.getSocio(params.id);
-        }
-
       });
   }
 
@@ -147,8 +150,8 @@ export class DatosSocioComponent implements OnInit {
 
     socio.setCodTipoSocio(this.forma.get('tipoAfiliado').value);
     socio.setNroAfiliado(this.forma.get('numeroAfiliado').value);
-    socio.setApellido(this.forma.get('apellido').value);
-    socio.setNombre(this.forma.get('nombre').value);
+    socio.setApellido(this._fx.capitalize(this.forma.get('apellido').value));
+    socio.setNombre(this._fx.capitalize(this.forma.get('nombre').value));
     socio.setDni(this.forma.get('dni').value);
     socio.setFechaNacimiento(this.forma.get('fechaNacimiento').value);
     socio.setCodParentesco(this.forma.get('parentesco').value);
@@ -165,6 +168,7 @@ export class DatosSocioComponent implements OnInit {
 
       this._socio.update(socio).subscribe(
         data => this.showMessage('ok')
+        
       );
 
     } else {
@@ -196,7 +200,7 @@ export class DatosSocioComponent implements OnInit {
     else
       this._fx.showAlert("Error!", "Hubo un problema al realizar lo solicitado", "error");
 
-    this.router.navigate(['home/grilla-socios']);
+    this.location.back();
   }
 
 }

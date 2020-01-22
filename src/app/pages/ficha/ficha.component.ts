@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocioService } from '../../services/services.index';
+import { SocioService, FxGlobalsService } from '../../services/services.index';
 import { Socio } from '../../class/class.index';
 
 @Component({
@@ -18,7 +18,8 @@ export class FichaComponent implements OnInit {
   constructor(
     private activateRoute: ActivatedRoute, 
     private router: Router, 
-    private _socio: SocioService) { }
+    private _socio: SocioService,
+    private _fx: FxGlobalsService) { }
 
   ngOnInit() {
 
