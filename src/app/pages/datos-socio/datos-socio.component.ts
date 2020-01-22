@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DiccionarioService, SocioService, CommonService } from 'src/app/services/services.index';
+import { DiccionarioService, SocioService, CommonService, FxGlobalsService } from 'src/app/services/services.index';
 import { Socio } from 'src/app/class/class.index';
 
 @Component({
@@ -11,6 +11,7 @@ import { Socio } from 'src/app/class/class.index';
 })
 export class DatosSocioComponent implements OnInit {
 
+  // Objeti donde se guardan los parámetros recibidos
   public params = {
     'operacion': null,
     'entidad': null
@@ -21,7 +22,13 @@ export class DatosSocioComponent implements OnInit {
   public arrTipoAfiliado: any[];
 
 
-  constructor(private _diccionario: DiccionarioService, private _socio: SocioService, private _common: CommonService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private _diccionario: DiccionarioService, 
+    private _socio: SocioService, 
+    private _common: CommonService, 
+    private activatedRoute: ActivatedRoute, 
+    private router: Router,
+    private _fx: FxGlobalsService ) { }
 
   ngOnInit() {
 
@@ -49,6 +56,7 @@ export class DatosSocioComponent implements OnInit {
 
       params => {
 
+        // Guardo los parámetros
         this.params.entidad = params.entidad;
         this.params.operacion = params.operacion;
 
@@ -71,12 +79,13 @@ export class DatosSocioComponent implements OnInit {
           // Si es de tipo familiar busco los datos del socioTitular
           if (params.entidad == 'familiar') {
 
-            this.forma.get('idSocioTitular').setValue(params.id);
+            // this.forma.get('idSocioTitular').setValue(params.id);
 
             this._common.getOne('SociosTitulares', params.id).subscribe(
 
               data => {
 
+                this.forma.get('idSocioTitular').setValue(data.id);
                 this.forma.get('numeroAfiliado').setValue(data.nroAfiliado);
                 this.forma.get('tipoAfiliado').setValue(data.codTipoSocio);
               });
@@ -110,6 +119,7 @@ export class DatosSocioComponent implements OnInit {
         let socio = data.data;
 
         this.forma.get('id').setValue(socio.id);
+        this.forma.get('idSocioTitular').setValue(socio.idSocioTitular);
         this.forma.get('tipoAfiliado').setValue(socio.codTipoSocio);
         this.forma.get('numeroAfiliado').setValue(socio.nroAfiliado);
         this.forma.get('apellido').setValue(socio.apellido);
@@ -130,21 +140,6 @@ export class DatosSocioComponent implements OnInit {
     )
   }
 
-  public getSocioTitular(idSocioTitular: any): void {
-
-    this._common.getOne('SociosTitulares', idSocioTitular).subscribe(
-      data => {
-
-        this.forma.get('tipoAfiliado').setValue(data.codTipoSocio);
-        this.forma.get('numeroAfiliado').setValue(data.nroAfiliado);
-        this.forma.get('idSocioTitular').setValue(data.id);
-
-        console.log(data)
-      }
-    )
-
-
-  }
 
   public onSubmit(): void {
 
@@ -169,7 +164,7 @@ export class DatosSocioComponent implements OnInit {
       socio.setIdSocioTitular(this.forma.get('idSocioTitular').value);
 
       this._socio.update(socio).subscribe(
-        data => console.log(data)
+        data => this.showMessage('ok')
       );
 
     } else {
@@ -178,18 +173,30 @@ export class DatosSocioComponent implements OnInit {
       if (this.params.entidad == 'titular') {
 
         this._socio.insert(socio).subscribe(
-          data => console.log(data)
+          data => this.showMessage('ok')
         );
 
       // Si es familia
       } else {
 
+        socio.setIdSocioTitular(this.forma.get('idSocioTitular').value);
+
         this._socio.insertFamilia(socio).subscribe(
-          data => console.log(data)
+          data => this.showMessage('ok')
         );
       }
     }
-
-
   }
+
+  private showMessage(status: string): void {
+
+    if(status === 'ok')
+      this._fx.showAlert("Perfecto!", "Operación realizada con éxito", "success");
+    
+    else
+      this._fx.showAlert("Error!", "Hubo un problema al realizar lo solicitado", "error");
+
+    this.router.navigate(['home/grilla-socios']);
+  }
+
 }

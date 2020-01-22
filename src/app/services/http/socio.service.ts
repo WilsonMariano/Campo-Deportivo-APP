@@ -84,7 +84,7 @@ export class SocioService {
 
     this._fxGlobals.showSpinner();
 
-    return this._http.post(
+    return this._http.put(
         `${this.url}/update`,
         socio
     )
