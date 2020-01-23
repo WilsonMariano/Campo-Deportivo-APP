@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { GrillaComponent } from './grilla/grilla.component';
 import { BuscarSocioComponent } from './buscar-socio/buscar-socio.component';
+import { ModalRegisterComponent } from './modal-register/modal-register.component';
 
 
 
@@ -22,12 +23,14 @@ import { BuscarSocioComponent } from './buscar-socio/buscar-socio.component';
     declarations: [
         SpinnerComponent,
         GrillaComponent,
-        BuscarSocioComponent
+        BuscarSocioComponent,
+        ModalRegisterComponent
     ],
     exports: [
         SpinnerComponent,
         GrillaComponent,
-        BuscarSocioComponent
+        BuscarSocioComponent,
+        ModalRegisterComponent
     ]
 })
 export class ComponentsModule { }

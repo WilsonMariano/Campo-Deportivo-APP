@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/services.index';
+import { AuthService, SocioService, FxGlobalsService } from 'src/app/services/services.index';
+declare var $: any;
 
 @Component({
   selector: 'app-navbar',
@@ -9,8 +10,13 @@ import { AuthService } from 'src/app/services/services.index';
 export class NavbarComponent implements OnInit {
 
   public hash;
+  public datosSocio = null;
 
-  constructor(private _auth: AuthService) { }
+  constructor(
+    private _auth: AuthService,
+    private _socio: SocioService,
+    private _fx: FxGlobalsService) { }
+
 
   ngOnInit() {}
 
@@ -19,14 +25,35 @@ export class NavbarComponent implements OnInit {
     this._auth.logOut();
   }
 
-  public keyup(event): void{
+  public keyup(event): void {
 
     // Enter
-    if(event.keyCode == 13) {
+    if(event.keyCode == 13) 
+      this.onSubmit();
 
-      console.log(this.hash);
-    }
+  }
+
+  public onSubmit() {
+
+    this._socio.register('hash', this.hash).subscribe(
+      data => {
+
+        console.log(data);
+        
+        if(!data.ok)
+          this._fx.showAlert('Error', data.msg, "error");
+        
+        else {
+
+          this.datosSocio = data.data;
+          $('#modalRegister').modal('show');
+        }
+      },
+      err => this._fx.showAlert('Error', err.msg, "error")
+    );
+
     this.hash = "";
   }
+
 
 }

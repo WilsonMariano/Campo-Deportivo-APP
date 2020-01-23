@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from '../components/components.module';
 
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -14,7 +15,8 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     imports: [
         RouterModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        ComponentsModule
     ],
     declarations: [
         NopagefoundComponent,

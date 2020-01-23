@@ -93,10 +93,18 @@ export class SocioService {
     );
     }
 
-    public register(hash: String): void {
+    public register(tipo: String, valor: String): Observable<any> {
 
         this._fxGlobals.showSpinner();
 
-        
+        return this._http.post(
+            `${this.url}/register`,
+            {
+                tipo, valor
+            }
+        )
+        .pipe(
+          finalize(() => this._fxGlobals.hideSpinner())
+        );
     }
 }
