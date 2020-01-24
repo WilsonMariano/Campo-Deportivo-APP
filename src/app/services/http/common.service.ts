@@ -23,6 +23,8 @@ export class CommonService {
 
     this._fxGlobals.showSpinner();
 
+    // console.log(arrFilterParams);
+
 
     let params = new HttpParams()
       .set( 'rows', rows.toString() )

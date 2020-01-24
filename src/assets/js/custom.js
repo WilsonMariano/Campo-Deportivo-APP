@@ -1,6 +1,8 @@
  /*jslint browser: true*/
  /*global $, jQuery, alert*/
 
+ function init_plugins() {
+
  $(document).ready(function () {
 
      "use strict";
@@ -147,3 +149,4 @@
          $(".navbar-toggle i").toggleClass("ti-menu").addClass("ti-close");
      });
  });
+ }

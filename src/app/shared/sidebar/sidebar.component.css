@@ -1,0 +1,13 @@
+ul.collapse{
+
+    margin-bottom: 7px !important;
+    margin-left: 10px !important;
+}
+
+.collapse li {
+    margin-bottom: 7px !important;
+}
+
+.waves-dark{
+    font-weight: 400 !important;
+}

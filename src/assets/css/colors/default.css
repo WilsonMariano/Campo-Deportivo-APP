@@ -76,19 +76,19 @@ body {
 #side-menu > li > a:focus {
   background: rgba(0, 0, 0, 0.07);
 }
-#side-menu > li > a.active {
+/* #side-menu > li > a.active {
   background: transperant;
   color: #54667a;
   border-left: 3px solid #41b3f9;
   font-weight: 500;
-}
+} */
 #side-menu ul > li > a:hover {
   color: #41b3f9;
 }
-#side-menu ul > li > a.active {
+/* #side-menu ul > li > a.active {
   color: #54667a;
   font-weight: 500;
-}
+} */
 .user-profile .user-pro-body .u-dropdown {
   color: #54667a;
 }

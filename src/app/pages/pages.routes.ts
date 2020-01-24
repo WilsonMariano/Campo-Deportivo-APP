@@ -7,7 +7,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GrillaSociosComponent } from './grilla-socios/grilla-socios.component';
 import { FichaComponent } from './ficha/ficha.component';
 import { DatosSocioComponent } from './datos-socio/datos-socio.component';
-import { BonosMenuComponent } from './bonos-menu/bonos-menu.component';
 import { EmitirBonoComponent } from './emitir-bono/emitir-bono.component';
 import { VistaPreviaCarnetComponent } from './vista-previa-carnet/vista-previa-carnet.component';
 import { PagosComponent } from './pagos/pagos.component';
@@ -21,9 +20,8 @@ const pagesRoutes: Routes = [
         children: [
             { path: 'dashboard',                                component: DashboardComponent,                      data: { titulo: 'Dashboard' }     },
             { path: 'grilla-socios',                            component: GrillaSociosComponent,                   data: { titulo: 'Socios' }        },
-            { path: 'bonos-menu',                               component: BonosMenuComponent,                      data: { titulo: 'Bonos' }        },
             { path: 'emitir-bono/:id',                          component: EmitirBonoComponent,                     data: { titulo: 'Emitir bono' }        },
-            { path: 'listar-bonos',                             component: ListarBonosComponent,                    data: { titulo: 'Listar bonos' }        },
+            { path: 'listar-bonos-fecha',                       component: ListarBonosComponent,                    data: { titulo: 'Listar bonos' }        },
             { path: 'vista-previa-carnet/:id',                  component: VistaPreviaCarnetComponent,              data: { titulo: 'Emitir carnet' }        },
             { path: 'datos-socio/:operacion/:entidad/:id',      component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
             { path: 'datos-socio/:id',                          component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },

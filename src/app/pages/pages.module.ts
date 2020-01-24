@@ -13,7 +13,6 @@ import { GrillaSociosComponent } from './grilla-socios/grilla-socios.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FichaComponent } from './ficha/ficha.component';
 import { DatosSocioComponent } from './datos-socio/datos-socio.component';
-import { BonosMenuComponent } from './bonos-menu/bonos-menu.component';
 import { EmitirBonoComponent } from './emitir-bono/emitir-bono.component';
 import { VistaPreviaBonoComponent } from '../components/vista-previa-bono/vista-previa-bono.component';
 import { VistaPreviaCarnetComponent } from './vista-previa-carnet/vista-previa-carnet.component';
@@ -27,7 +26,6 @@ import { ListarBonosComponent } from './listar-bonos/listar-bonos.component';
         GrillaSociosComponent,
         FichaComponent,
         DatosSocioComponent,
-        BonosMenuComponent,
         EmitirBonoComponent,
         ListarBonosComponent,
         VistaPreviaBonoComponent,

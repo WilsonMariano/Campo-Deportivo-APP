@@ -4,6 +4,8 @@ import { Usuario } from '../class/class.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+declare var init_plugins: Function;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,6 +18,9 @@ export class LoginComponent implements OnInit {
   constructor(private _usuario: UsuarioService, private _fxGlobals: FxGlobalsService, private router: Router) { }
 
   ngOnInit() {
+
+    // Inicializo plugins sidebar y corto spinner
+    init_plugins();
 
     this.forma = new FormGroup({
       'usuario':    new FormControl('', Validators.required),

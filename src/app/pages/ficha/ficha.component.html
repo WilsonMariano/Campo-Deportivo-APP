@@ -30,6 +30,7 @@
                     <a [routerLink]="'../../../home/vista-previa-carnet/' + socioTitular.id" *ngIf="socioTitular.codTipoSocio != 'cod_tipo_socio_3' && socioTitular.codTipoSocio != 'cod_tipo_socio_4'"><i class="fa fa-address-card ml-2"></i>&nbsp;Imprimir</a>
                     <a [routerLink]="'../../../home/emitir-bono/' + socioTitular.id"><i class="fa fa-ticket ml-2"></i>&nbsp;Emitir bono</a>
                     <a [routerLink]="'../../../home/pagos/' + socioTitular.idSocioTitular"><i class="fa fa-money-bill-wave ml-2"></i>&nbsp;Cuotas</a>
+                    <a (click)="registrarIngreso(socioTitular.hash)"><i class="fa fa-door-open ml-2"></i>&nbsp;Registrar ingreso</a>
                  </div>
             </div>
         </div>
@@ -74,6 +75,7 @@
                                         <li><a [routerLink]="'../../../home/datos-socio/editar/familiar/' + s.id" (click)="establecerParentesco()">Editar</a></li>
                                         <li><a [routerLink]="'../../../home/vista-previa-carnet/' + s.id">Imprimir carnet</a></li>
                                         <li><a [routerLink]="'../../../home/emitir-bono/' + s.id">Emitir bono</a></li>
+                                        <li><a (click)="registrarIngreso(s.hash)">Registrar ingreso</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -84,3 +86,5 @@
         </div>
     </div>
 </div>
+
+<app-modal-register [datos]="datosSocio" [id]="2"></app-modal-register>

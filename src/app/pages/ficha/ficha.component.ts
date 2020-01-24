@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocioService, FxGlobalsService } from '../../services/services.index';
 import { Socio } from '../../class/class.index';
+declare var $: any;
 
 @Component({
   selector: 'app-ficha',
@@ -10,6 +11,7 @@ import { Socio } from '../../class/class.index';
 })
 export class FichaComponent implements OnInit {
 
+  public datosSocio = null;
   public socioTitular: Socio = null;
   public arrFamiliares: Socio[] = [];
   public arrInvitados: Socio[] = [];
@@ -43,6 +45,27 @@ export class FichaComponent implements OnInit {
     this._socio.getGroupFamily(id, 'cod_parentesco_3').subscribe(
       data => this.arrInvitados = data.data
     );
+  }
+
+  public registrarIngreso(hash: String) {
+
+    this._socio.register('hash', hash).subscribe(
+      data => {
+
+        console.log(data);
+        
+        if(!data.ok)
+          this._fx.showAlert('Error', data.msg, "error");
+        
+        else {
+
+          this.datosSocio = data.data;
+          $('#modalRegister2').modal('show');
+        }
+      },
+      err => this._fx.showAlert('Error', err.msg, "error")
+    );
+
   }
   
 }

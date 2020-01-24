@@ -8,6 +8,7 @@ declare var moment: any;
   styleUrls: ['./modal-register.component.css']
 })
 export class ModalRegisterComponent implements OnInit {
+  @Input() id;
   @Input() datos = null;
 
   constructor(private _fx: FxGlobalsService) { }

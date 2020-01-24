@@ -12,9 +12,14 @@
                         <a href="#">Hola</a>
                     </ul>
                 </li> -->
+                <li class="nav-devider"></li>
+                
+                <li class="nav-small-cap">MENÚ</li>
                 <li *ngFor="let m of _sidebar.menu">
-                    <a [routerLink]="m.url" routerLinkActive="active" class="waves-effect"><i class="a {{m.icono}}"
-                            aria-hidden="true"></i>&nbsp; {{m.titulo}}</a>
+                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="{{m.icono}}"></i>&nbsp;<span class="hide-menu">{{m.titulo}}</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li *ngFor="let submenu of m.submenu"><a [routerLink]="submenu.url">{{ submenu.titulo }} </a></li>
+                    </ul>
                 </li>
 
             <!-- <span class="px-5">SOCIOS</span> -->

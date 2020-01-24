@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="modalRegister{{id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -15,10 +15,30 @@
                 <strong>Importante!</strong> El socio se encuentra con deuda.
               </div>
 
-              <div class="panel panel-default mt-5">
+              <hr class="mt-4">
+
+              <!-- <div class="panel panel-default mt-5">
                 <div class="panel-heading">Datos socio</div>
-                <div class="panel-body">
-                    <table class="table">
+                <div class="panel-body"> -->
+
+                  <!-- <div class="row">
+                    <div class="col-md-1">Nro</div>
+                    <div class="col-md-3">Apellido</div>
+                    <div class="col-md-3">Nombre</div>
+                    <div class="col-md-2">Parentesco</div>
+                    <div class="col-md-3">Tipo socio</div>
+                  </div> -->
+                  <div class="row">
+                    <div class="col-md-1">{{datos.socio.id}}</div>
+                    <div class="col-md-3">{{datos.socio.apellido}}</div>
+                    <div class="col-md-3">{{datos.socio.nombre}}</div>
+                    <div class="col-md-2">{{datos.socio.parentesco}}</div>
+                    <div class="col-md-3">{{datos.socio.tipoAfiliado}}</div>
+                  </div>
+
+                  <hr class="mb-4">
+
+                    <!-- <table class="table" *ngIf="datos.socio">
                         <thead>
                             <tr>
                                 <th>Nro.</th>
@@ -30,16 +50,16 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
+                                <td>{{datos.socio.id}}</td>
                                 <td>{{datos.socio.apellido}}</td>
                                 <td>{{datos.socio.nombre}}</td>
-                                <td>asd</td>
-                                <td>asd</td>
+                                <td>{{datos.socio.parentesco}}</td>
+                                <td>{{datos.socio.tipoAfiliado}}</td>
                             </tr>
                         </tbody>
-                    </table>
-                </div>
-              </div>
+                    </table> -->
+                <!-- </div>
+              </div> -->
 
               <div class="panel panel-default">
                 <div class="panel-heading">Bonos activos</div>

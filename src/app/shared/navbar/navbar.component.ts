@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
         else {
 
           this.datosSocio = data.data;
-          $('#modalRegister').modal('show');
+          $('#modalRegister1').modal('show');
         }
       },
       err => this._fx.showAlert('Error', err.msg, "error")
