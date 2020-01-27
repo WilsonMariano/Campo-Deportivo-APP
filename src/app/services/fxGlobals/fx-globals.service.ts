@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Md5 } from 'ts-md5/dist/md5';
-declare var QRCode: any;
 
+declare var QRCode: any;
+declare var moment: any;
 declare var swal : any;
 
 @Injectable({
@@ -109,6 +110,14 @@ export class FxGlobalsService {
 
     let arr = text.split(' ').map(e=> e[0].toUpperCase() + e.substring(1, e.length));
     return arr.join(' ');
+  }
+
+  public estaVencido(vencimiento) {
+
+    let hoy = moment().format('YYYY-MM-DD');
+    let dias = moment(vencimiento).diff(hoy, "days");
+
+    return dias < 0;
   }
 }
 

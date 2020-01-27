@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocioService, DiccionarioService, FxGlobalsService, ValoresService, PdfGeneratorService } from 'src/app/services/services.index';
+import { SocioService, DiccionarioService, FxGlobalsService, ValoresService, PdfGeneratorService, FuncionalidadesService, CuotaService } from 'src/app/services/services.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bono } from 'src/app/class/class.index';
 import { BonoService } from 'src/app/services/http/bono.service';
@@ -21,6 +21,8 @@ export class EmitirBonoComponent implements OnInit {
     private _pdf: PdfGeneratorService,
     private _bono: BonoService,
     private _valores: ValoresService,
+    private _cuotas: CuotaService,
+    private _funcionalidades: FuncionalidadesService,
     private router: Router) { }
 
   public forma: FormGroup;
@@ -29,6 +31,7 @@ export class EmitirBonoComponent implements OnInit {
   public arrDias = [];
   public socio = null;
   public bonoPrevia = null;
+  public estaVencido = false;
 
   ngOnInit() {
 
@@ -79,13 +82,25 @@ export class EmitirBonoComponent implements OnInit {
 
     this._socio.getOne(idSocio).subscribe(
       data => {
-
+        console.log(data);
         this.socio = data.data;
 
         this.forma.get('idSocio').setValue(this.socio.id);
         this.forma.get('apellido').setValue(this.socio.apellido);
         this.forma.get('nombre').setValue(this.socio.nombre);
         this.forma.get('codParentesco').setValue(this.socio.codParentesco);
+
+        // Busco las prestaciones disponibles segun el tipo de socio
+        this._funcionalidades.getCodPrestacion(data.data.codTipoSocio).subscribe(
+          data => this.arrPrestaciones = data.data
+        );
+
+        // Si el socio es de tipo Socio Adherente, busco la fecha de vencimiento
+        if(data.data.codTipoSocio == 'cod_tipo_socio_2')
+          this._cuotas.getLastVencimiento(data.data.idSocioTitular).subscribe(
+            vencimiento => this.estaVencido = this._fxGlobals.estaVencido(vencimiento.data)
+          );
+
       },
       err => {
 
@@ -101,9 +116,9 @@ export class EmitirBonoComponent implements OnInit {
    */
   private getDiccionario(): void {
 
-    this._diccionario.getWithKeys('cod_prestacion').subscribe(
-      data => this.arrPrestaciones = data.data
-    );
+    // this._diccionario.getWithKeys('cod_prestacion').subscribe(
+    //   data => this.arrPrestaciones = data.data
+    // );
 
     this._diccionario.getWithKeys('cod_parentesco').subscribe(
       data => this.arrParentesco = data.data

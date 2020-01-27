@@ -1,10 +1,10 @@
-ul.collapse{
+#menu{
 
     margin-bottom: 7px !important;
     margin-left: 10px !important;
 }
 
-.collapse li {
+#menu li {
     margin-bottom: 7px !important;
 }
 

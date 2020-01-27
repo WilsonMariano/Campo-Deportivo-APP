@@ -5,48 +5,17 @@
                     class="hide-menu">MENÚ</span></h3>
         </div>
         <ul class="nav" id="side-menu" style="padding: 70px 0 0;">
-                <!-- <li style="padding: 70px 0 0;">
-                    <a href="dashboard.html" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                            aria-hidden="true"></i>Dashboard</a>
-                    <ul aria-expanded="false" class="collapse">
-                        <a href="#">Hola</a>
-                    </ul>
-                </li> -->
-                <li class="nav-devider"></li>
-                
-                <li class="nav-small-cap">MENÚ</li>
-                <li *ngFor="let m of _sidebar.menu">
-                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="{{m.icono}}"></i>&nbsp;<span class="hide-menu">{{m.titulo}}</span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li *ngFor="let submenu of m.submenu"><a [routerLink]="submenu.url">{{ submenu.titulo }} </a></li>
-                    </ul>
-                </li>
 
-            <!-- <span class="px-5">SOCIOS</span> -->
-            <!-- <li>
-                <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw"
-                        aria-hidden="true"></i>Profile</a>
+            <li class="nav-devider"></li>
+
+            <li class="nav-small-cap">MENÚ</li>
+            <li *ngFor="let m of _sidebar.menu">
+                <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i
+                        class="{{m.icono}}"></i>&nbsp;<span class="hide-menu">{{m.titulo}}</span></a>
+                <ul aria-expanded="false" class="collapse" id="menu">
+                    <li *ngFor="let submenu of m.submenu"><a [routerLink]="submenu.url">{{ submenu.titulo }} </a></li>
+                </ul>
             </li>
-            <li>
-                <a href="basic-table.html" class="waves-effect"><i class="fa fa-table fa-fw"
-                        aria-hidden="true"></i>Basic Table</a>
-            </li>
-            <li>
-                <a href="fontawesome.html" class="waves-effect"><i class="fa fa-font fa-fw"
-                        aria-hidden="true"></i>Icons</a>
-            </li>
-            <li>
-                <a href="map-google.html" class="waves-effect"><i class="fa fa-globe fa-fw"
-                        aria-hidden="true"></i>Google Map</a>
-            </li>
-            <li>
-                <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Blank
-                    Page</a>
-            </li>
-            <li>
-                <a href="404.html" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Error
-                    404</a>
-            </li> -->
         </ul>
     </div>
 </div>

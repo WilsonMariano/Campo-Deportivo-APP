@@ -20,10 +20,12 @@ export class ModalRegisterComponent implements OnInit {
 
   public estaVencido() {
 
-    let hoy = moment().format('YYYY-MM-DD');
-    let dias = moment(this.datos.vencimiento).diff(hoy, "days");
+    return this._fx.estaVencido(this.datos.vencimiento);
 
-    return dias < 0;
+    // let hoy = moment().format('YYYY-MM-DD');
+    // let dias = moment(this.datos.vencimiento).diff(hoy, "days");
+
+    // return dias < 0;
   }
 
 }

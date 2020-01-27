@@ -32,6 +32,17 @@ export class CuotaService {
         );
   }
 
+  public getLastVencimiento(idSocioTitular): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    return this._http.get(`${this.url}/getLastVencimiento/${idSocioTitular}`
+    )
+        .pipe(
+            finalize(() => this._fxGlobals.hideSpinner())
+        );
+  }
+
   public insertCuota(cuota: Cuota): Observable<any> {
 
     this._fxGlobals.showSpinner();

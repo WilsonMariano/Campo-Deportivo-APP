@@ -7,8 +7,13 @@
 
 
             <div *ngIf="bonoPrevia == null && socio != null">
+
                 <h2>Bono de prestación</h2>
                 <hr>
+                        <div class="alert alert-danger alert-dismissible" role="alert" *ngIf="estaVencido">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Importante!</strong> El socio se encuentra con deuda.
+                          </div>
                 <form [formGroup]="forma" (ngSubmit)="onSubmit()">
 
                     <div class="row">
@@ -26,7 +31,7 @@
                         <!-- <div class="col-md-4"></div> -->
                         <div class="col-md-4 text-right mb-4">
                             <h4 *ngIf="socio != null"><span class="label label-info">{{socio.edad}} años</span></h4>
-                            <h4 *ngIf="socio != null"><span class="label label-info">{{socio.codTipoSocio}}</span></h4>
+                            <h4 *ngIf="socio != null"><span class="label label-info">{{socio.tipoAfiliado}}</span></h4>
                         </div>
                         <div class="form-group col-md-2">
                             <label>Nro. Socio</label>
