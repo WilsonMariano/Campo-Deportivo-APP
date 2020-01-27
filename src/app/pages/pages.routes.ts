@@ -12,6 +12,7 @@ import { VistaPreviaCarnetComponent } from './vista-previa-carnet/vista-previa-c
 import { PagosComponent } from './pagos/pagos.component';
 import { NuevoPagoComponent } from './nuevo-pago/nuevo-pago.component';
 import { ListarBonosComponent } from './listar-bonos/listar-bonos.component';
+import { ListarBonosAsignacionComponent } from './listar-bonos-asignacion/listar-bonos-asignacion.component';
 
 const pagesRoutes: Routes = [
     {
@@ -22,6 +23,7 @@ const pagesRoutes: Routes = [
             { path: 'grilla-socios',                            component: GrillaSociosComponent,                   data: { titulo: 'Socios' }        },
             { path: 'emitir-bono/:id',                          component: EmitirBonoComponent,                     data: { titulo: 'Emitir bono' }        },
             { path: 'listar-bonos-fecha',                       component: ListarBonosComponent,                    data: { titulo: 'Listar bonos' }        },
+            { path: 'listar-bonos-asignacion',                  component: ListarBonosAsignacionComponent,          data: { titulo: 'Listar bonos' }        },
             { path: 'vista-previa-carnet/:id',                  component: VistaPreviaCarnetComponent,              data: { titulo: 'Emitir carnet' }        },
             { path: 'datos-socio/:operacion/:entidad/:id',      component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
             { path: 'datos-socio/:id',                          component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },

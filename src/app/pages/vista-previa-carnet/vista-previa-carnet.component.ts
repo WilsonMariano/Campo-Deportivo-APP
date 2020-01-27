@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core'; 
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService, FxGlobalsService, PdfGeneratorService } from 'src/app/services/services.index';
+import { CommonService, FxGlobalsService, PdfGeneratorService, FuncionalidadesService } from 'src/app/services/services.index';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-vista-previa-carnet',
@@ -17,6 +18,7 @@ export class VistaPreviaCarnetComponent implements OnInit {
     private _common: CommonService, 
     private _fx: FxGlobalsService, 
     private _pdf: PdfGeneratorService,
+    private _funcionalidad: FuncionalidadesService,
     private router: Router) { 
 
     }
@@ -50,8 +52,21 @@ export class VistaPreviaCarnetComponent implements OnInit {
     this._common.getOne('vwSocios', id).subscribe(
 
       data => { 
-        this.socio = data; 
-        this.renderQR();
+     
+        this._funcionalidad.getFuncionalidad(data.codTipoSocio, 'cod_funcionalidad_3').subscribe(
+
+          // Valido la funcionalidad
+          res => {
+            if(res.data.habilitado == 0) {
+              this._fx.showAlert("Error", "El tipo de socio no puede generar carnet", "error");
+              
+            } else {
+
+              this.socio = data; 
+              this.renderQR();
+            }
+          }
+        )
       },
       err => {
         this._fx.showAlert("Error", "El socio no existe", "error");

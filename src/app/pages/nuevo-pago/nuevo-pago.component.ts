@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocioService, FxGlobalsService, DiccionarioService, CuotaService, PdfGeneratorService } from 'src/app/services/services.index';
+import { SocioService, FxGlobalsService, DiccionarioService, CuotaService, PdfGeneratorService, FuncionalidadesService } from 'src/app/services/services.index';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Cuota } from 'src/app/class/class.index';
 declare var moment: any;
@@ -22,6 +22,7 @@ export class NuevoPagoComponent implements OnInit {
     private _cuota: CuotaService,
     private _diccionario: DiccionarioService,
     private _pdf: PdfGeneratorService,
+    private _funcionalidades: FuncionalidadesService,
     private router: Router,
     private fb: FormBuilder) { }
 
@@ -59,7 +60,20 @@ export class NuevoPagoComponent implements OnInit {
   private getTitular(idSocio): void {
  
     this._socio.getTitular(idSocio).subscribe(
-      data => this.socioTitular = data.data,
+      data => {
+
+        this._funcionalidades.getFuncionalidad(data.data.codTipoSocio, 'cod_funcionalidad_2').subscribe(
+          res => {
+            if(res.data.habilitado == 0) {
+              this._fx.showAlert("Error", "El socio no esta habilitado para hacer pagos", "error")
+            
+            } else {
+
+              this.socioTitular = data.data
+            }
+          }
+        );
+      },
       err =>  this._fx.showAlert("Error", "El socio buscado no existe", "error")
     );
   }
@@ -117,8 +131,5 @@ export class NuevoPagoComponent implements OnInit {
       }
     )
 
-   
-    
   }
-
 }

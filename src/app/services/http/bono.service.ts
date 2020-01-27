@@ -63,4 +63,21 @@ export class BonoService {
     );
   }
 
+  public getByDateAndPrestacion(fechaAsignacion, codPrestacion): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    let params = new HttpParams()
+    .set('fechaAsignacion', fechaAsignacion)
+    .set('codPrestacion', codPrestacion);
+
+    return this._http.get(
+      this.url + '/getByDateAndPrestacion', 
+      { params }
+    )
+    .pipe(
+      finalize(()=> this._fxGlobals.hideSpinner())
+    );
+  }
+
 }

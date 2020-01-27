@@ -221,7 +221,10 @@ export class EmitirBonoComponent implements OnInit {
 
         // Asigno el bono recuperado y muestro la pantalla de vista previa
         // data => this.bonoPrevia = { 'hash': this.socio.hash, "bono": data.data  }
-        data => this.bonoPrevia = data.data
+        data => {
+          if(data.ok) this.bonoPrevia = data.data
+          else this._fxGlobals.showAlert("Error", data.msg, "error")
+        }
       );
     });
   }

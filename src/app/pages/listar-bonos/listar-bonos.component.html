@@ -5,7 +5,7 @@
             <app-vista-previa-bono [bonoPrevia]="bonoPrevia" (hidden)="bonoPrevia = null" *ngIf="bonoPrevia != null"></app-vista-previa-bono>
             
             <div *ngIf="bonoPrevia == null">
-                <h2>Listar bonos</h2>
+                <h2>Listar bonos por emisión</h2>
                 <hr>
                 <div class="row">
                     <form [formGroup]="forma" (ngSubmit)="onSubmit()">
@@ -34,7 +34,7 @@
                             <thead>
                                 <tr>
                                     <th>Nro.</th>
-                                    <th>Fecha</th>
+                                    <th>Emisión</th>
                                     <th>Apellido</th>
                                     <th>Nombre</th>
                                     <th>Socio N°</th>
@@ -46,7 +46,7 @@
                             <tbody>
                                 <tr *ngFor="let b of arrBonos">
                                     <td>{{b.id}}</td>
-                                    <td>{{b.fechaEmision}}</td>
+                                    <td>{{_fx.dateFormat(b.fechaEmision)}}</td>
                                     <td>{{b.apellido}}</td>
                                     <td>{{b.nombre}}</td>
                                     <td>{{b.idSocio}}</td>

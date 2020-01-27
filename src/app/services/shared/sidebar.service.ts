@@ -40,12 +40,12 @@ export class SidebarService {
           url:    '/home/emitir-bono/nuevo'
         },
         {
-          titulo: 'Listar por fecha',
+          titulo: 'Listar por emisión',
           url:    '/home/listar-bonos-fecha'
         },
         {
-          titulo: 'Listar por socio',
-          url:    '/home/listar-bonos-socio'
+          titulo: 'Listar por asignación',
+          url:    '/home/listar-bonos-asignacion'
         }
       ]
     },
@@ -66,6 +66,20 @@ export class SidebarService {
         {
           titulo: 'Nuevo pago',
           url:    '/home/nuevo-pago/nuevo'
+        }
+      ]
+    },
+    {
+      titulo: 'Caja',
+      icono: 'fas fa-cash-register',
+      submenu: [
+        {
+          titulo: 'Informe de bonos',
+          // url:    '/home/nuevo-pago/nuevo'
+        },
+        {
+          titulo: 'Informe de cuotas',
+          // url:    '/home/nuevo-pago/nuevo'
         }
       ]
     }

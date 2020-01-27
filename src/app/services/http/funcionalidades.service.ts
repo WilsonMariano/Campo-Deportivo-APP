@@ -35,4 +35,21 @@ export class FuncionalidadesService {
             );
     }
 
+    public getFuncionalidad(codTipoSocio: String, codFuncionalidad: String): Observable<any> {
+
+        this._fxGlobals.showSpinner();
+
+        let params = new HttpParams()
+        .set( 'codTipoSocio',       codTipoSocio.toString() )
+        .set( 'codFuncionalidad',   codFuncionalidad.toString() );
+
+
+        return this._http.get(`${this.url}/getFuncionalidad`,
+            { params }
+        )
+            .pipe(
+                finalize(() => this._fxGlobals.hideSpinner())
+            );
+    }
+
 }
