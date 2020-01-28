@@ -70,8 +70,8 @@ export class SidebarService {
       ]
     },
     {
-      titulo: 'Caja',
-      icono: 'fas fa-cash-register',
+      titulo: 'Informes',
+      icono: 'fas fa-clipboard-list',
       submenu: [
         {
           titulo: 'Informe de bonos',

@@ -43,6 +43,23 @@ export class CuotaService {
         );
   }
 
+  public getBetweenDates(fechaDesde, fechaHasta): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    let params = new HttpParams()
+      .set('fechaDesde', fechaDesde)
+      .set('fechaHasta', fechaHasta);
+    
+
+    return this._http.get(`${this.url}/getBetweenDates`,
+    { params }
+    )
+        .pipe(
+            finalize(() => this._fxGlobals.hideSpinner())
+        );
+  }
+
   public insertCuota(cuota: Cuota): Observable<any> {
 
     this._fxGlobals.showSpinner();

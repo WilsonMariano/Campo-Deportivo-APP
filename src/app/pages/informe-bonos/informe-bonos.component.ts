@@ -4,8 +4,7 @@ import { FxGlobalsService, PdfGeneratorService } from 'src/app/services/services
 
 @Component({
   selector: 'app-informe-bonos',
-  templateUrl: './informe-bonos.component.html',
-  styleUrls: ['./informe-bonos.component.css']
+  templateUrl: './informe-bonos.component.html'
 })
 export class InformeBonosComponent implements OnInit {
 
