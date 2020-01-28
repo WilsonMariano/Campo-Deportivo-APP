@@ -8,6 +8,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { GrillaComponent } from './grilla/grilla.component';
 import { BuscarSocioComponent } from './buscar-socio/buscar-socio.component';
 import { ModalRegisterComponent } from './modal-register/modal-register.component';
+import { BuscarFechasComponent } from './buscar-fechas/buscar-fechas.component';
 
 
 
@@ -24,13 +25,15 @@ import { ModalRegisterComponent } from './modal-register/modal-register.componen
         SpinnerComponent,
         GrillaComponent,
         BuscarSocioComponent,
-        ModalRegisterComponent
+        ModalRegisterComponent,
+        BuscarFechasComponent
     ],
     exports: [
         SpinnerComponent,
         GrillaComponent,
         BuscarSocioComponent,
-        ModalRegisterComponent
+        ModalRegisterComponent,
+        BuscarFechasComponent
     ]
 })
 export class ComponentsModule { }

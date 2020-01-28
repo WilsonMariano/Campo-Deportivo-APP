@@ -75,11 +75,11 @@ export class SidebarService {
       submenu: [
         {
           titulo: 'Informe de bonos',
-          // url:    '/home/nuevo-pago/nuevo'
+          url:    '/home/informe-bonos'
         },
         {
           titulo: 'Informe de cuotas',
-          // url:    '/home/nuevo-pago/nuevo'
+          url:    '/home/informe-cuotas'
         }
       ]
     }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { BonoService } from 'src/app/services/http/bono.service';
 import { FxGlobalsService } from 'src/app/services/services.index';
 
@@ -10,26 +9,28 @@ import { FxGlobalsService } from 'src/app/services/services.index';
 })
 export class ListarBonosComponent implements OnInit {
 
-  public forma: FormGroup;
+  private fechaDesde;
+  private fechaHasta;
   public arrBonos = [];
   public bonoPrevia = null;
 
-  constructor(private fb: FormBuilder, private _bonos: BonoService, private _fx: FxGlobalsService) { }
+  constructor(private _bonos: BonoService, private _fx: FxGlobalsService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-    this.forma = this.fb.group({
-      'fechaDesde': new FormControl('',  Validators.required),
-      'fechaHasta': new FormControl('',  Validators.required)
-    });
+  public inputData(event): void {
+
+    this.fechaDesde = event.fechaDesde;
+    this.fechaHasta = event.fechaHasta;
+
+    this.getBonos();
   }
 
-  public onSubmit(): void {
+  private getBonos() {
 
-    this._bonos.getBetweenDate(this.forma.get('fechaDesde').value, this.forma.get('fechaHasta').value).subscribe(
-      data => {this.arrBonos = data.data; console.log(data);}
-    )
-    
+    this._bonos.getBetweenDate(this.fechaDesde, this.fechaHasta).subscribe(
+      data => this.arrBonos = data.data
+    );
   }
 
   public anular(id): void {
@@ -39,10 +40,9 @@ export class ListarBonosComponent implements OnInit {
     () => this._bonos.cancel(id).subscribe(
         () => {
           this._fx.showAlert("Perfecto",  "El bono se ha anulado", "success");
-          this.onSubmit();
+          this.getBonos();
         }
     )
    );
   }
-
 }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import { FxGlobalsService } from './fx-globals.service';
+import { Bono } from 'src/app/class/class.index';
 declare var numeroALetras: any;
+declare var moment: any;
 
 
 @Injectable({
@@ -12,6 +14,7 @@ export class PdfGeneratorService {
   private logo;
   private logoH = 15;
   private logoW = 15;
+  private row= 65;
 
 
   constructor(private _fx: FxGlobalsService) {
@@ -256,6 +259,99 @@ export class PdfGeneratorService {
     doc.autoPrint({variant: 'non-conform'});
     doc.output('dataurlnewwindow');
   }
+
+  public generarInformeBonos(bonos: Array<any>, fechas): void {
+
+    let hoy = moment().format('YYYY-MM-DD');
+    let numPagina = 1;
+    let row = 65;
+
+    var doc = new jsPDF();
+    doc.setFont('helvetica');
+    
+    doc = generarCabecera(doc, numPagina, hoy, fechas, this._fx);
+    
+
+    bonos.forEach((element, i) => {
+
+      doc.text(this._fx.dateFormat(element.fechaEmision)    , 10, row);
+      doc.text(element.idSocio                              , 35, row);
+      doc.text(`${element.apellido} ${element.nombre}`      , 60, row);
+      doc.text(element.prestacion                           , 130, row);
+      doc.text(element.monto                                , 180, row);
+
+      row += 5;
+
+
+      // Agrego nueva cabecera
+      if(row >= 275) {
+
+        numPagina++;
+        row = 65;
+        doc.addPage();
+        doc = generarCabecera(doc, numPagina, hoy, fechas, this._fx);
+      }
+
+      // Agrego totales
+      if(i == bonos.length - 1) {
+
+        doc.line(0, row,  220, row);
+
+        doc.setFontType('bold');
+        doc.text("TOTAL", 130, row + 5);
+        doc.text(this.sumarTotales(bonos).toString(), 180, row + 5);
+      }
+      
+    });
+    
+    // Configuro autoprint y apertura en pestaña nueva
+    doc.autoPrint({variant: 'non-conform'});
+    doc.output('dataurlnewwindow');
+
+
+    function generarCabecera(doc, numPagina, hoy, rangoFechas, _fx) {
+
+      // Encabezado
+      doc.setFontSize(14);
+      doc.text("CAMPO DEPORTIVO", 77, 17);
+      doc.setFontSize(13);
+      doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
+      doc.setFontSize(12);
+      doc.setFontType('bold');
+      doc.text("INFORME DE EMISIÓN DE BONOS", 70, 33);
+      doc.setFontSize(11);
+      doc.setFontType('normal');
+      doc.text(`desde ${_fx.dateFormat(rangoFechas.fechaDesde)} al ${_fx.dateFormat(rangoFechas.fechaHasta)}`, 75, 40);
+      doc.text(`Fecha: ${_fx.dateFormat(hoy)}`, 10, 45);
+      doc.text(`Página: ${numPagina}`, 180, 45);
+
+      // Divisor
+      doc.line(0, 50,  220, 50);
+      doc.line(0, 58,  220, 58);
+
+      doc.setFontType('bold');
+      doc.text("Fecha", 10, 55);
+      doc.text("N° Socio", 35, 55);
+      doc.text("Apellido y nombre", 60, 55);
+      doc.text("Prestación", 130, 55);
+      doc.text("Monto", 180, 55);
+
+      doc.setFontType('normal');
+      doc.setFontSize('10');
+
+      return doc;
+    }
+  }
+
+  private sumarTotales(arr: Array<any>): Number {
+
+    let sum = 0;
+
+    arr.forEach(element => sum += Number.parseFloat(element['monto']));
+
+    return sum;
+  }
+
 
   
 }

@@ -27,36 +27,39 @@
                     </div>
                 </form>
 
-                <div class="row" *ngIf="arrBonos.length != 0">
-                    <div class="col-md-12">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Emisión</th>
-                                    <th>Socio N°</th>
-                                    <th>Apellido</th>
-                                    <th>Nombre</th>
-                                    <th>Prestación</th>
-                                    <th>Fecha asignación</th>
-                                    <th>Hora</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let b of arrBonos">
-                                    <td>{{b.fechaEmision}}</td>
-                                    <td>{{b.idSocio}}</td>
-                                    <td>{{b.apellido}}</td>
-                                    <td>{{b.nombre}}</td>
-                                    <td>{{b.prestacion}}</td>
-                                    <td>{{b.fechaAsignacion}}</td>
-                                    <td class="text-info"><b>{{_fx.timeFormat(b.horaAsignacion)}}</b></td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <hr>
-                </div>
             </div>
+        </div>
+        <div class="white-box" *ngIf="arrBonos.length != 0">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Emisión</th>
+                                <th>Socio N°</th>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Prestación</th>
+                                <th>Fecha asignación</th>
+                                <th>Hora</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let b of arrBonos">
+                                <td>{{b.fechaEmision}}</td>
+                                <td>{{b.idSocio}}</td>
+                                <td>{{b.apellido}}</td>
+                                <td>{{b.nombre}}</td>
+                                <td>{{b.prestacion}}</td>
+                                <td>{{b.fechaAsignacion}}</td>
+                                <td class="text-info"><b>{{_fx.timeFormat(b.horaAsignacion)}}</b></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+            </div>
+
         </div>
