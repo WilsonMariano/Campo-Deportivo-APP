@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService, FxGlobalsService } from '../services/services.index';
+import { UsuarioService, FxGlobalsService, AuthService } from '../services/services.index';
 import { Usuario } from '../class/class.index';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,12 +15,18 @@ export class LoginComponent implements OnInit {
 
   public forma: FormGroup;
 
-  constructor(private _usuario: UsuarioService, private _fxGlobals: FxGlobalsService, private router: Router) { }
+  constructor(
+    private _usuario: UsuarioService, 
+    private _fxGlobals: FxGlobalsService, 
+    private router: Router,
+    private _auth: AuthService) { }
 
   ngOnInit() {
 
     // Inicializo plugins sidebar y corto spinner
     init_plugins();
+
+    this.validateLogin();
 
     this.forma = new FormGroup({
       'usuario':    new FormControl('', Validators.required),
@@ -73,6 +79,12 @@ export class LoginComponent implements OnInit {
   private clearData(): void {
 
     localStorage.removeItem('usuario');
+  }
+
+  private validateLogin() {
+
+    if(this._auth.isLogued())
+      this.router.navigate(['home/dashboard']);
   }
 
 }

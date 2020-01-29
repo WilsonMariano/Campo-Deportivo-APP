@@ -19,12 +19,13 @@ export class FuncionalidadesService {
         this.headers.append('Content-Type', 'application/json');
     }
 
-    public getCodPrestacion(codTipoSocio: String): Observable<any> {
+    public getCodPrestacion(codTipoSocio: String, codParentesco: String): Observable<any> {
 
         this._fxGlobals.showSpinner();
 
         let params = new HttpParams()
-        .set( 'codTipoSocio', codTipoSocio.toString() );
+        .set( 'codTipoSocio', codTipoSocio.toString() )
+        .set( 'codParentesco', codParentesco.toString() );
 
 
         return this._http.get(`${this.url}/getCodPrestacion`,

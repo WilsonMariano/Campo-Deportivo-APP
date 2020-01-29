@@ -5,15 +5,20 @@
                 <!-- Logo -->
                 <a class="logo" href="dashboard.html">
                     <!-- Logo icon image, you can use font-icon also --><b>
-                        <!--This is dark logo icon--><img src="assets/images/admin-logo.png" alt="home"
+                        <!--This is dark logo icon-->
+                        <img src="assets/images/admin-logo.png" alt="home"
                             class="dark-logo" />
-                        <!--This is light logo icon--><img src="assets/images/admin-logo-dark.png" alt="home"
+                        <!--This is light logo icon-->
+                        <!-- <img src="assets/images/admin-logo-dark.png" alt="home"
+                            class="light-logo" /> -->
+                        <img src="assets/images/mecab.jpg" width="50" alt="home"
                             class="light-logo" />
                     </b>
                     <!-- Logo text image you can use text also --><span class="hidden-xs">
-                        <!--This is dark logo text--><img src="assets/images/admin-text.png" alt="home"
+                        <!--This is dark logo text-->
+                        <img src="assets/images/admin-text.png" alt="home"
                             class="dark-logo" />
-                        <!--This is light logo text--><img src="assets/images/admin-text-dark.png" alt="home"
+                        <!--This is light logo text--><img src="assets/images/logo.png" width="150" alt="home"
                             class="light-logo" />
                     </span> </a>
             </div>
@@ -31,9 +36,9 @@
                 </li>
                 <li class="dropdown">
                     <a class="profile-pic dropdown-toggle" data-toggle="dropdown" href="#"> <img src="assets/images/user.png" alt="user-img"
-                            width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
+                            width="36" class="img-circle"><b class="hidden-xs">{{_auth.getData().nombre}}</b></a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a>Preferencias</a></li>
+                                <li><a data-toggle="modal" data-target="#modalPreferencias">Preferencias</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a (click)="logOut()">Salir</a></li>
                               </ul>
@@ -46,3 +51,4 @@
     </nav>
 
     <app-modal-register [datos]="datosSocio" [id]="1"></app-modal-register>
+    <app-modal-preferencias></app-modal-preferencias>

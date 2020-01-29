@@ -22,23 +22,22 @@ const pagesRoutes: Routes = [
         path: 'home',
         component: PagesComponent,
         children: [
-            { path: 'dashboard',                                component: DashboardComponent,                      data: { titulo: 'Dashboard' }     },
-            { path: 'grilla-socios',                            component: GrillaSociosComponent,                   data: { titulo: 'Socios' }        },
-            { path: 'emitir-bono/:id',                          component: EmitirBonoComponent,                     data: { titulo: 'Emitir bono' }        },
-            { path: 'listar-bonos-fecha',                       component: ListarBonosComponent,                    data: { titulo: 'Listar bonos' }        },
-            { path: 'listar-bonos-asignacion',                  component: ListarBonosAsignacionComponent,          data: { titulo: 'Listar bonos' }        },
-            { path: 'informe-bonos',                            component: InformeBonosComponent,                   data: { titulo: 'Informe de bonos emitidos' }        },
-            { path: 'informe-cuotas',                           component: InformeCuotasComponent,                  data: { titulo: 'Informe de cuotas cobradas' }        },
-            { path: 'informe-ingresos',                         component: InformeIngresosComponent,                data: { titulo: 'Informe de ingresos' }        },
-            { path: 'vista-previa-carnet/:id',                  component: VistaPreviaCarnetComponent,              data: { titulo: 'Emitir carnet' }        },
-            { path: 'datos-socio/:operacion/:entidad/:id',      component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
-            { path: 'datos-socio/:id',                          component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
-            { path: 'pagos/:id',                                component: PagosComponent,                          data: { titulo: 'Listado de recibos' }   },
-            { path: 'nuevo-pago/:id',                           component: NuevoPagoComponent,                      data: { titulo: 'Nuevo pago' }   },
-            { path: 'ficha/:id',                                component: FichaComponent,                          data: { titulo: 'Ficha' }         },
+            { path: 'dashboard',                                canActivate: [AuthGuard], component: DashboardComponent,                      data: { titulo: 'Dashboard' }     },
+            { path: 'grilla-socios',                            canActivate: [AuthGuard], component: GrillaSociosComponent,                   data: { titulo: 'Socios' }        },
+            { path: 'emitir-bono/:id',                          canActivate: [AuthGuard], component: EmitirBonoComponent,                     data: { titulo: 'Emitir bono' }        },
+            { path: 'listar-bonos-fecha',                       canActivate: [AuthGuard], component: ListarBonosComponent,                    data: { titulo: 'Listar bonos' }        },
+            { path: 'listar-bonos-asignacion',                  canActivate: [AuthGuard], component: ListarBonosAsignacionComponent,          data: { titulo: 'Listar bonos' }        },
+            { path: 'informe-bonos',                            canActivate: [AuthGuard], component: InformeBonosComponent,                   data: { titulo: 'Informe de bonos emitidos' }        },
+            { path: 'informe-cuotas',                           canActivate: [AuthGuard], component: InformeCuotasComponent,                  data: { titulo: 'Informe de cuotas cobradas' }        },
+            { path: 'informe-ingresos',                         canActivate: [AuthGuard], component: InformeIngresosComponent,                data: { titulo: 'Informe de ingresos' }        },
+            { path: 'vista-previa-carnet/:id',                  canActivate: [AuthGuard], component: VistaPreviaCarnetComponent,              data: { titulo: 'Emitir carnet' }        },
+            { path: 'datos-socio/:operacion/:entidad/:id',      canActivate: [AuthGuard], component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
+            { path: 'datos-socio/:id',                          canActivate: [AuthGuard], component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
+            { path: 'pagos/:id',                                canActivate: [AuthGuard], component: PagosComponent,                          data: { titulo: 'Listado de recibos' }   },
+            { path: 'nuevo-pago/:id',                           canActivate: [AuthGuard], component: NuevoPagoComponent,                      data: { titulo: 'Nuevo pago' }   },
+            { path: 'ficha/:id',                                canActivate: [AuthGuard], component: FichaComponent,                          data: { titulo: 'Ficha' }         },
             { path: '',                                         redirectTo: '/dashboard',                           pathMatch: 'full' }
-        ],
-        canActivate: [AuthGuard]
+        ]
     }
 ];
 

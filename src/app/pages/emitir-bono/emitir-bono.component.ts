@@ -43,7 +43,7 @@ export class EmitirBonoComponent implements OnInit {
       'nombre': new FormControl({value: '', disabled: true}),
       'codParentesco': new FormControl({value: '', disabled: true}),
       'fechaAsignacion': new FormControl('', Validators.required),
-      'horaAsignacion': new FormControl(''),
+      'horaAsignacion': new FormControl('', Validators.required),
       'codPrestacion': new FormControl('', Validators.required),
       'monto': new FormControl('', Validators.required),
       'codDia': new FormControl(''),
@@ -91,7 +91,7 @@ export class EmitirBonoComponent implements OnInit {
         this.forma.get('codParentesco').setValue(this.socio.codParentesco);
 
         // Busco las prestaciones disponibles segun el tipo de socio
-        this._funcionalidades.getCodPrestacion(data.data.codTipoSocio).subscribe(
+        this._funcionalidades.getCodPrestacion(data.data.codTipoSocio, data.data.codParentesco).subscribe(
           data => this.arrPrestaciones = data.data
         );
 
@@ -178,6 +178,16 @@ export class EmitirBonoComponent implements OnInit {
     this.getMonto();
   }
 
+  public changePrestacion(): void {
+
+    if(this.forma.get('codPrestacion').value == 'cod_prestacion_3')
+      this.forma.get('horaAsignacion').disable();
+    else
+      this.forma.get('horaAsignacion').enable();
+
+    this.getMonto();
+  }
+
   /**
    * Hace un petición al servidor para traer el monto a cobrar.
    * A partir del tipo de prestación, tarifa y edad.
@@ -190,6 +200,7 @@ export class EmitirBonoComponent implements OnInit {
       
       this._valores.getValor(
         this.forma.get('codPrestacion').value, 
+        this.forma.get('codParentesco').value,
         this.forma.get('codDia').value,
         this.socio.codTipoSocio,
         this.socio.edad)

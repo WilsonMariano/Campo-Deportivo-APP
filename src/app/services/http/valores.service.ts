@@ -14,10 +14,11 @@ export class ValoresService {
 
     constructor(private _http: HttpClient, private _fxGlobals: FxGlobalsService) { }
 
-    public getValor(codPrestacion, codDia, codTipoSocio, edad): Observable<any> {
+    public getValor(codPrestacion, codParentesco, codDia, codTipoSocio, edad): Observable<any> {
 
         let params = new HttpParams()
             .set( 'codPrestacion', codPrestacion )
+            .set( 'codParentesco', codParentesco )
             .set( 'codDia', codDia )
             .set( 'codTipoSocio', codTipoSocio )
             .set( 'edad', edad );

@@ -73,12 +73,16 @@ export class DatosSocioComponent implements OnInit {
           this.forma.get('activo').disable();
         
 
-        if (params.entidad == 'familiar') {
+        if (params.entidad != 'titular') {
+
+          if(params.entidad == 'familiar')
+            this.forma.get('parentesco').setValue('cod_parentesco_2');
+          else
+            this.forma.get('parentesco').setValue('cod_parentesco_3');
 
           // Si la entidad es de tipo familiar desactivo los campos y asigno el parentesco
           this.forma.get('tipoAfiliado').disable();
           this.forma.get('numeroAfiliado').disable();
-          this.forma.get('parentesco').setValue('cod_parentesco_2');
 
           // Entidad = familiar && operacion = nuevo
           if (params.operacion == 'nuevo') {

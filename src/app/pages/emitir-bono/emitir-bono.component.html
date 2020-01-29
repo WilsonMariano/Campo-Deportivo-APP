@@ -53,7 +53,7 @@
 
                         <div class="form-group col-md-3">
                             <label>Prestación</label>
-                            <select class="form-control" formControlName="codPrestacion" (change)="getMonto()">
+                            <select class="form-control" formControlName="codPrestacion" (change)="changePrestacion()">
                                 <option value="">Seleccione...</option>
                                 <option *ngFor="let p of arrPrestaciones" [value]="p.clave">{{p.valor}}</option>
                                 <span class="form-invalid"
@@ -79,7 +79,7 @@
                                 <input type="time" class="form-control" formControlName="horaAsignacion" placeholder="17:00">
                             </div>
                             <span class="form-invalid"
-                                *ngIf="forma.controls['monto'].errors?.required && forma.controls['monto'].touched">*El
+                                *ngIf="forma.controls['horaAsignacion'].errors?.required && forma.controls['horaAsignacion'].touched">*El
                                 campo es requerido</span>
                         </div>
                         <div class="form-group col-md-3">

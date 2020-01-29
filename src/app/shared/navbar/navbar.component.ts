@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     private _fx: FxGlobalsService) { }
 
 
-  ngOnInit() {}
+  ngOnInit() {console.log(this._auth.getData())}
 
   public logOut(): void {
 

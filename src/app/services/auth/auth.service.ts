@@ -39,7 +39,7 @@ export class AuthService {
 
     try {
 
-      return !this.helper.isTokenExpired();
+      return !this.helper.isTokenExpired(localStorage.getItem('token').toString());
 
     } catch (error) {
 

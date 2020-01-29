@@ -57,7 +57,7 @@
                             <td>{{s.apellido}}</td>
                             <td>{{s.nombre}}</td>
                             <td>{{s.dni}}</td>  
-                            <td>{{s.fechaNacimiento}}</td>
+                            <td>{{_fx.dateFormat(s.fechaNacimiento)}}</td>
                             <td>{{s.parentesco}}</td>
                             <td *ngIf="s.activo == 1"><span class="label label-success">Activo</span></td>
                             <td *ngIf="s.activo == 0"><span class="label label-danger">Inactivo</span></td>
@@ -71,6 +71,53 @@
                                     <ul class="dropdown-menu dropdown-menu-left">
                                         <li><a [routerLink]="'../../../home/datos-socio/editar/familiar/' + s.id" (click)="establecerParentesco()">Editar</a></li>
                                         <li><a [routerLink]="'../../../home/vista-previa-carnet/' + s.id">Imprimir carnet</a></li>
+                                        <li><a [routerLink]="'../../../home/emitir-bono/' + s.id">Emitir bono</a></li>
+                                        <li><a (click)="registrarIngreso(s.hash)">Registrar ingreso</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CAMBIAR A ADDINVITADO -->
+        <div class="white-box" *ngIf="canAddFamily">
+            <h2>Invitados</h2>
+           <a [routerLink]="'../../../home/datos-socio/nuevo/invitado/' + socioTitular.idSocioTitular" class="btn btn-primary btn-sm mb-2">Nuevo</a>
+            <table class="table" *ngIf="arrInvitados.length != 0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>F. Nacimiento</th>
+                        <th>Parentesco</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let s of arrInvitados">
+                        <tr>
+                            <th>{{s.id}}</th>
+                            <td>{{s.apellido}}</td>
+                            <td>{{s.nombre}}</td>
+                            <td>{{s.dni}}</td>  
+                            <td>{{_fx.dateFormat(s.fechaNacimiento)}}</td>
+                            <td>{{s.parentesco}}</td>
+                            <td *ngIf="s.activo == 1"><span class="label label-success">Activo</span></td>
+                            <td *ngIf="s.activo == 0"><span class="label label-danger">Inactivo</span></td>
+
+                            <td>
+                                <div class="btn-group">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v "></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-left">
+                                        <li><a [routerLink]="'../../../home/datos-socio/editar/invitado/' + s.id" (click)="establecerParentesco()">Editar</a></li>
                                         <li><a [routerLink]="'../../../home/emitir-bono/' + s.id">Emitir bono</a></li>
                                         <li><a (click)="registrarIngreso(s.hash)">Registrar ingreso</a></li>
                                     </ul>

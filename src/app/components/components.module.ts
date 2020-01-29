@@ -9,6 +9,7 @@ import { GrillaComponent } from './grilla/grilla.component';
 import { BuscarSocioComponent } from './buscar-socio/buscar-socio.component';
 import { ModalRegisterComponent } from './modal-register/modal-register.component';
 import { BuscarFechasComponent } from './buscar-fechas/buscar-fechas.component';
+import { ModalPreferenciasComponent } from './modal-preferencias/modal-preferencias.component';
 
 
 
@@ -26,14 +27,16 @@ import { BuscarFechasComponent } from './buscar-fechas/buscar-fechas.component';
         GrillaComponent,
         BuscarSocioComponent,
         ModalRegisterComponent,
-        BuscarFechasComponent
+        BuscarFechasComponent,
+        ModalPreferenciasComponent
     ],
     exports: [
         SpinnerComponent,
         GrillaComponent,
         BuscarSocioComponent,
         ModalRegisterComponent,
-        BuscarFechasComponent
+        BuscarFechasComponent,
+        ModalPreferenciasComponent
     ]
 })
 export class ComponentsModule { }

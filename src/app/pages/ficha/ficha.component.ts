@@ -14,6 +14,7 @@ export class FichaComponent implements OnInit {
   public datosSocio = null;
   public socioTitular: Socio = null;
   public arrFamiliares: Socio[] = [];
+  public arrInvitados: Socio[] = [];
 
   public canAddFamily = false;
   public canPay = false;
@@ -46,8 +47,12 @@ export class FichaComponent implements OnInit {
       }
     );
 
+    this._socio.getGroupFamily(id, 'cod_parentesco_3').subscribe(
+      data => {console.log(data);this.arrInvitados = data.data}
+    );
+
     this._socio.getGroupFamily(id, 'cod_parentesco_2').subscribe(
-      data => this.arrFamiliares = data.data 
+      data => this.arrFamiliares = data.data
     );
   }
 
@@ -96,8 +101,6 @@ export class FichaComponent implements OnInit {
           this.canEmitCarnet = true;
       }
     )
-
-
   }
 
   
