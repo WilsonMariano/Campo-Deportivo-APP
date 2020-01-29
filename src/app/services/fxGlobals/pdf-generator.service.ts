@@ -434,6 +434,87 @@ export class PdfGeneratorService {
     }
   }
 
+  public generarInformeIngresos(ingresos: Array<any>, fechas): void {
+
+    let hoy = moment().format('YYYY-MM-DD');
+    let numPagina = 1;
+    let row = 65;
+
+    var doc = new jsPDF();
+    doc.setFont('helvetica');
+    
+    doc = generarCabecera(doc, numPagina, hoy, fechas, this._fx);
+    
+
+    ingresos.forEach((element, i) => {
+
+      doc.text(this._fx.dateFormat(element.fecha)           , 10, row);
+      doc.text(this._fx.timeFormat(element.hora)            , 35, row);
+      doc.text(element.idSocio                              , 60, row);
+      doc.text(`${element.apellido} ${element.nombre}`      , 130, row);
+
+      row += 5;
+
+
+      // Agrego nueva cabecera
+      if(row >= 275) {
+
+        numPagina++;
+        row = 65;
+        doc.addPage();
+        doc = generarCabecera(doc, numPagina, hoy, fechas, this._fx);
+      }
+
+      // Agrego totales
+      // if(i == ingresos.length - 1) {
+
+      //   doc.line(0, row,  220, row);
+
+      //   doc.setFontType('bold');
+      //   doc.text("TOTAL", 130, row + 5);
+      //   doc.text(this.sumarTotales(ingresos).toString(), 180, row + 5);
+      // }
+      
+    });
+    
+    // Configuro autoprint y apertura en pestaña nueva
+    doc.autoPrint({variant: 'non-conform'});
+    doc.output('dataurlnewwindow');
+
+
+    function generarCabecera(doc, numPagina, hoy, rangoFechas, _fx) {
+
+      // Encabezado
+      doc.setFontSize(14);
+      doc.text("CAMPO DEPORTIVO", 77, 17);
+      doc.setFontSize(13);
+      doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
+      doc.setFontSize(12);
+      doc.setFontType('bold');
+      doc.text("INFORME DE INGRESOS", 75, 33);
+      doc.setFontSize(11);
+      doc.setFontType('normal');
+      doc.text(`desde ${_fx.dateFormat(rangoFechas.fechaDesde)} al ${_fx.dateFormat(rangoFechas.fechaHasta)}`, 75, 40);
+      doc.text(`Fecha: ${_fx.dateFormat(hoy)}`, 10, 45);
+      doc.text(`Página: ${numPagina}`, 180, 45);
+
+      // Divisor
+      doc.line(0, 50,  220, 50);
+      doc.line(0, 58,  220, 58);
+
+      doc.setFontType('bold');
+      doc.text("Fecha", 10, 55);
+      doc.text("Hora", 35, 55);
+      doc.text("Nº socio", 60, 55);
+      doc.text("Apellido y nombre", 130, 55);
+
+      doc.setFontType('normal');
+      doc.setFontSize('10');
+
+      return doc;
+    }
+  }
+
 
   
 }

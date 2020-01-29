@@ -9,5 +9,6 @@ export { SocioService } from './http/socio.service';
 export { DiccionarioService } from './http/diccionario.service';
 export { ValoresService } from './http/valores.service';
 export { CuotaService } from './http/cuota.service';
+export { IngresoService } from './http/ingreso.service';
 export { FuncionalidadesService } from './http/funcionalidades.service';
 

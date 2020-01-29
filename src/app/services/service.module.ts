@@ -8,7 +8,8 @@ import {
   FxGlobalsService, 
   AuthService,
   CommonService,
-  ValoresService
+  ValoresService,
+  IngresoService
 } from './services.index';
 
 @NgModule({
@@ -23,7 +24,8 @@ import {
       FxGlobalsService,
       AuthService,
       CommonService,
-      ValoresService
+      ValoresService,
+      IngresoService
     ]
   })
   export class ServiceModule { }
