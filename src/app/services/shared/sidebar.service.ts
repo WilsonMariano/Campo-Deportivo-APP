@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 export class SidebarService {
 
   public menu: any = [
-    {
-      titulo: 'Principal',
-      url:    '/home/dashboard',
-      icono: 'fa fa-columns'
-    },
+    // {
+    //   titulo: 'Principal',
+    //   url:    '/home/dashboard',
+    //   icono: 'fa fa-columns'
+    // },
     {
       titulo: 'Socios',
       icono: 'fa fa-users',

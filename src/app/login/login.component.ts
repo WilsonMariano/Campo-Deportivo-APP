@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         localStorage.setItem('token', data.token);
-        this.router.navigate(['home/dashboard']);
+        this.router.navigate(['home/grilla-socios']);
       },
       () => this._fxGlobals.showAlert("Error", "Usuario o contraseña inválidas", "error")
     );

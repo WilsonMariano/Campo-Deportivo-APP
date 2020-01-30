@@ -22,7 +22,7 @@ const pagesRoutes: Routes = [
         path: 'home',
         component: PagesComponent,
         children: [
-            { path: 'dashboard',                                canActivate: [AuthGuard], component: DashboardComponent,                      data: { titulo: 'Dashboard' }     },
+            // { path: 'dashboard',                                canActivate: [AuthGuard], component: DashboardComponent,                      data: { titulo: 'Dashboard' }     },
             { path: 'grilla-socios',                            canActivate: [AuthGuard], component: GrillaSociosComponent,                   data: { titulo: 'Socios' }        },
             { path: 'emitir-bono/:id',                          canActivate: [AuthGuard], component: EmitirBonoComponent,                     data: { titulo: 'Emitir bono' }        },
             { path: 'listar-bonos-fecha',                       canActivate: [AuthGuard], component: ListarBonosComponent,                    data: { titulo: 'Listar bonos' }        },
@@ -36,10 +36,9 @@ const pagesRoutes: Routes = [
             { path: 'pagos/:id',                                canActivate: [AuthGuard], component: PagosComponent,                          data: { titulo: 'Listado de recibos' }   },
             { path: 'nuevo-pago/:id',                           canActivate: [AuthGuard], component: NuevoPagoComponent,                      data: { titulo: 'Nuevo pago' }   },
             { path: 'ficha/:id',                                canActivate: [AuthGuard], component: FichaComponent,                          data: { titulo: 'Ficha' }         },
-            { path: '',                                         redirectTo: '/dashboard',                           pathMatch: 'full' }
+            { path: '',                                         redirectTo: '/grilla-socios', pathMatch: 'full' }
         ]
     }
 ];
-
 
 export const PAGES_ROUTES = RouterModule.forChild( pagesRoutes );
