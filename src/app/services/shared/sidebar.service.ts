@@ -82,6 +82,10 @@ export class SidebarService {
           url:    '/home/informe-cuotas'
         },
         {
+          titulo: 'Informe de caja',
+          url:    '/home/informe-ingresos-caja'
+        },
+        {
           titulo: 'Informe de ingresos',
           url:    '/home/informe-ingresos'
         }

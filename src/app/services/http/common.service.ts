@@ -74,4 +74,21 @@ export class CommonService {
       finalize(() => this._fxGlobals.hideSpinner())
     );
   }
+
+  public getIngresosCaja(fechaDesde, fechaHasta): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    let params = new HttpParams()
+      .set('fechaDesde', fechaDesde)
+      .set('fechaHasta', fechaHasta);
+    
+
+    return this._http.get(`${this.url}/getIngresosCaja`,
+    { params }
+    )
+        .pipe(
+            finalize(() => this._fxGlobals.hideSpinner())
+        );
+  }
 }

@@ -8,18 +8,23 @@
                     <h4 class="label-bold">Nombre: </h4>
                     <h4 class="label-bold">DNI:</h4>
                     <h4 class="label-bold">F. Nacimiento</h4>
+                    <h4 class="label-bold">Teléfono</h4>
                 </div>
                 <div class="col-md-4">
                     <h4>{{socioTitular.apellido +" "+ socioTitular.nombre}}</h4>
                     <h4>{{socioTitular.dni}}</h4>
                     <h4>{{_fx.dateFormat(socioTitular.fechaNacimiento)}}</h4>
+                    <h4>{{socioTitular.telefono}}</h4>
                 </div>
                  <div class="col-md-2">
+                    
+                    <h4 class="label-bold">Nro afilado: </h4>
                     <h4 class="label-bold">Tipo afiliado:</h4 >
                     <h4 class="label-bold">Estado:</h4>
                     <h4 class="label-bold">F. ingreso:</h4>
                 </div>
                 <div class="col-md-4">
+                    <h4>{{socioTitular.id}}</h4>
                     <h4><span class="label label-info">{{socioTitular.tipoAfiliado +" N° "+ socioTitular.nroAfiliado}}</span></h4>
                     <h4 *ngIf="socioTitular.activo == 1"><span class="label label-success">Activo</span></h4>
                     <h4 *ngIf="socioTitular.activo == 0"><span class="label label-danger">Inactivo</span></h4>
@@ -46,6 +51,7 @@
                         <th>Nombre</th>
                         <th>DNI</th>
                         <th>F. Nacimiento</th>
+                        <th>Teléfono</th>
                         <th>Parentesco</th>
                         <th>Estado</th>
                     </tr>
@@ -58,6 +64,7 @@
                             <td>{{s.nombre}}</td>
                             <td>{{s.dni}}</td>  
                             <td>{{_fx.dateFormat(s.fechaNacimiento)}}</td>
+                            <td>{{s.telefono}}</td>
                             <td>{{s.parentesco}}</td>
                             <td *ngIf="s.activo == 1"><span class="label label-success">Activo</span></td>
                             <td *ngIf="s.activo == 0"><span class="label label-danger">Inactivo</span></td>
@@ -94,6 +101,7 @@
                         <th>Nombre</th>
                         <th>DNI</th>
                         <th>F. Nacimiento</th>
+                        <th>Teléfono</th>
                         <th>Parentesco</th>
                         <th>Estado</th>
                     </tr>
@@ -106,6 +114,7 @@
                             <td>{{s.nombre}}</td>
                             <td>{{s.dni}}</td>  
                             <td>{{_fx.dateFormat(s.fechaNacimiento)}}</td>
+                            <td>{{s.telefono}}</td>
                             <td>{{s.parentesco}}</td>
                             <td *ngIf="s.activo == 1"><span class="label label-success">Activo</span></td>
                             <td *ngIf="s.activo == 0"><span class="label label-danger">Inactivo</span></td>

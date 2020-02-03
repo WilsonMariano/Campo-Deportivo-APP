@@ -16,6 +16,7 @@ import { ListarBonosAsignacionComponent } from './listar-bonos-asignacion/listar
 import { InformeBonosComponent } from './informe-bonos/informe-bonos.component';
 import { InformeCuotasComponent } from './informe-cuotas/informe-cuotas.component';
 import { InformeIngresosComponent } from './informe-ingresos/informe-ingresos.component';
+import { InformeIngresosCajaComponent } from './informe-ingresos-caja/informe-ingresos-caja.component';
 
 const pagesRoutes: Routes = [
     {
@@ -30,6 +31,7 @@ const pagesRoutes: Routes = [
             { path: 'informe-bonos',                            canActivate: [AuthGuard], component: InformeBonosComponent,                   data: { titulo: 'Informe de bonos emitidos' }        },
             { path: 'informe-cuotas',                           canActivate: [AuthGuard], component: InformeCuotasComponent,                  data: { titulo: 'Informe de cuotas cobradas' }        },
             { path: 'informe-ingresos',                         canActivate: [AuthGuard], component: InformeIngresosComponent,                data: { titulo: 'Informe de ingresos' }        },
+            { path: 'informe-ingresos-caja',                    canActivate: [AuthGuard], component: InformeIngresosCajaComponent,            data: { titulo: 'Informe de caja' }        },
             { path: 'vista-previa-carnet/:id',                  canActivate: [AuthGuard], component: VistaPreviaCarnetComponent,              data: { titulo: 'Emitir carnet' }        },
             { path: 'datos-socio/:operacion/:entidad/:id',      canActivate: [AuthGuard], component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
             { path: 'datos-socio/:id',                          canActivate: [AuthGuard], component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },

@@ -23,6 +23,7 @@ import { ListarBonosAsignacionComponent } from './listar-bonos-asignacion/listar
 import { InformeBonosComponent } from './informe-bonos/informe-bonos.component';
 import { InformeCuotasComponent } from './informe-cuotas/informe-cuotas.component';
 import { InformeIngresosComponent } from './informe-ingresos/informe-ingresos.component';
+import { InformeIngresosCajaComponent } from './informe-ingresos-caja/informe-ingresos-caja.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { InformeIngresosComponent } from './informe-ingresos/informe-ingresos.co
         ListarBonosAsignacionComponent,
         InformeBonosComponent,
         InformeCuotasComponent,
-        InformeIngresosComponent
+        InformeIngresosComponent,
+        InformeIngresosCajaComponent
     ],
     exports: [
     ],  

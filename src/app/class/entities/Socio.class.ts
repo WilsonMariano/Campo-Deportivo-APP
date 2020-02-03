@@ -6,6 +6,7 @@ export class Socio {
     private apellido: String;
     private dni: Number;
     private fechaNacimiento: Date;
+    private telefono: Number;
     private codParentesco: String;
     private activo: Number;
     private hash: String;
@@ -18,6 +19,7 @@ export class Socio {
     public getApellido(): String { return this.apellido }
     public getDni(): Number { return this.dni }
     public getFechaNacimiento(): Date { return this.fechaNacimiento }
+    public getTelefono(): Number { return this.telefono }
     public getCodParentesco(): String { return this.codParentesco }
     public getActivo(): Number { return this.activo }
     public getHash(): String { return this.hash }
@@ -30,11 +32,11 @@ export class Socio {
     public setApellido(apellido: String): void { this.apellido = apellido }
     public setDni(dni: Number): void { this.dni = dni }
     public setFechaNacimiento(fecha: Date): void { this.fechaNacimiento = fecha }
+    public setTelefono(telefono: Number): void { this.telefono = telefono }
     public setCodParentesco(codParentesco: String): void { this.codParentesco = codParentesco }
     public setActivo(activo: Number): void { this.activo = activo }
     public setHash(hash: String): void { this.hash = hash }
     public setCodTipoSocio(codSocio: String): void { this.codTipoSocio = codSocio }
     public setNroAfiliado(nroAfiliado: Number): void { this.nroAfiliado = nroAfiliado }
     
-
 }

@@ -44,6 +44,7 @@ export class DatosSocioComponent implements OnInit {
       'nombre': new FormControl('', Validators.required),
       'dni': new FormControl('', Validators.required),
       'fechaNacimiento': new FormControl('', Validators.required),
+      'telefono': new FormControl(''),
       'parentesco': new FormControl({ value: '', disabled: true }, Validators.required),
       'activo': new FormControl('1', Validators.required)
     });
@@ -133,6 +134,7 @@ export class DatosSocioComponent implements OnInit {
         this.forma.get('nombre').setValue(socio.nombre);
         this.forma.get('dni').setValue(socio.dni);
         this.forma.get('fechaNacimiento').setValue(socio.fechaNacimiento);
+        this.forma.get('telefono').setValue(socio.telefono);
         this.forma.get('parentesco').setValue(socio.codParentesco);
         this.forma.get('activo').setValue(socio.activo);
 
@@ -158,6 +160,7 @@ export class DatosSocioComponent implements OnInit {
     socio.setNombre(this._fx.capitalize(this.forma.get('nombre').value));
     socio.setDni(this.forma.get('dni').value);
     socio.setFechaNacimiento(this.forma.get('fechaNacimiento').value);
+    socio.setTelefono(this.forma.get('telefono').value);
     socio.setCodParentesco(this.forma.get('parentesco').value);
     socio.setActivo(this.forma.get('activo').value);
 

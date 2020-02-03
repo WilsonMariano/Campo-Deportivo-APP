@@ -24,6 +24,25 @@ export class PdfGeneratorService {
 
   public generarBono(bono, qrCode) {
 
+   /**
+    * Asigno logo y encabezado según tipo de afiliado
+   */
+    let encabezadoBono;
+    let encabezadoTalon;
+
+    if(bono.codTipoSocio == 'cod_tipo_socio_2') {
+
+      this.logo.src = 'assets/images/mecab.jpg';
+      encabezadoTalon = "MECAB";
+      encabezadoBono = "DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN";
+      
+    } else {
+
+      this.logo.src = 'assets/images/secab.png';
+      encabezadoTalon = "SECAB";
+      encabezadoBono = "DEL SINDICATO DE EMPLEADOS DE COMERCIO DE ALTE. BROWN";
+    }
+
     var doc = new jsPDF();
     doc.setFont('helvetica');
 
@@ -40,7 +59,7 @@ export class PdfGeneratorService {
     doc.addImage(this.logo, 'JPG', 5, 5, this.logoH, this.logoW);
     doc.setFontSize(10);
     doc.text(30, 10, 'Campo deportivo');
-    doc.text(36, 15, 'MECAB');
+    doc.text(36, 15, encabezadoTalon);
 
     // Banda comprobante + fecha
     doc.setDrawColor(0);
@@ -80,7 +99,7 @@ export class PdfGeneratorService {
     doc.setFontSize(14);
     doc.text("CAMPO DEPORTIVO", 115, 10);
     doc.setFontSize(10);
-    doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 90, 17);
+    doc.text(encabezadoBono, 90, 17);
 
     // Banda comprobante + fecha
     doc.setDrawColor(0);
@@ -123,6 +142,23 @@ export class PdfGeneratorService {
   
   public generarCarnet(socio,  qrCode) {
 
+
+    /**
+    * Asigno logo y encabezado según tipo de afiliado
+    */
+    let encabezado;
+
+    if(socio.codTipoSocio == 'cod_tipo_socio_2') {
+
+      this.logo.src = 'assets/images/mecab.jpg';
+      encabezado = "CAMPO DEPORTIVO DE LA MUTUAL DE";
+      
+    } else {
+
+      this.logo.src = 'assets/images/secab.png';
+      encabezado = "CAMPO DEPORTIVO DEL SINDICATO DE";
+    }
+
     var doc = new jsPDF();
     doc.setFont('helvetica');
 
@@ -143,7 +179,7 @@ export class PdfGeneratorService {
     doc.addImage(this.logo, 'JPG', 5, 5, this.logoH, this.logoW);
 
     doc.setFontSize(10);
-    doc.text("CAMPO DEPORTIVO DE LA MUTUAL DE", 30, 10);
+    doc.text(encabezado, 30, 10);
     doc.text("EMPLEADOS DE COMERCIO DE ALTE. BROWN", 25, 17);
 
     
@@ -314,7 +350,7 @@ export class PdfGeneratorService {
       doc.setFontSize(14);
       doc.text("CAMPO DEPORTIVO", 77, 17);
       doc.setFontSize(13);
-      doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
+      doc.text("DEL SINDICATO DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
       doc.setFontSize(12);
       doc.setFontType('bold');
       doc.text("INFORME DE EMISIÓN DE BONOS", 70, 33);
@@ -406,7 +442,7 @@ export class PdfGeneratorService {
       doc.setFontSize(14);
       doc.text("CAMPO DEPORTIVO", 77, 17);
       doc.setFontSize(13);
-      doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
+      doc.text("DEL SINDICATO DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
       doc.setFontSize(12);
       doc.setFontType('bold');
       doc.text("INFORME DE PAGO DE CUOTAS", 70, 33);
@@ -425,6 +461,89 @@ export class PdfGeneratorService {
       doc.text("N° Socio", 35, 55);
       doc.text("Apellido y nombre", 60, 55);
       doc.text("Detalle", 130, 55);
+      doc.text("Monto", 180, 55);
+
+      doc.setFontType('normal');
+      doc.setFontSize('10');
+
+      return doc;
+    }
+  }
+
+  public generarInformeCajas(ingresos: Array<any>, fechas): void {
+
+    let hoy = moment().format('YYYY-MM-DD');
+    let numPagina = 1;
+    let row = 65;
+
+    var doc = new jsPDF();
+    doc.setFont('helvetica');
+    
+    doc = generarCabecera(doc, numPagina, hoy, fechas, this._fx);
+    
+
+    ingresos.forEach((element, i) => {
+
+      doc.text(this._fx.dateFormat(element.fecha)    , 10, row);
+      doc.text(element.idSocio                              , 35, row);
+      doc.text(`${element.apellido} ${element.nombre}`      , 60, row);
+      doc.text(element.descripcion                          , 130, row);
+      doc.text(element.monto                                , 180, row);
+
+      row += 5;
+
+
+      // Agrego nueva cabecera
+      if(row >= 275) {
+
+        numPagina++;
+        row = 65;
+        doc.addPage();
+        doc = generarCabecera(doc, numPagina, hoy, fechas, this._fx);
+      }
+
+      // Agrego totales
+      if(i == ingresos.length - 1) {
+
+        doc.line(0, row,  220, row);
+
+        doc.setFontType('bold');
+        doc.text("TOTAL", 130, row + 5);
+        doc.text(this.sumarTotales(ingresos).toString(), 180, row + 5);
+      }
+      
+    });
+    
+    // Configuro autoprint y apertura en pestaña nueva
+    doc.autoPrint({variant: 'non-conform'});
+    doc.output('dataurlnewwindow');
+
+
+    function generarCabecera(doc, numPagina, hoy, rangoFechas, _fx) {
+
+      // Encabezado
+      doc.setFontSize(14);
+      doc.text("CAMPO DEPORTIVO", 77, 17);
+      doc.setFontSize(13);
+      doc.text("DEL SINDICATO DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
+      doc.setFontSize(12);
+      doc.setFontType('bold');
+      doc.text("INFORME DE INGRESO DE CAJA", 70, 33);
+      doc.setFontSize(11);
+      doc.setFontType('normal');
+      doc.text(`desde ${_fx.dateFormat(rangoFechas.fechaDesde)} al ${_fx.dateFormat(rangoFechas.fechaHasta)}`, 75, 40);
+      doc.text(`Fecha: ${_fx.dateFormat(hoy)}`, 10, 45);
+      doc.text(`Página: ${numPagina}`, 180, 45);
+
+      // Divisor
+      doc.line(0, 50,  220, 50);
+      doc.line(0, 58,  220, 58);
+
+      doc.setFontType('bold');
+      doc.text("Fecha", 10, 55);
+      doc.text("N° Socio", 35, 55);
+      doc.text("Apellido y nombre", 60, 55);
+      doc.text("Descripción", 130, 55);
       doc.text("Monto", 180, 55);
 
       doc.setFontType('normal');
@@ -464,16 +583,6 @@ export class PdfGeneratorService {
         doc.addPage();
         doc = generarCabecera(doc, numPagina, hoy, fechas, this._fx);
       }
-
-      // Agrego totales
-      // if(i == ingresos.length - 1) {
-
-      //   doc.line(0, row,  220, row);
-
-      //   doc.setFontType('bold');
-      //   doc.text("TOTAL", 130, row + 5);
-      //   doc.text(this.sumarTotales(ingresos).toString(), 180, row + 5);
-      // }
       
     });
     
@@ -488,7 +597,7 @@ export class PdfGeneratorService {
       doc.setFontSize(14);
       doc.text("CAMPO DEPORTIVO", 77, 17);
       doc.setFontSize(13);
-      doc.text("DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
+      doc.text("DEL SINDICATO DE EMPLEADOS DE COMERCIO DE ALTE. BROWN", 30, 24);
       doc.setFontSize(12);
       doc.setFontType('bold');
       doc.text("INFORME DE INGRESOS", 75, 33);
