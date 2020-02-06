@@ -63,6 +63,18 @@ export class BonoService {
     );
   }
 
+  public getForCalendar(): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    return this._http.get(
+      this.url + '/getForCalendar'
+    )
+    .pipe(
+      finalize(()=> this._fxGlobals.hideSpinner())
+    );
+  }
+
   public getByDateAndPrestacion(fechaAsignacion, codPrestacion): Observable<any> {
 
     this._fxGlobals.showSpinner();

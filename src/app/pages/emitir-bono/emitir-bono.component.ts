@@ -223,7 +223,7 @@ export class EmitirBonoComponent implements OnInit {
       bono.setMonto(this.forma.get('monto').value);
       bono.setFechaAsignacion(this.forma.get('fechaAsignacion').value);
       bono.setHoraAsignacion(this.forma.get('horaAsignacion').value);
-      bono.setFechaEmision(new Date("2020-01-07"));
+      bono.setFechaEmision(moment().format('YYYY-MM-DD'));
       bono.setCodPrestacion(this.forma.get('codPrestacion').value);
       bono.setDetalle(this.forma.get('descripcion').value);
 

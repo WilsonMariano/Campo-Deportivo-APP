@@ -17,6 +17,7 @@ import { InformeBonosComponent } from './informe-bonos/informe-bonos.component';
 import { InformeCuotasComponent } from './informe-cuotas/informe-cuotas.component';
 import { InformeIngresosComponent } from './informe-ingresos/informe-ingresos.component';
 import { InformeIngresosCajaComponent } from './informe-ingresos-caja/informe-ingresos-caja.component';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 const pagesRoutes: Routes = [
     {
@@ -37,7 +38,8 @@ const pagesRoutes: Routes = [
             { path: 'datos-socio/:id',                          canActivate: [AuthGuard], component: DatosSocioComponent,                     data: { titulo: 'Datos socio' }   },
             { path: 'pagos/:id',                                canActivate: [AuthGuard], component: PagosComponent,                          data: { titulo: 'Listado de recibos' }   },
             { path: 'nuevo-pago/:id',                           canActivate: [AuthGuard], component: NuevoPagoComponent,                      data: { titulo: 'Nuevo pago' }   },
-            { path: 'ficha/:id',                                canActivate: [AuthGuard], component: FichaComponent,                          data: { titulo: 'Ficha' }         },
+            { path: 'ficha/:id',                                canActivate: [AuthGuard], component: FichaComponent,                          data: { titulo: 'Ficha' }        },
+            { path: 'calendario',                               canActivate: [AuthGuard], component: CalendarioComponent,                     data: { titulo: 'Calendario de prestaciones' }             },
             { path: '',                                         redirectTo: '/grilla-socios', pathMatch: 'full' }
         ]
     }
