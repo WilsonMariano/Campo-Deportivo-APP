@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
   private validateLogin() {
 
     if(this._auth.isLogued())
-      this.router.navigate(['home/dashboard']);
+      this.router.navigate(['home/grilla-socios']);
   }
 
 }

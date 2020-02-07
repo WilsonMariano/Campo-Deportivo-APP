@@ -72,7 +72,7 @@ export class PdfGeneratorService {
 
     // // Cuerpo
     doc.setFontType("bold");
-    doc.text(6,   35, 'Nro Socio:');
+    doc.text(6,   35, 'Nro ID:');
     doc.text(6,   40, 'Nombre:');
     doc.text(6,   45, 'Tipo:');
     doc.text(6,   50, 'Parentesco:');
@@ -113,7 +113,7 @@ export class PdfGeneratorService {
 
     // Cuerpo
     doc.setFontType("bold");
-    doc.text(70,  36, "Nro Socio:");
+    doc.text(70,  36, "Nro ID:");
     doc.text(127, 36, "Parentesco:");
     doc.text(70,  43, "Nombre:");
     doc.text(70,  50, "Tipo:");
@@ -188,7 +188,7 @@ export class PdfGeneratorService {
      ************** CUERPO ***************
      *************************************/
     doc.setFontType("bold");
-    doc.text(6,   30, 'Nro. socio:');
+    doc.text(6,   30, 'Nro. ID:');
     doc.text(6,   35, 'Nombre:');
     doc.text(6,   40, 'DNI:');
     doc.text(6,   45, 'Nacimiento:');
@@ -253,7 +253,7 @@ export class PdfGeneratorService {
     doc.setFontType('normal');
     doc.text(cuota.id, 30, 48);
     doc.text(this._fx.dateFormat(cuota.fechaPago), 182, 48);
-    doc.text(`${cuota.nombre} ${cuota.apellido}, socio Nro.: ${cuota.idSocio}`, 55, 73);
+    doc.text(`${cuota.nombre} ${cuota.apellido}`, 55, 73);
     doc.text(`${numeroALetras(cuota.monto)} ($${cuota.monto})`, 55, 83);
     doc.text(cuota.descripcion, 50, 93);
 
@@ -285,7 +285,7 @@ export class PdfGeneratorService {
     doc.setFontType('normal');
     doc.text(cuota.id, 30, 201);
     doc.text(this._fx.dateFormat(cuota.fechaPago), 182, 201);
-    doc.text(`${cuota.nombre} ${cuota.apellido}, socio Nro.: ${cuota.idSocio}`, 55, 226);
+    doc.text(`${cuota.nombre} ${cuota.apellido}, ID socio : ${cuota.idSocio}`, 55, 226);
     doc.text(`${numeroALetras(cuota.monto)} ($${cuota.monto})`, 55, 236);
     doc.text(cuota.descripcion, 50, 246);
     
@@ -366,7 +366,7 @@ export class PdfGeneratorService {
 
       doc.setFontType('bold');
       doc.text("Fecha", 10, 55);
-      doc.text("N° Socio", 35, 55);
+      doc.text("ID socio", 35, 55);
       doc.text("Apellido y nombre", 60, 55);
       doc.text("Prestación", 130, 55);
       doc.text("Monto", 180, 55);
@@ -458,7 +458,7 @@ export class PdfGeneratorService {
 
       doc.setFontType('bold');
       doc.text("Fecha", 10, 55);
-      doc.text("N° Socio", 35, 55);
+      doc.text("N° ID", 35, 55);
       doc.text("Apellido y nombre", 60, 55);
       doc.text("Detalle", 130, 55);
       doc.text("Monto", 180, 55);
@@ -541,7 +541,7 @@ export class PdfGeneratorService {
 
       doc.setFontType('bold');
       doc.text("Fecha", 10, 55);
-      doc.text("N° Socio", 35, 55);
+      doc.text("N° ID", 35, 55);
       doc.text("Apellido y nombre", 60, 55);
       doc.text("Descripción", 130, 55);
       doc.text("Monto", 180, 55);
@@ -614,7 +614,7 @@ export class PdfGeneratorService {
       doc.setFontType('bold');
       doc.text("Fecha", 10, 55);
       doc.text("Hora", 35, 55);
-      doc.text("Nº socio", 60, 55);
+      doc.text("Nº ID", 60, 55);
       doc.text("Apellido y nombre", 130, 55);
 
       doc.setFontType('normal');

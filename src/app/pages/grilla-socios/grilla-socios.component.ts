@@ -11,7 +11,7 @@ export class GrillaSociosComponent implements OnInit {
   public tipoParentesco = "";
   public arrParentesco = [];
 
-  private arrControls = ['NroSocio', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio'];
+  private arrControls = ['ID', 'Apellido', 'Nombre', 'Dni', 'Tipo Socio'];
 
   private arrAttr = [
     { 'attr': 'id',             'type': 'Number'  },

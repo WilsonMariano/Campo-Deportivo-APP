@@ -40,6 +40,10 @@ export class SidebarService {
           url:    '/home/emitir-bono/nuevo'
         },
         {
+          titulo: 'Calendario de prestaciones',
+          url:    '/home/calendario'
+        },
+        {
           titulo: 'Listar por emisión',
           url:    '/home/listar-bonos-fecha'
         },
