@@ -33,7 +33,7 @@ export class GrillaSociosComponent implements OnInit {
     'filterParams': this.filterParams,
     'buttons': [
       { 
-        'url': 'home/ficha', 
+        'url': 'campoDeportivoAdmin/home/ficha', 
         'icon': 'fa fa-id-card', 
         'idField': 'idSocioTitular'
       }

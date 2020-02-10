@@ -15,7 +15,7 @@ export class AuthService {
     try {
 
       localStorage.removeItem('token');
-      this.router.navigate(['/login']);
+      this.router.navigate(['/campoDeportivoAdmin']);
 
     } catch (error) {
 

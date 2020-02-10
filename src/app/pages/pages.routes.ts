@@ -21,7 +21,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
 
 const pagesRoutes: Routes = [
     {
-        path: 'home',
+        path: 'campoDeportivoAdmin/home',
         component: PagesComponent,
         children: [
             // { path: 'dashboard',                                canActivate: [AuthGuard], component: DashboardComponent,                      data: { titulo: 'Dashboard' }     },

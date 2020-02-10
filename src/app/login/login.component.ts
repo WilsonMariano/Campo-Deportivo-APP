@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
       data => {
         console.log(data);
         localStorage.setItem('token', data.token);
-        this.router.navigate(['home/grilla-socios']);
+        this.router.navigate(['campoDeportivoAdmin/home/grilla-socios']);
       },
       () => this._fxGlobals.showAlert("Error", "Usuario o contraseña inválidas", "error")
     );
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
   private validateLogin() {
 
     if(this._auth.isLogued())
-      this.router.navigate(['home/grilla-socios']);
+      this.router.navigate(['campoDeportivoAdmin/home/grilla-socios']);
   }
 
 }

@@ -17,7 +17,7 @@ export class SidebarService {
       submenu: [
         {
           titulo: 'Listado de socios',
-          url:    '/home/grilla-socios'
+          url:    '/campoDeportivoAdmin/home/grilla-socios'
         }
       ]
     },
@@ -27,7 +27,7 @@ export class SidebarService {
       submenu: [
         {
           titulo: 'Imprimir carnet',
-          url:    '/home/vista-previa-carnet/nuevo'
+          url:    '/campoDeportivoAdmin/home/vista-previa-carnet/nuevo'
         }
       ]
     },
@@ -37,19 +37,19 @@ export class SidebarService {
       submenu: [
         {
           titulo: 'Nuevo bono',
-          url:    '/home/emitir-bono/nuevo'
+          url:    '/campoDeportivoAdmin/home/emitir-bono/nuevo'
         },
         {
           titulo: 'Calendario de prestaciones',
-          url:    '/home/calendario'
+          url:    '/campoDeportivoAdmin/home/calendario'
         },
         {
           titulo: 'Listar por emisión',
-          url:    '/home/listar-bonos-fecha'
+          url:    '/campoDeportivoAdmin/home/listar-bonos-fecha'
         },
         {
           titulo: 'Listar por asignación',
-          url:    '/home/listar-bonos-asignacion'
+          url:    '/campoDeportivoAdmin/home/listar-bonos-asignacion'
         }
       ]
     },
@@ -59,7 +59,7 @@ export class SidebarService {
       submenu: [
         {
           titulo: 'Listar recibos',
-          url:    '/home/pagos/nuevo'
+          url:    '/campoDeportivoAdmin/home/pagos/nuevo'
         }
       ]
     },
@@ -69,7 +69,7 @@ export class SidebarService {
       submenu: [
         {
           titulo: 'Nuevo pago',
-          url:    '/home/nuevo-pago/nuevo'
+          url:    '/campoDeportivoAdmin/home/nuevo-pago/nuevo'
         }
       ]
     },
@@ -79,19 +79,19 @@ export class SidebarService {
       submenu: [
         {
           titulo: 'Informe de bonos',
-          url:    '/home/informe-bonos'
+          url:    '/campoDeportivoAdmin/home/informe-bonos'
         },
         {
           titulo: 'Informe de cuotas',
-          url:    '/home/informe-cuotas'
+          url:    '/campoDeportivoAdmin/home/informe-cuotas'
         },
         {
           titulo: 'Informe de caja',
-          url:    '/home/informe-ingresos-caja'
+          url:    '/campoDeportivoAdmin/home/informe-ingresos-caja'
         },
         {
           titulo: 'Informe de ingresos',
-          url:    '/home/informe-ingresos'
+          url:    '/campoDeportivoAdmin/home/informe-ingresos'
         }
       ]
     }

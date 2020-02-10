@@ -15,7 +15,7 @@ export class NopagefoundComponent implements OnInit {
 
   public irACasa(): void {
 
-    this.router.navigate(['home/grilla-socios']);
+    this.router.navigate(['campoDeportivoAdmin/home/grilla-socios']);
   }
 
 }
