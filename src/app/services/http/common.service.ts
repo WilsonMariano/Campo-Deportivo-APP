@@ -91,4 +91,22 @@ export class CommonService {
             finalize(() => this._fxGlobals.hideSpinner())
         );
   }
+
+  public updateOne( entity: String, object: Object ): Observable<any> {
+
+    this._fxGlobals.showSpinner();
+
+    let params = new HttpParams()
+      .set( 't', entity.toString() );
+
+    return this._http.put( `${environment.apiUrl}/generic/update`, 
+      object, 
+      {
+        'headers': this.headers, 
+        params
+      }
+    ).pipe(
+      finalize(() => this._fxGlobals.hideSpinner())
+    );
+  }
 }

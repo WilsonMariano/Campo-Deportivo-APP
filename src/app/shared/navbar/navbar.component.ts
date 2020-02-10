@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService, SocioService, FxGlobalsService } from 'src/app/services/services.index';
 declare var $: any;
 
@@ -7,7 +7,7 @@ declare var $: any;
   templateUrl: './navbar.component.html',
   styles: []
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   public hash;
   public datosSocio = null;
@@ -17,8 +17,6 @@ export class NavbarComponent implements OnInit {
     private _socio: SocioService,
     private _fx: FxGlobalsService) { }
 
-
-  ngOnInit() {console.log(this._auth.getData())}
 
   public logOut(): void {
 
