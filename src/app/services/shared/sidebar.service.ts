@@ -16,7 +16,7 @@ export class SidebarService {
       icono: 'fa fa-users',
       submenu: [
         {
-          titulo: 'Grilla socios',
+          titulo: 'Listado de socios',
           url:    '/home/grilla-socios'
         }
       ]
