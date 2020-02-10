@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import { FxGlobalsService } from './fx-globals.service';
 import { Bono } from 'src/app/class/class.index';
+import { HttpClient } from '@angular/common/http';
 declare var numeroALetras: any;
 declare var moment: any;
 
@@ -11,15 +12,25 @@ declare var moment: any;
 })
 export class PdfGeneratorService {
 
+  private logoSecab;
+  private logoMecab;
   private logo;
   private logoH = 15;
   private logoW = 15;
 
 
-  constructor(private _fx: FxGlobalsService) {
+  constructor(private _fx: FxGlobalsService, private http: HttpClient) {
 
-    this.logo = new Image();
-    this.logo.src = 'assets/images/mecab.jpg';
+    this.traerImgLogoBase64();
+  }
+
+  private traerImgLogoBase64() {
+    this.http.get("./assets/images/imagesBase64.json").subscribe(
+      data =>  {
+        this.logoSecab = data['imgSecab'];
+        this.logoMecab = data['imgMecab'];
+      }
+    );
   }
 
   public generarBono(bono, qrCode) {
@@ -32,13 +43,15 @@ export class PdfGeneratorService {
 
     if(bono.codTipoSocio == 'cod_tipo_socio_2') {
 
-      this.logo.src = 'assets/images/mecab.jpg';
+      // this.logo.src = 'assets/images/mecab.jpg';
+      this.logo = this.logoMecab;
       encabezadoTalon = "MECAB";
       encabezadoBono = "DE LA MUTUAL DE EMPLEADOS DE COMERCIO DE ALTE. BROWN";
       
     } else {
 
-      this.logo.src = 'assets/images/secab.png';
+      // this.logo.src = 'assets/images/secab.png';
+      this.logo = this.logoSecab;
       encabezadoTalon = "SECAB";
       encabezadoBono = "DEL SINDICATO DE EMPLEADOS DE COMERCIO DE ALTE. BROWN";
     }
@@ -150,12 +163,14 @@ export class PdfGeneratorService {
 
     if(socio.codTipoSocio == 'cod_tipo_socio_2') {
 
-      this.logo.src = 'assets/images/mecab.jpg';
+      // this.logo.src = 'assets/images/mecab.jpg';
+      this.logo = this.logoMecab;
       encabezado = "CAMPO DEPORTIVO DE LA MUTUAL DE";
       
     } else {
 
-      this.logo.src = 'assets/images/secab.png';
+      // this.logo.src = 'assets/images/secab.png';
+      this.logo = this.logoSecab;
       encabezado = "CAMPO DEPORTIVO DEL SINDICATO DE";
     }
 
