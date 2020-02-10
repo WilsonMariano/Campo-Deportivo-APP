@@ -14,7 +14,7 @@ export class ListarBonosComponent implements OnInit {
   public arrBonos = [];
   public bonoPrevia = null;
 
-  constructor(private _bonos: BonoService, private _fx: FxGlobalsService) { }
+  constructor(private _bonos: BonoService, public _fx: FxGlobalsService) { }
 
   ngOnInit() { }
 

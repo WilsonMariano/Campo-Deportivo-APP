@@ -11,7 +11,7 @@ export class ModalRegisterComponent implements OnInit {
   @Input() id;
   @Input() datos = null;
 
-  constructor(private _fx: FxGlobalsService) { }
+  constructor(public _fx: FxGlobalsService) { }
 
   ngOnInit() {
   

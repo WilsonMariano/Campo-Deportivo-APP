@@ -57,7 +57,7 @@ export class NuevoPagoComponent implements OnInit {
     );
   }
 
-  private getTitular(idSocio): void {
+  public getTitular(idSocio): void {
  
     this._socio.getTitular(idSocio).subscribe(
       data => {

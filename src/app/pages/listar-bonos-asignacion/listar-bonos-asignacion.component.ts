@@ -14,7 +14,7 @@ export class ListarBonosAsignacionComponent implements OnInit {
   public arrPrestaciones = [];
   public arrBonos = [];
 
-  constructor(private fb: FormBuilder, private _diccionario: DiccionarioService, private _bono: BonoService, private _fx: FxGlobalsService) { }
+  constructor(private fb: FormBuilder, private _diccionario: DiccionarioService, private _bono: BonoService, public _fx: FxGlobalsService) { }
 
   ngOnInit() {
 

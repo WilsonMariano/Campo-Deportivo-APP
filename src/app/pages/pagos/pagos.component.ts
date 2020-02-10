@@ -46,7 +46,7 @@ export class PagosComponent implements OnInit {
    * Obtiene todas las cuotas de pago vinculadas al socio
    * @param idSocio id del socio para el cual traer las cuotas
    */
-  private getCuotas(idSocio): void {
+  public getCuotas(idSocio): void {
 
     this.idSocio = idSocio;
     

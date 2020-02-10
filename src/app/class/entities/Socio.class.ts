@@ -1,17 +1,17 @@
 export class Socio {
 
-    private id: Number;
-    private idSocioTitular: Number;
-    private nombre: String;
-    private apellido: String;
-    private dni: Number;
-    private fechaNacimiento: Date;
-    private telefono: Number;
-    private codParentesco: String;
-    private activo: Number;
-    private hash: String;
-    private codTipoSocio: String;
-    private nroAfiliado: Number;
+    public id: Number;
+    public idSocioTitular: Number;
+    public nombre: String;
+    public apellido: String;
+    public dni: Number;
+    public fechaNacimiento: Date;
+    public telefono: Number;
+    public codParentesco: String;
+    public activo: Number;
+    public hash: String;
+    public codTipoSocio: String;
+    public nroAfiliado: Number;
 
     public getId(): Number { return this.id }
     public getIdSocioTitular(): Number { return this.idSocioTitular }

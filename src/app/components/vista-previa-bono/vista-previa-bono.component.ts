@@ -13,7 +13,7 @@ export class VistaPreviaBonoComponent implements OnInit {
 
   public qrCode: any;
 
-  constructor(private _fx: FxGlobalsService, private _pdf: PdfGeneratorService) { }
+  constructor(public _fx: FxGlobalsService, private _pdf: PdfGeneratorService) { }
 
   ngOnInit() {
   }

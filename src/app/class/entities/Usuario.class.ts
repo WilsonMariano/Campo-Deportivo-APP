@@ -1,9 +1,9 @@
     export class Usuario {
 
-        private id          :   Number;
-        private usuario       :   String;
-        private password    :   String;
-        private codRole     :   String;
+        public id          :   Number;
+        public usuario       :   String;
+        public password    :   String;
+        public codRole     :   String;
 
         public Usuario(usuario: String, password: String, codRole?: String, id?: Number) {
 

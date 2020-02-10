@@ -16,7 +16,7 @@ export class VistaPreviaCarnetComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute, 
     private _common: CommonService, 
-    private _fx: FxGlobalsService, 
+    public _fx: FxGlobalsService, 
     private _pdf: PdfGeneratorService,
     private _funcionalidad: FuncionalidadesService,
     private router: Router) { 
@@ -47,7 +47,7 @@ export class VistaPreviaCarnetComponent implements OnInit {
    * Una vez que recibe los datos renderiza el qr
    * @param id id del socio a buscar
    */
-  private getSocio(id): void {
+  public getSocio(id): void {
 
     this._common.getOne('vwSocios', id).subscribe(
 

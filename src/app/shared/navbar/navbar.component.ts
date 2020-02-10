@@ -13,7 +13,7 @@ export class NavbarComponent {
   public datosSocio = null;
 
   constructor(
-    private _auth: AuthService,
+    public _auth: AuthService,
     private _socio: SocioService,
     private _fx: FxGlobalsService) { }
 

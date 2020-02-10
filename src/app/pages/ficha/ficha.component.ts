@@ -12,9 +12,9 @@ declare var $: any;
 export class FichaComponent implements OnInit {
 
   public datosSocio = null;
-  public socioTitular: Socio = null;
-  public arrFamiliares: Socio[] = [];
-  public arrInvitados: Socio[] = [];
+  public socioTitular = null;
+  public arrFamiliares = [];
+  public arrInvitados = [];
 
   public canAddFamily = false;
   public canPay = false;
@@ -25,7 +25,7 @@ export class FichaComponent implements OnInit {
     private activateRoute: ActivatedRoute, 
     private router: Router, 
     private _socio: SocioService,
-    private _fx: FxGlobalsService,
+    public _fx: FxGlobalsService,
     private _funcionalidades: FuncionalidadesService) { }
 
   ngOnInit() {

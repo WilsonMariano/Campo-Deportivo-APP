@@ -13,7 +13,7 @@
                 <div class="col-md-4">
                     <h4>{{socioTitular.apellido +" "+ socioTitular.nombre}}</h4>
                     <h4>{{socioTitular.dni}}</h4>
-                    <h4>{{_fx.dateFormat(socioTitular.fechaNacimiento)}}</h4>
+                    <h4>{{_fx.dateFormat(socioTitular.fechaNacimiento.toString())}}</h4>
                     <h4>{{socioTitular.telefono}}</h4>
                 </div>
                  <div class="col-md-2">
@@ -76,7 +76,7 @@
                                         <i class="fas fa-ellipsis-v "></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-left">
-                                        <li><a [routerLink]="'../../../home/datos-socio/editar/familiar/' + s.id" (click)="establecerParentesco()">Editar</a></li>
+                                        <li><a [routerLink]="'../../../home/datos-socio/editar/familiar/' + s.id">Editar</a></li>
                                         <li><a [routerLink]="'../../../home/vista-previa-carnet/' + s.id">Imprimir carnet</a></li>
                                         <li><a [routerLink]="'../../../home/emitir-bono/' + s.id">Emitir bono</a></li>
                                         <li><a (click)="registrarIngreso(s.hash)">Registrar ingreso</a></li>
@@ -126,7 +126,7 @@
                                         <i class="fas fa-ellipsis-v "></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-left">
-                                        <li><a [routerLink]="'../../../home/datos-socio/editar/invitado/' + s.id" (click)="establecerParentesco()">Editar</a></li>
+                                        <li><a [routerLink]="'../../../home/datos-socio/editar/invitado/' + s.id">Editar</a></li>
                                         <li><a [routerLink]="'../../../home/emitir-bono/' + s.id">Emitir bono</a></li>
                                         <li><a (click)="registrarIngreso(s.hash)">Registrar ingreso</a></li>
                                     </ul>
