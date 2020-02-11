@@ -17,8 +17,8 @@ export class BuscarFechasComponent implements OnInit {
   ngOnInit() {
 
     this.forma = this.fb.group({
-      'fechaDesde': new FormControl('2019-01-01',  Validators.required),
-      'fechaHasta': new FormControl('2020-12-01',  Validators.required)
+      'fechaDesde': new FormControl('',  Validators.required),
+      'fechaHasta': new FormControl('',  Validators.required)
     });
   }
 

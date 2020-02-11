@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/campoDeportivoApi'
+  apiUrl: 'http://localhost:8080/campoDeportivoApi',
+  imgUrl: './assets/images'
 };
 
 /*

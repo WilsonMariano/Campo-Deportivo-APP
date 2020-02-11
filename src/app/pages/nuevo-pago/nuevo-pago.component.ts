@@ -125,7 +125,7 @@ export class NuevoPagoComponent implements OnInit {
         this._cuota.insertCuota(cuota).subscribe(
           data => {
             this._pdf.generarRecibo(data.data);
-            this.router.navigate(['home/pagos/', this.socioTitular.idSocioTitular]);
+            this.router.navigate(['campoDeportivoAdmin/home/pagos/', this.socioTitular.idSocioTitular]);
           }
         );
       }

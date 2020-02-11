@@ -11,6 +11,7 @@ import { ComponentsModule } from './components/components.module'
 
 // Rutas
 import { APP_ROUTES } from './app.routes';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Clases
 import { HttpErrorInterceptor } from './class/class.index';
@@ -46,6 +47,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   providers: [
     ServiceModule,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
     // { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

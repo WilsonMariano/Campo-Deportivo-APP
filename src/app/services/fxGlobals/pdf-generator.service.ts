@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import { FxGlobalsService } from './fx-globals.service';
-import { Bono } from 'src/app/class/class.index';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+
 declare var numeroALetras: any;
 declare var moment: any;
 
@@ -25,7 +26,7 @@ export class PdfGeneratorService {
   }
 
   private traerImgLogoBase64() {
-    this.http.get("./assets/images/imagesBase64.json").subscribe(
+    this.http.get(environment.imgUrl + '/imagesBase64.json').subscribe(
       data =>  {
         this.logoSecab = data['imgSecab'];
         this.logoMecab = data['imgMecab'];
