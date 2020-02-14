@@ -108,7 +108,7 @@ export class FxGlobalsService {
 
   public capitalize(text: String) { 
 
-    let arr = text.split(' ').map(e=> e[0].toUpperCase() + e.substring(1, e.length));
+    let arr = text.split(' ').map(e=> e[0].toUpperCase() + e.substring(1, e.length).toLowerCase());
     return arr.join(' ');
   }
 

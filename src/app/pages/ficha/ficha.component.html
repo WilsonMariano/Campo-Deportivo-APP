@@ -31,9 +31,9 @@
                     <h4>{{_fx.dateFormat(socioTitular.fechaIngreso)}}</h4>
                 </div>
                 <div class="col-md-12 mt-3">
-                    <a [routerLink]="'../../../home/datos-socio/editar/titular/' + socioTitular.id"><i class="fa fa-pencil"></i>&nbsp;Editar</a>
+                    <a [routerLink]="'../../../home/datos-socio/editar/titular/' + socioTitular.id"><i class="fas fa-pencil-alt"></i>&nbsp;Editar</a>
                     <a [routerLink]="'../../../home/vista-previa-carnet/' + socioTitular.id" *ngIf="canEmitCarnet"><i class="fa fa-address-card ml-2"></i>&nbsp;Emitir carnet</a>
-                    <a [routerLink]="'../../../home/emitir-bono/' + socioTitular.id"><i class="fa fa-ticket ml-2"></i>&nbsp;Emitir bono</a>
+                    <a [routerLink]="'../../../home/emitir-bono/' + socioTitular.id"><i class="fas fa-ticket-alt ml-2"></i>&nbsp;Emitir bono</a>
                     <a [routerLink]="'../../../home/pagos/' + socioTitular.id" *ngIf="canPay"><i class="fa fa-money-bill-wave ml-2"></i>&nbsp;Cuotas</a>
                     <a (click)="registrarIngreso(socioTitular.hash)"><i class="fa fa-door-open ml-2"></i>&nbsp;Registrar ingreso</a>
                  </div>

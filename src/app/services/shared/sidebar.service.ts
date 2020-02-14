@@ -33,7 +33,7 @@ export class SidebarService {
     },
     {
       titulo: 'Bonos',
-      icono: 'fa fa-ticket',
+      icono: 'fas fa-ticket-alt',
       submenu: [
         {
           titulo: 'Nuevo bono',

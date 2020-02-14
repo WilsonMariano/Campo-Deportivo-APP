@@ -120,7 +120,7 @@ export class NuevoPagoComponent implements OnInit {
         cuota.setFechaPago(this.forma.get('fechaPago').value);
         cuota.setFechaVencimiento(this.forma.get('fechaVencimiento').value);
         cuota.setMonto(this.forma.get('monto').value);
-        cuota.setDescripcion(this.forma.get('descripcion').value);
+        cuota.setDescripcion(this._fx.capitalize((this.forma.get('descripcion').value)));
     
         this._cuota.insertCuota(cuota).subscribe(
           data => {
