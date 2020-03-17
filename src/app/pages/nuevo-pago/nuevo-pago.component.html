@@ -49,6 +49,8 @@
                             <textarea class="form-control" formControlName="descripcion"></textarea>
                             <span class="form-invalid"
                                 *ngIf="forma.controls['descripcion'].errors?.required && forma.controls['descripcion'].touched">*Requerido</span>
+                            <span class="form-invalid"
+                            *ngIf="forma.controls['descripcion'].errors?.maxlength">*El campo debe tener menos de {{maxLenDescripcion}} caracteres</span>
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary" [disabled]="forma.invalid">Aceptar</button>

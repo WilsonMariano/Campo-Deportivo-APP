@@ -35,25 +35,8 @@ export class FxGlobalsService {
       text,
       icon,
       buttons: true,
-      // buttons: {
-      //   cancel: {
-      //     text: "Cancelar",
-      //     value: null,
-      //     visible: false,
-      //     className: "",
-      //     closeModal: true,
-      //   },
-      //   confirm: {
-      //     text: "Aceptar",
-      //     value: true,
-      //     visible: true,
-      //     className: "",
-      //     closeModal: true
-      //   }
-      // },
       dangerMode: true
     };
-
 
     // Retorno una promesa con el resultado según lo que haya presionado el usuario
     return new Promise(( resolve, reject ) => {
@@ -118,6 +101,14 @@ export class FxGlobalsService {
     let dias = moment(vencimiento).diff(hoy, "days");
 
     return dias < 0;
+  }
+
+  public splitStr(text: string, length: number): string {
+
+    if(text.length > length)
+      return text.substring(0, length);
+    else
+      return text;
   }
 }
 

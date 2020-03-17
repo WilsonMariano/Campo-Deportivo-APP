@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SocioService, FxGlobalsService, DiccionarioService, CuotaService, PdfGeneratorService, FuncionalidadesService } from 'src/app/services/services.index';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Cuota } from 'src/app/class/class.index';
+import { LEN_DESC_RECIBO } from '../../config/config';
 declare var moment: any;
 
 @Component({
@@ -14,6 +15,7 @@ export class NuevoPagoComponent implements OnInit {
 
   public forma: FormGroup;
   public socioTitular = null;
+  public maxLenDescripcion = LEN_DESC_RECIBO;
 
   constructor(
     private activatedRoute: ActivatedRoute, 
@@ -33,7 +35,7 @@ export class NuevoPagoComponent implements OnInit {
       'fechaPago': new FormControl('', Validators.required),
       'fechaVencimiento': new FormControl('', Validators.required),
       'monto': new FormControl('', Validators.required),
-      'descripcion': new FormControl('', Validators.required)
+      'descripcion': new FormControl('', [Validators.required, Validators.maxLength(LEN_DESC_RECIBO)])
     });
 
     this.disableForm();

@@ -3,6 +3,7 @@ import * as jsPDF from 'jspdf';
 import { FxGlobalsService } from './fx-globals.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import { LEN_DESC_LISTADO_CAJA } from '../../config/config'
 
 declare var numeroALetras: any;
 declare var moment: any;
@@ -417,11 +418,11 @@ export class PdfGeneratorService {
 
     cuotas.forEach((element, i) => {
 
-      doc.text(this._fx.dateFormat(element.fechaPago)    , 10, row);
-      doc.text(element.idSocio                              , 35, row);
-      doc.text(`${element.apellido} ${element.nombre}`      , 60, row);
-      doc.text(element.descripcion                          , 130, row);
-      doc.text(element.monto                                , 180, row);
+      doc.text(this._fx.dateFormat(element.fechaPago)                       , 10, row);
+      doc.text(element.idSocio                                              , 35, row);
+      doc.text(`${element.apellido} ${element.nombre}`                      , 60, row);
+      doc.text(this._fx.splitStr(element.descripcion, LEN_DESC_LISTADO_CAJA), 130, row);
+      doc.text(element.monto                                                , 180, row);
 
       row += 5;
 
@@ -500,11 +501,11 @@ export class PdfGeneratorService {
 
     ingresos.forEach((element, i) => {
 
-      doc.text(this._fx.dateFormat(element.fecha)    , 10, row);
-      doc.text(element.idSocio                              , 35, row);
-      doc.text(`${element.apellido} ${element.nombre}`      , 60, row);
-      doc.text(element.descripcion                          , 130, row);
-      doc.text(element.monto                                , 180, row);
+      doc.text(this._fx.dateFormat(element.fecha)                           , 10, row);
+      doc.text(element.idSocio                                              , 35, row);
+      doc.text(`${element.apellido} ${element.nombre}`                      , 60, row);
+      doc.text(this._fx.splitStr(element.descripcion, LEN_DESC_LISTADO_CAJA), 130, row);
+      doc.text(element.monto                                                , 180, row);
 
       row += 5;
 

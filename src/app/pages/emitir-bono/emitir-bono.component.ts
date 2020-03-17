@@ -4,6 +4,7 @@ import { SocioService, DiccionarioService, FxGlobalsService, ValoresService, Pdf
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Bono } from 'src/app/class/class.index';
 import { BonoService } from 'src/app/services/http/bono.service';
+import { LEN_DESC_BONO } from '../../config/config';
 declare var moment: any;
 
 @Component({
@@ -33,6 +34,8 @@ export class EmitirBonoComponent implements OnInit {
   public bonoPrevia = null;
   public estaVencido = false;
 
+  public maxLenDescripcion = LEN_DESC_BONO;
+
   ngOnInit() {
 
     this.forma = new FormGroup({
@@ -47,7 +50,7 @@ export class EmitirBonoComponent implements OnInit {
       'codPrestacion': new FormControl('', Validators.required),
       'monto': new FormControl('', Validators.required),
       'codDia': new FormControl(''),
-      'descripcion': new FormControl('')
+      'descripcion': new FormControl('', Validators.maxLength(LEN_DESC_BONO))
 
     });
 
@@ -239,5 +242,4 @@ export class EmitirBonoComponent implements OnInit {
       );
     });
   }
-
 }
